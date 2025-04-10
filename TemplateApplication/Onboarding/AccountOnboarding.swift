@@ -48,8 +48,8 @@ struct AccountOnboarding: View {
 
 #Preview("Account Onboarding") {
     var details = AccountDetails()
-    details.userId = "lelandstanford@stanford.edu"
-    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+    details.userId = "william@chalmers.se"
+    details.name = PersonNameComponents(givenName: "William", familyName: "Chalmers")
     
     return OnboardingStack {
         AccountOnboarding()

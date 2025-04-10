@@ -21,10 +21,12 @@ final class TemplateApplicationScheduler: Module, DefaultInitializable, Environm
     @MainActor var viewState: ViewState = .idle
 
     init() {}
-    
+
     /// Add or update the current list of task upon app startup.
     func configure() {
         do {
+            /*
+            // Old template task – you can re-enable this if needed
             try scheduler.createOrUpdateTask(
                 id: "social-support-questionnaire",
                 title: "Social Support Questionnaire",
@@ -34,19 +36,37 @@ final class TemplateApplicationScheduler: Module, DefaultInitializable, Environm
             ) { context in
                 context.questionnaire = Bundle.main.questionnaire(withName: "SocialSupportQuestionnaire")
             }
+            */
+
+            // OPAT questionnaire – added here!
+            try scheduler.createOrUpdateTask(
+                id: "opat-followup",
+                title: "Daily OPAT Check-in",
+                instructions: "Take a moment to check in and let us know how you're doing today.",
+                category: .questionnaire,
+                schedule: .daily(hour: 9, minute: 0, startingAt: .today)
+            ) { context in
+                context.questionnaire = Bundle.main.questionnaire(withName: "OPATFollowUp")
+            }
+
+            // You can add more scheduled tasks here later (e.g., weekly follow-ups, injection helper prompts, etc.)
         } catch {
-            viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: "Failed to create or update scheduled tasks."))
+            viewState = .error(AnyLocalizedError(
+                error: error,
+                defaultErrorDescription: "Failed to create or update scheduled tasks."
+            ))
         }
     }
 }
 
 
+// This extension is required so `context.questionnaire` works!
 extension Task.Context {
     @Property(coding: .json) var questionnaire: Questionnaire?
 }
 
 
+// Optional but good: Allows us to store the user's response
 extension Outcome {
-    // periphery:ignore - demonstration of how to store additional context within an outcome
     @Property(coding: .json) var questionnaireResponse: QuestionnaireResponse?
 }

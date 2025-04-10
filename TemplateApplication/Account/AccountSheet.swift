@@ -71,8 +71,8 @@ struct AccountSheet: View {
 #if DEBUG
 #Preview("AccountSheet") {
     var details = AccountDetails()
-    details.userId = "lelandstanford@stanford.edu"
-    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+    details.userId = "william@chalmers.se"
+    details.name = PersonNameComponents(givenName: "William", familyName: "Chalmers")
     
     return AccountSheet()
         .previewWith {

@@ -23,7 +23,6 @@ import SwiftUI
 
 actor TemplateApplicationStandard: Standard,
                                    EnvironmentAccessible,
-                                   HealthKitConstraint,
                                    ConsentConstraint,
                                    AccountNotifyConstraint {
     @Application(\.logger) private var logger

@@ -25,8 +25,6 @@ struct EventView: View {
                 guard case let .completed(response) = result else {
                     return // user cancelled the task
                 }
-
-                event.complete()
                 await standard.add(response: response)
             }
         } else {

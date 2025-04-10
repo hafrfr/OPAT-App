@@ -177,6 +177,9 @@
         }
       }
     },
+    "Daily OPAT Check-in" : {
+
+    },
     "Grant Access" : {
       "localizations" : {
         "de" : {
@@ -596,6 +599,7 @@
       }
     },
     "Please fill out the Social Support Questionnaire every day." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -640,6 +644,7 @@
       }
     },
     "Social Support Questionnaire" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -770,6 +775,9 @@
           }
         }
       }
+    },
+    "Take a moment to check in and let us know how you're doing today." : {
+
     },
     "The Spezi Framework" : {
       "localizations" : {

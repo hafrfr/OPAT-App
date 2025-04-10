@@ -1,0 +1,391 @@
+{
+  "resourceType": "Questionnaire",
+  "language": "en-US",
+  "id": "opatfollowup",
+  "name": "OPATFollowUp",
+  "title": "Daily OPAT Check-in",
+  "description": "This daily check-in helps you and your healthcare team monitor how you're doing during your antibiotic treatment at home.",
+  "version": "1",
+  "status": "draft",
+  "publisher": "Chalmers x Stanford (Student Prototype)",
+  "meta": {
+    "profile": [
+      "http://spezi.stanford.edu/fhir/StructureDefinition/sdf-Questionnaire"
+    ],
+    "tag": [
+      {
+        "system": "urn:ietf:bcp:47",
+        "code": "en-US",
+        "display": "English"
+      }
+    ]
+  },
+  "useContext": [
+    {
+      "code": {
+        "system": "http://hl7.org/fhir/ValueSet/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "133938004",
+            "display": "Antibiotic therapy"
+          }
+        ]
+      }
+    }
+  ],
+  "contact": [
+    {
+      "name": "OPAT @ Home – Chalmers x Stanford Digital Health Project"
+    }
+  ],
+  "subjectType": [
+    "Patient"
+  ],
+  "purpose": "This prototype aims to support OPAT (Outpatient Parenteral Antimicrobial Therapy) by encouraging safe, consistent daily self-monitoring at home.",
+  "copyright": "For research and educational purposes only. Not for clinical use.",
+  "date": "2025-04-04T00:00:00+01:00",
+  "url": "http://spezi.stanford.edu/fhir/questionnaire/opat-followup",
+  "item": [
+    {
+      "linkId": "section-welcome",
+      "type": "display",
+      "text": "👋 Welcome to your daily check-in!"
+    },
+    {
+      "linkId": "checkin-feeling",
+      "type": "choice",
+      "text": "How are you feeling today?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "id": "great-feeling",
+            "code": "great",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa",
+            "display": "I'm feeling good!"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "okay-feeling",
+            "code": "okay",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa",
+            "display": "I'm doing okay"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "off-feeling",
+            "code": "off",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa",
+            "display": "I feel a bit off"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "unwell-feeling",
+            "code": "unwell",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa",
+            "display": "I feel unwell"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "checkin-followup",
+      "type": "string",
+      "text": "Want to share more about how you're feeling? (Optional)",
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "checkin-feeling",
+          "operator": "=",
+          "answerCoding": {
+            "code": "off",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "question": "checkin-feeling",
+          "operator": "=",
+          "answerCoding": {
+            "code": "unwell",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "symptom-intro",
+      "type": "display",
+      "text": "Next, we’ll check for any general symptoms or changes around your IV site — that’s where your antibiotic line enters your body, usually in your arm. This helps us make sure your treatment is on track."
+    },
+    {
+      "linkId": "general-symptoms",
+      "type": "choice",
+      "text": "Have you felt any of the following symptoms since your last check-in?",
+      "required": false,
+      "repeats": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "check-box",
+                "display": "Check-box"
+              }
+            ]
+          }
+        }
+      ],
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "none",
+            "display": "No symptoms",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "fever",
+            "display": "Fever or chills",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "nausea",
+            "display": "Nausea",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "dizziness",
+            "display": "Dizziness",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "fatigue",
+            "display": "Unusual tiredness",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "other",
+            "display": "Other (please specify)",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "general-symptoms-other-description",
+      "type": "string",
+      "text": "Please describe your symptoms",
+      "enableWhen": [
+        {
+          "question": "general-symptoms",
+          "operator": "!=",
+          "answerCoding": {
+            "code": "none",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ],
+      "required": false
+    },
+    {
+      "linkId": "iv-site-symptoms",
+      "type": "choice",
+      "text": "Have you noticed any of the following symptoms at your IV site?",
+      "required": false,
+      "repeats": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "check-box",
+                "display": "Check-box"
+              }
+            ]
+          }
+        }
+      ],
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "none",
+            "display": "No, everything looks and feels fine",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "redness",
+            "display": "Redness",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "swelling",
+            "display": "Swelling",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "pain",
+            "display": "Pain or tenderness",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "fluid",
+            "display": "Fluid or leakage",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "other",
+            "display": "Other (please describe)",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "iv-symptoms-other-description",
+      "type": "string",
+      "text": "Please describe what you noticed",
+      "enableWhen": [
+        {
+          "question": "iv-site-symptoms",
+          "operator": "!=",
+          "answerCoding": {
+            "code": "none",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ],
+      "required": false
+    },
+    {
+      "linkId": "section3-intro",
+      "type": "display",
+      "text": "Finally, let’s check how things went with your treatment today — this helps us understand if anything needs adjusting or support."
+    },
+    {
+      "linkId": "antibiotic-dose",
+      "type": "choice",
+      "text": "Did you receive your antibiotic dose as planned today?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "yes",
+            "display": "Yes",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "no",
+            "display": "No",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "missed-dose-reason",
+      "type": "string",
+      "text": "Can you tell us why?",
+      "enableWhen": [
+        {
+          "question": "antibiotic-dose",
+          "operator": "=",
+          "answerCoding": {
+            "code": "no",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ],
+      "required": false
+    },
+    {
+      "linkId": "infusion-difficulties",
+      "type": "choice",
+      "text": "Did you have any difficulty with the infusion or equipment?",
+      "required": false,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "no_issues",
+            "display": "No, everything worked fine",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "equipment_issue",
+            "display": "Yes, equipment issues",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "infusion_issue",
+            "display": "Yes, infusion issues",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "other",
+            "display": "Other (please describe)",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "infusion-difficulties-description",
+      "type": "string",
+      "text": "Please describe what happened",
+      "enableWhen": [
+        {
+          "question": "infusion-difficulties",
+          "operator": "!=",
+          "answerCoding": {
+            "code": "no_issues",
+            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          }
+        }
+      ],
+      "required": false
+    },
+    {
+      "linkId": "end-display",
+      "type": "display",
+      "text": "Thank you for checking in with us! Please check out our other resources if you need help with OPAT. If you feel the need to talk to a nurse, please contact 1177."
+    }
+  ]
+}
