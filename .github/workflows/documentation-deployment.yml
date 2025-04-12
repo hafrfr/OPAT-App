@@ -6,28 +6,17 @@
 # SPDX-License-Identifier: MIT
 #
 
-name: Documentation Deployment
+# Temporarily disabling Documentation Deployment for MVP focus -- come back after
+# jobs:
+#   docs:
+#     name: Documentation Deployment
+#     uses: StanfordBDHG/.github/.github/workflows/docc-github-pages.yml@v2
+#     permissions:
+#       contents: read
+#       pages: write
+#       id-token: write
+#     with:
+#       scheme: 'TemplateApplication'
+#       dryrun: ${{ github.ref_name != 'main' }}
+#       xcodeversion: "16.1" # Temporary workaround for: https://github.com/actions/runner-images/issues/11335. Remove when resolved.
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-  workflow_dispatch:
-
-concurrency:
-  group: Documentation-Deployment-${{ github.ref }}
-  cancel-in-progress: true
-
-jobs:
-  docs:
-    name: Documentation Deployment
-    uses: StanfordBDHG/.github/.github/workflows/docc-github-pages.yml@v2
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    with:
-      scheme: 'TemplateApplication'
-      dryrun: ${{ github.ref_name != 'main' }}
-      xcodeversion: "16.1" # Temporary workaround for: https://github.com/actions/runner-images/issues/11335. Remove when resolved.
