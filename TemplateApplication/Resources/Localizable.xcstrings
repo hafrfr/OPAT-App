@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "A few words about your check-ins." : {
+
+    },
     "ACCOUNT_SETUP_DESCRIPTION" : {
       "localizations" : {
         "de" : {
@@ -88,6 +91,12 @@
           }
         }
       }
+    },
+    "Before You Start" : {
+
+    },
+    "Clear answers to common questions and guidance on what to do if something feels off." : {
+
     },
     "Close" : {
       "localizations" : {
@@ -177,7 +186,37 @@
         }
       }
     },
+    "Daily Check-ins" : {
+
+    },
+    "Daily check-ins help you reflect on how you’re feeling. It’s optional and your answers stay private on your device." : {
+
+    },
     "Daily OPAT Check-in" : {
+
+    },
+    "Educational Resources" : {
+
+    },
+    "FAQs and Tips" : {
+
+    },
+    "Feel confident and supported with IV treatment at home." : {
+
+    },
+    "Feel Prepared and in Control" : {
+
+    },
+    "For Patients and Caregivers" : {
+
+    },
+    "Get answers to common questions and tips for staying safe, every step of the way." : {
+
+    },
+    "Get helpful reminders during your treatment." : {
+
+    },
+    "Get Started" : {
 
     },
     "Grant Access" : {
@@ -290,6 +329,12 @@
         }
       }
     },
+    "Helpful tools to guide you through treatment at home." : {
+
+    },
+    "Here to guide your treatment\none step at a time." : {
+
+    },
     "HL7 FHIR" : {
       "localizations" : {
         "de" : {
@@ -311,6 +356,9 @@
           }
         }
       }
+    },
+    "I Understand" : {
+
     },
     "Interesting Modules" : {
       "localizations" : {
@@ -444,6 +492,9 @@
         }
       }
     },
+    "IV Treatment at Home" : {
+
+    },
     "Learn More" : {
       "localizations" : {
         "de" : {
@@ -509,6 +560,9 @@
           }
         }
       }
+    },
+    "More Coming Soon" : {
+
     },
     "Next" : {
       "localizations" : {
@@ -598,6 +652,12 @@
         }
       }
     },
+    "OPAT @ HOME" : {
+
+    },
+    "OPAT stands for Outpatient Parenteral Antimicrobial Therapy." : {
+
+    },
     "Please fill out the Social Support Questionnaire every day." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -621,6 +681,12 @@
         }
       }
     },
+    "Private & Optional" : {
+
+    },
+    "Reflect on how you're feeling and get reminders of what to watch out for." : {
+
+    },
     "Schedule" : {
       "localizations" : {
         "de" : {
@@ -642,6 +708,12 @@
           }
         }
       }
+    },
+    "Scheduled and Supervised" : {
+
+    },
+    "Short videos and step-by-step guides for staying confident with IV treatment." : {
+
     },
     "Social Support Questionnaire" : {
       "extractionState" : "stale",
@@ -665,6 +737,9 @@
           }
         }
       }
+    },
+    "Sounds Good" : {
+
     },
     "Spezi Modules" : {
       "localizations" : {
@@ -754,6 +829,9 @@
         }
       }
     },
+    "Stay Informed" : {
+
+    },
     "Swift Package Manager" : {
       "localizations" : {
         "de" : {
@@ -801,6 +879,9 @@
         }
       }
     },
+    "This app, along with your care team, is here to help you stay informed and confident." : {
+
+    },
     "This type of event is currently unsupported. Please contact the developer of this app." : {
       "localizations" : {
         "de" : {
@@ -823,6 +904,9 @@
         }
       }
     },
+    "Understand Your Treatment" : {
+
+    },
     "Unsupported Event" : {
       "localizations" : {
         "de" : {
@@ -844,6 +928,18 @@
           }
         }
       }
+    },
+    "We can send reminders to check in or review tips. It’s optional — and you can turn it off anytime." : {
+
+    },
+    "We’ll guide you step by step through what OPAT is and how it works." : {
+
+    },
+    "We're building more ways to support you — like audio guidance and multilingual content." : {
+
+    },
+    "Welcome to OPAT @ Home" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
@@ -933,6 +1029,27 @@
         }
       }
     },
+    "What is OPAT?" : {
+
+    },
+    "What You’ll Find in the App" : {
+
+    },
+    "Whether you’re receiving care or helping someone, we’re here to support you both." : {
+
+    },
+    "With OPAT, you receive IV antibiotics outside the hospital — often from the comfort of your own home." : {
+
+    },
+    "You’ll follow a treatment plan from your doctor, with check-ins as needed." : {
+
+    },
+    "You're in Control" : {
+
+    },
+    "You’re Not Alone" : {
+
+    },
     "Your Account" : {
       "localizations" : {
         "de" : {
@@ -954,6 +1071,9 @@
           }
         }
       }
+    },
+    "Your check-ins are for your own insight. This is not medical advice or a replacement for professional care." : {
+
     }
   },
   "version" : "1.0"
