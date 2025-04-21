@@ -1,10 +1,14 @@
 //
-// OPATFeatures.swift
-// Part of the OPAT @ Home application
+// This source file is part of the Stanford Spezi Template Application open-source project
 //
-// Overview screen that introduces key features available in the app.
-// Created by the OPAT @ Home team, Chalmers University of Technology, 2025.
+// SPDX-FileCopyrightText: 2023 Stanford University
 //
+// SPDX-License-Identifier: MIT
+//
+// ---
+// Modified by the OPAT @ Home team, Chalmers University of Technology, 2025.
+// Part of the OPAT @ Home application based on the Stanford Spezi Template Application.
+// ---
 
 import SpeziOnboarding
 import SwiftUI
