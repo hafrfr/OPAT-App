@@ -13,7 +13,7 @@ import SpeziViews
 import SwiftUI
 
 
-struct ScheduleView: View {
+struct OPATScheduleView: View {
     @Environment(Account.self) private var account: Account?
     @Environment(TemplateApplicationScheduler.self) private var scheduler: TemplateApplicationScheduler
 
@@ -27,7 +27,7 @@ struct ScheduleView: View {
         NavigationStack {
             EventScheduleList { event in
                 InstructionsTile(event) {
-                    EventActionButton(event: event, "Start Questionnaire") {
+                    EventActionButton(event: event, "Start") {
                         presentedEvent = event
                     }
                 }
@@ -56,7 +56,7 @@ struct ScheduleView: View {
 #Preview {
     @Previewable @State var presentingAccount = false
 
-    ScheduleView(presentingAccount: $presentingAccount)
+    OPATScheduleView(presentingAccount: $presentingAccount)
         .previewWith(standard: TemplateApplicationStandard()) {
             TemplateApplicationScheduler()
             AccountConfiguration(service: InMemoryAccountService())

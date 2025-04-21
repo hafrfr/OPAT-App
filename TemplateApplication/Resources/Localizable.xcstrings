@@ -332,7 +332,7 @@
     "Helpful tools to guide you through treatment at home." : {
 
     },
-    "Here to guide your treatment\none step at a time." : {
+    "Here to guide your treatment\nOne step at a time" : {
 
     },
     "HL7 FHIR" : {
@@ -806,6 +806,9 @@
           }
         }
       }
+    },
+    "Start" : {
+
     },
     "Start Questionnaire" : {
       "localizations" : {

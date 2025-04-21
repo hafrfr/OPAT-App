@@ -1,13 +1,16 @@
 //
-// OPATOnboardingFlow.swift
-// Part of the OPAT @ Home application
+// This source file is part of the Stanford Spezi Template Application open-source project
 //
-// Modified onboarding flow using OPAT-specific steps, based on the Stanford Spezi Template Application.
-// Created by the OPAT @ Home team, Chalmers University of Technology, 2025.
+// SPDX-FileCopyrightText: 2023 Stanford University
 //
-
-import SpeziOnboarding
+// SPDX-License-Identifier: MIT
+//
+// ---
+// Modified by the OPAT @ Home team, Chalmers University of Technology, 2025.
+// Part of the OPAT @ Home application based on the Stanford Spezi Template Application.
+// ---
 import SpeziNotifications
+import SpeziOnboarding
 import SwiftUI
 
 

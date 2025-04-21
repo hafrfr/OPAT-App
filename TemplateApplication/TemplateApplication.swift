@@ -1,10 +1,14 @@
 //
-// TemplateApplication.swift
+// This source file is part of the Stanford Spezi Template Application open-source project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+// ---
+// Modified by the OPAT @ Home team, Chalmers University of Technology, 2025.
 // Part of the OPAT @ Home application based on the Stanford Spezi Template Application.
-//
-// Entry point for the app.
-// Created by the OPAT @ Home team, Chalmers University of Technology, 2025.
-//
+// ---
 
 import Spezi
 import SpeziFirebaseAccount
