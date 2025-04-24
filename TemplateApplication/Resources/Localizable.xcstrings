@@ -195,6 +195,9 @@
     "Daily OPAT Check-in" : {
 
     },
+    "Details for %@" : {
+
+    },
     "Educational Resources" : {
 
     },
@@ -207,6 +210,9 @@
     "Feel Prepared and in Control" : {
 
     },
+    "Finish" : {
+
+    },
     "For Patients and Caregivers" : {
 
     },
@@ -217,6 +223,9 @@
 
     },
     "Get Started" : {
+
+    },
+    "Go to CheckList" : {
 
     },
     "Grant Access" : {
@@ -358,6 +367,9 @@
       }
     },
     "I Understand" : {
+
+    },
+    "Instructions" : {
 
     },
     "Interesting Modules" : {
@@ -681,6 +693,9 @@
         }
       }
     },
+    "Previous" : {
+
+    },
     "Private & Optional" : {
 
     },
@@ -835,6 +850,12 @@
     "Stay Informed" : {
 
     },
+    "Steps" : {
+
+    },
+    "Supplies Checklist" : {
+
+    },
     "Swift Package Manager" : {
       "localizations" : {
         "de" : {
@@ -906,6 +927,12 @@
           }
         }
       }
+    },
+    "Time for your %@" : {
+
+    },
+    "Treatment: %@" : {
+
     },
     "Understand Your Treatment" : {
 
