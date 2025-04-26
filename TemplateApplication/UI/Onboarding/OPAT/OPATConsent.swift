@@ -8,7 +8,7 @@
 // ---
 // Modified by the OPAT @ Home team, Chalmers University of Technology, 2025.
 // Part of the OPAT @ Home application based on the Stanford Spezi Template Application.
-// // 4. OPATConsent — explain how the check-in feature works and that it's local; confirm user understanding of this. Also a push that they are a part of the team!
+// 4. OPATConsent — explain how the check-in feature works and that it's local; confirm user understanding of this. Also a push that they are a part of the team!
 // ---
 
 import SpeziOnboarding
