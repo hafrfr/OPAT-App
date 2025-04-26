@@ -1,6 +1,7 @@
-import Spezi
-import Foundation
 import Combine
+import Foundation
+import Spezi
+
 /// Wire everything together: whenever treatments change, re-schedule tasks & notifications.
 final class TreatmentModule: Module, DefaultInitializable {
   @Dependency private var model: TreatmentModel

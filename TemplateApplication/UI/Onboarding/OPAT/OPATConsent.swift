@@ -8,6 +8,7 @@
 // ---
 // Modified by the OPAT @ Home team, Chalmers University of Technology, 2025.
 // Part of the OPAT @ Home application based on the Stanford Spezi Template Application.
+// // 4. OPATConsent — explain how the check-in feature works and that it's local; confirm user understanding of this. Also a push that they are a part of the team!
 // ---
 
 import SpeziOnboarding
@@ -18,36 +19,46 @@ struct OPATConsent: View {
 
     var body: some View {
         OnboardingView(
-            title: "Before You Start",
-            subtitle: "A few words about your check-ins.",
+            title: String(localized: "CONSENT_TITLE"),
+            subtitle: String(localized: "CONSENT_SUBTITLE"),
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "lock.shield.fill")
                             .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
                     },
-                    title: "Private & Optional",
-                    description: "Daily check-ins help you reflect on how you’re feeling. It’s optional and your answers stay private on your device."
-                    // TODO: Reconfirm this with someone who knows legal/ethics issues if check-ins evolve into structured symptom tracking
+                    title: String(localized: "CONSENT_AREA1_TITLE"),
+                    description: String(localized: "CONSENT_AREA1_DESCRIPTION")
                 ),
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "person.text.rectangle.fill")
                             .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
                     },
-                    title: "You're in Control",
-                    description: "Your check-ins are for your own insight. This is not medical advice or a replacement for professional care."
-                    // TODO: Revisit this disclaimer if app starts integrating with clinicians or care pathways (probably not for this project)
+                    title: String(localized: "CONSENT_AREA2_TITLE"),
+                    description: String(localized: "CONSENT_AREA2_DESCRIPTION")
+                ),
+                OnboardingInformationView.Content(
+                    icon: {
+                        Image(systemName: "person.3.fill")
+                            .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
+                    },
+                    title: String(localized: "CONSENT_AREA3_TITLE"),
+                    description: String(localized: "CONSENT_AREA3_DESCRIPTION")
                 )
-                // TODO: Optionally reintroduce info toggle section later as a third row if needed
             ],
-            actionText: "I Understand",
+            actionText: String(localized: "I_UNDERSTAND"),
             action: {
                 onboardingNavigationPath.nextStep()
             }
         )
-        .padding(.top, 24)
-        // TODO: Consider saving consent locally (as a bool flag or timestamp) for internal auditing or future features
+        .font(FontTheme.body)
+        .tint(ColorTheme.buttonLarge)
+        .padding(.top, Layout.Spacing.large)
+        .accentColor(ColorTheme.buttonLarge)
     }
 }
 

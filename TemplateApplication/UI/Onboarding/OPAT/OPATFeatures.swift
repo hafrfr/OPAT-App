@@ -8,6 +8,7 @@
 // ---
 // Modified by the OPAT @ Home team, Chalmers University of Technology, 2025.
 // Part of the OPAT @ Home application based on the Stanford Spezi Template Application.
+// 3. OPATFeatures — highlight key features of the app and how it supports them.
 // ---
 
 import SpeziOnboarding
@@ -18,41 +19,41 @@ struct OPATFeatures: View {
 
     var body: some View {
         SequentialOnboardingView(
-            title: "What You’ll Find in the App",
-            subtitle: "Helpful tools to guide you through treatment at home.",
+            title: String(localized: "FEATURES_TITLE"),
+            subtitle: String(localized: "FEATURES_SUBTITLE"),
             content: [
                 SequentialOnboardingView.Content(
-                    title: "Daily Check-ins",
-                    description: "Reflect on how you're feeling and get reminders of what to watch out for."
-                    // TODO: Link this feature more visually to the actual questionnaire screen once it's styled
-                    // TODO: Update this if the daily check-ins are removed or made weekly
+                    title: String(localized: "FEATURE1_TITLE"),
+                    description: String(localized: "FEATURE1_DESCRIPTION")
                 ),
                 SequentialOnboardingView.Content(
-                    title: "Educational Resources",
-                    description: "Short videos and step-by-step guides for staying confident with IV treatment."
-                    // TODO: Consider adding icons or previews for video content here once available
-                    // TODO: Make this clickable later to jump directly into the Education module post-onboarding
+                    title: String(localized: "FEATURE2_TITLE"),
+                    description: String(localized: "FEATURE2_DESCRIPTION")
                 ),
                 SequentialOnboardingView.Content(
-                    title: "FAQs and Tips",
-                    description: "Clear answers to common questions and guidance on what to do if something feels off."
-                    // TODO: Validate FAQ content with clinical team before launch
-                    // TODO: Possibly localize these for different regions or care teams
+                    title: String(localized: "FEATURE3_TITLE"),
+                    description: String(localized: "FEATURE3_DESCRIPTION")
                 ),
                 SequentialOnboardingView.Content(
-                    title: "More Coming Soon",
-                    description: "We're building more ways to support you — like audio guidance and multilingual content."
-                    // TODO: Replace this section with real modules once features like voice, translations, or streaks are ready
+                    title: String(localized: "FEATURE4_TITLE"),
+                    description: String(localized: "FEATURE4_DESCRIPTION")
+                ),
+                SequentialOnboardingView.Content(
+                    title: String(localized: "FEATURE5_TITLE"),
+                    description: String(localized: "FEATURE5_DESCRIPTION")
                 )
             ],
-            actionText: "Sounds Good",
+            actionText: String(localized: "SOUNDS_GOOD"),
             action: {
                 onboardingNavigationPath.nextStep()
             }
         )
+        .font(FontTheme.body)
+        .tint(ColorTheme.buttonLarge)
+        .padding(.top, Layout.Spacing.large)
+        .accentColor(ColorTheme.buttonLarge) // Override the numbered circles color to app color
     }
 }
-
 
 #if DEBUG
 #Preview {

@@ -8,7 +8,9 @@
 // ---
 // Modified by the OPAT @ Home team, Chalmers University of Technology, 2025.
 // Part of the OPAT @ Home application based on the Stanford Spezi Template Application.
+// 2. OPATIntro — educate users about what OPAT actually is.
 // ---
+
 import SpeziOnboarding
 import SwiftUI
 
@@ -17,45 +19,47 @@ struct OPATIntro: View {
 
     var body: some View {
         OnboardingView(
-            title: "What is OPAT?",
-            subtitle: "OPAT stands for Outpatient Parenteral Antimicrobial Therapy.",
+            title: String(localized: "INTRO_TITLE"),
+            subtitle: String(localized: "INTRO_SUBTITLE"),
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "syringe.fill")
                             .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
                     },
-                    title: "IV Treatment at Home",
-                    description: "With OPAT, you receive IV antibiotics outside the hospital — often from the comfort of your own home."
-                    // TODO: Confirm this description with clinicians. Add nuance for different types of IV access (e.g., PICC, port).
+                    title: String(localized: "INTRO_AREA1_TITLE"),
+                    description: String(localized: "INTRO_AREA1_DESCRIPTION")
                 ),
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "calendar")
                             .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
                     },
-                    title: "Scheduled and Supervised",
-                    description: "You’ll follow a treatment plan from your doctor, with check-ins as needed."
-                    // TODO: Check how they want follow-ups to work in Swedish OPAT programs — is it self-reporting, nurse visits, etc? Should we keep it to current system or the system they WANT?
+                    title: String(localized: "INTRO_AREA2_TITLE"),
+                    description: String(localized: "INTRO_AREA2_DESCRIPTION")
                 ),
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "heart.text.square.fill")
                             .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
                     },
-                    title: "You’re Not Alone",
-                    description: "This app, along with your care team, is here to help you stay informed and confident."
+                    title: String(localized: "INTRO_AREA3_TITLE"),
+                    description: String(localized: "INTRO_AREA3_DESCRIPTION")
                 )
             ],
-            actionText: "Next",
+            actionText: String(localized: "NEXT"),
             action: {
                 onboardingNavigationPath.nextStep()
             }
         )
-        .padding(.top, 24)
+        .font(FontTheme.body)
+        .tint(ColorTheme.buttonLarge)
+        .padding(.top, Layout.Spacing.large)
     }
 }
-
 
 #if DEBUG
 #Preview {

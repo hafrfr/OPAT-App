@@ -1,6 +1,6 @@
-import Spezi
-import Foundation
 import Combine // Needed for @Published
+import Foundation
+import Spezi
 
 
 final class TreatmentModel: Module, DefaultInitializable, ObservableObject { // Add ObservableObject conformance for @Published

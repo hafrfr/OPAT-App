@@ -8,6 +8,7 @@
 // ---
 // Modified by the OPAT @ Home team, Chalmers University of Technology, 2025.
 // Part of the OPAT @ Home application based on the Stanford Spezi Template Application.
+// 1. OPATWelcome — welcome users, set a tone of confidence and home treatment.
 // ---
 
 import SpeziOnboarding
@@ -18,44 +19,45 @@ struct OPATWelcome: View {
 
     var body: some View {
         OnboardingView(
-            title: "Welcome to OPAT @ Home",
-            subtitle: "Feel confident and supported with IV treatment at home.",
+            title: String(localized: "WELCOME_TITLE"),
+            subtitle: String(localized: "WELCOME_SUBTITLE"),
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "cross.case.fill")
                             .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
                     },
-                    title: "Understand Your Treatment",
-                    description: "We’ll guide you step by step through what OPAT is and how it works."
-                    // NOTE: Keep this language non-technical and emotionally supportive.
-                    // TODO: May want to revisit “how it works” once we finalize content structure.
+                    title: String(localized: "WELCOME_AREA1_TITLE"),
+                    description: String(localized: "WELCOME_AREA1_DESCRIPTION")
                 ),
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "person.2.fill")
                             .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
                     },
-                    title: "For Patients and Caregivers",
-                    description: "Whether you’re receiving care or helping someone, we’re here to support you both."
-                    // This wording emphasizes inclusion and shared responsibility. Good for early framing.
+                    title: String(localized: "WELCOME_AREA2_TITLE"),
+                    description: String(localized: "WELCOME_AREA2_DESCRIPTION")
                 ),
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "hand.thumbsup.fill")
                             .accessibilityHidden(true)
+                            .foregroundColor(ColorTheme.tabBarItemActive)
                     },
-                    title: "Feel Prepared and in Control",
-                    description: "Get answers to common questions and tips for staying safe, every step of the way."
-                    // TODO: Confirm tone is appropriate across user groups (patients, caregivers, different age ranges).
+                    title: String(localized: "WELCOME_AREA3_TITLE"),
+                    description: String(localized: "WELCOME_AREA3_DESCRIPTION")
                 )
             ],
-            actionText: "Get Started",
+            actionText: String(localized: "GET_STARTED"),
             action: {
                 onboardingNavigationPath.nextStep()
             }
         )
-        .padding(.top, 24)
+        .font(FontTheme.body)
+        .tint(ColorTheme.buttonLarge)
+        .padding(.top, Layout.Spacing.large)
     }
 }
 

@@ -84,7 +84,6 @@ struct InstructionGuideView: View {
 
                // Bottom Navigation Buttons
                bottomNavigationButtons
-
            } // End VStack
            .navigationBarHidden(true)
            .navigationBarBackButtonHidden(true)

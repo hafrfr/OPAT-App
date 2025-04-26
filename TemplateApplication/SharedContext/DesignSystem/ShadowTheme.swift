@@ -15,8 +15,8 @@ import SwiftUI
 enum ShadowTheme {
     /// Soft shadow used for cards or elevated containers
     static let card = ShadowStyle(
-        color: .black.opacity(0.1),
-        radius: 8,
+        color: .black.opacity(0.15),
+        radius: 10,
         offsetX: 0,
         offsetY: 4
     )

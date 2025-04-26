@@ -15,6 +15,4 @@ struct InstructionStep: Identifiable, Equatable, Hashable {
         self.substeps = substeps
         self.overallImageName = overallImageName
     }
-
-
 }

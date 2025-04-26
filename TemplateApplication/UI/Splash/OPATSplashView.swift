@@ -10,33 +10,45 @@
 import SwiftUI
 
 struct OPATSplashView: View {
+    @State private var scale: CGFloat = 1.0
+
     var body: some View {
         ZStack {
-            // Background: Petroleum Blue brand color
+            // Background: Petroleum Blue color
             Color("PetroleumBlue")
                 .ignoresSafeArea()
 
-            VStack(spacing: 16) {
-                // App logo (icon in Assets.xcassets)
+            VStack(spacing: Layout.Spacing.small) {
+                // App logo (with breathing animation)
                 Image("opat_logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100)
+                    .scaleEffect(scale) // Animate the scale
                     .accessibilityHidden(true)
+                    .onAppear {
+                        withAnimation(
+                            .easeInOut(duration: 2.0)
+                            .repeatForever(autoreverses: true)
+                        ) {
+                            scale = 1.15 // Gently grow to 115%
+                        }
+                    }
 
                 // App title
                 Text("OPAT @ HOME")
-                    .font(.title)
+                    .font(FontTheme.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color("SandYellow"))
 
-                // Supportive subheading
-                Text("Here to guide your treatment\nOne step at a time")
-                    .font(.body)
+                // Supportive subheading (localized)
+                Text(String(localized: "SPLASH_SUBTITLE"))
+                    .font(FontTheme.body)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color("SandYellow"))
-                    .padding(.top, 4)
+                    .padding(.top, Layout.Spacing.small)
             }
+            .padding(.horizontal, Layout.Spacing.large)
         }
     }
 }

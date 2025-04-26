@@ -13,6 +13,4 @@ struct SubStep: Identifiable, Equatable, Hashable {
     let title: String?
     let description: String
     let imageName: String?
-
-
 }

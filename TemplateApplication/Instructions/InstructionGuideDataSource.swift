@@ -4,7 +4,6 @@
 import Foundation // Or SwiftUI
 
 struct InstructionGuideDataSource {
-
     private static let opatChecklist: [ChecklistItem] = [
             ChecklistItem(name: "Alcohol wipes", iconName: "icon_alcohol_wipes"), // Ensure icons exist
             ChecklistItem(name: "IV tubing", iconName: "icon_iv_tubing"),
@@ -20,8 +19,6 @@ struct InstructionGuideDataSource {
                 SubStep(title: "PREPPING",
                         description: "• TEST"
                         , imageName: "Opat_1"),
-                
-                
             ]
         ),
         InstructionStep(
@@ -61,14 +58,9 @@ struct InstructionGuideDataSource {
                      """, // Split line
                      imageName: nil
                  ),
-                 
              ]
          ),
-        
     ]
-   
-    
-
     // --- Function to Load All Guides ---
     static func loadGuides() -> [InstructionGuideInfo] {
             var guides: [InstructionGuideInfo] = []
