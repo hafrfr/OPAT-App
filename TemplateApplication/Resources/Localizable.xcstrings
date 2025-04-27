@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ guide coming soon!" : {
+
+    },
     "ACCOUNT_SETUP_DESCRIPTION" : {
 
     },
@@ -381,9 +384,6 @@
       }
     },
     "Grant Access" : {
-
-    },
-    "Guide for %@" : {
 
     },
     "HealthKit Access" : {

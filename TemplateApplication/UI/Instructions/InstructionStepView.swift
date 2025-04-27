@@ -18,7 +18,8 @@ struct InstructionStepView: View {
     let onStepSelected: ((Int) -> Void)? // step jumping
 
     @State private var animateContent = false
-
+// Could use similiar logic to below but not needed
+    /*
     private var encouragementText: String? {
         if stepNumber == totalSteps {
             return "You're all set!"
@@ -28,6 +29,8 @@ struct InstructionStepView: View {
             return nil
         }
     }
+    */
+
 
     var body: some View {
         PrimaryBackgroundView(title: title) {
@@ -45,7 +48,7 @@ struct InstructionStepView: View {
             )
             .padding(.bottom, Layout.Spacing.medium)
 
-            encouragementView
+            // encouragementView
 
             instructionImage
 
@@ -60,7 +63,8 @@ struct InstructionStepView: View {
             animateContent = true
         }
     }
-
+    
+    /*
     // MARK: - Subviews
     private var encouragementView: some View {
         Group {
@@ -73,6 +77,7 @@ struct InstructionStepView: View {
             }
         }
     }
+    */
 
     private var instructionImage: some View {
         Group {
@@ -99,7 +104,10 @@ struct InstructionStepView: View {
     }
 
     private var nextButton: some View {
-        Button(action: onNext) {
+        Button(action: {
+            SoundManager.shared.playSound(.nextTap)
+            onNext()
+        }) {
             Text(buttonText)
                 .font(FontTheme.button)
                 .frame(maxWidth: .infinity)

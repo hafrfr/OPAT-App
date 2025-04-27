@@ -52,6 +52,7 @@ struct OPATWelcome: View {
             ],
             actionText: String(localized: "GET_STARTED"),
             action: {
+                SoundManager.shared.playSound(.nextTap) // Soft tap sound when getting started :D (same as next tap for instructions)
                 onboardingNavigationPath.nextStep()
             }
         )
