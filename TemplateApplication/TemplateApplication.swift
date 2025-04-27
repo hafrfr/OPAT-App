@@ -20,7 +20,6 @@ struct TemplateApplication: App {
     @UIApplicationDelegateAdaptor(TemplateApplicationDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @State private var showSplash = true // Controls splash screen visibility
-
     // Always reset onboarding state for development/testing
     init() {
         UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)

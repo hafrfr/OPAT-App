@@ -43,12 +43,14 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
             }
 
             
-            TemplateApplicationScheduler()
-            Scheduler()
+            TreatmentScheduler()
             OnboardingDataSource()
             TreatmentModel()
             TreatmentModule()
             Notifications()
+            TreatmentNotifications()
+            TemplateApplicationScheduler()
+            FAQModule()
         }
     }
 

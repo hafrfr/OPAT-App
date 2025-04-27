@@ -70,6 +70,12 @@
         }
       }
     },
+    "Add Time" : {
+
+    },
+    "Add Treatment" : {
+
+    },
     "Allow Notifications" : {
       "localizations" : {
         "de" : {
@@ -198,7 +204,16 @@
     "Details for %@" : {
 
     },
+    "Duration" : {
+
+    },
     "Educational Resources" : {
+
+    },
+    "End Date" : {
+
+    },
+    "FAQ" : {
 
     },
     "FAQs and Tips" : {
@@ -573,6 +588,12 @@
         }
       }
     },
+    "Manage Treatments" : {
+
+    },
+    "Mark Complete" : {
+
+    },
     "More Coming Soon" : {
 
     },
@@ -693,6 +714,9 @@
         }
       }
     },
+    "Pre-treatment task: %@" : {
+
+    },
     "Previous" : {
 
     },
@@ -700,6 +724,9 @@
 
     },
     "Reflect on how you're feeling and get reminders of what to watch out for." : {
+
+    },
+    "Save" : {
 
     },
     "Schedule" : {
@@ -725,6 +752,15 @@
       }
     },
     "Scheduled and Supervised" : {
+
+    },
+    "Scheduled Times" : {
+
+    },
+    "Search Help" : {
+
+    },
+    "Set End Date" : {
 
     },
     "Short videos and step-by-step guides for staying confident with IV treatment." : {
@@ -823,6 +859,9 @@
       }
     },
     "Start" : {
+
+    },
+    "Start Date" : {
 
     },
     "Start Questionnaire" : {
@@ -931,10 +970,25 @@
     "Time for your %@" : {
 
     },
+    "Time to take your %@ out of the Fridge" : {
+
+    },
+    "Treatment Details" : {
+
+    },
+    "Treatment time:  %lld" : {
+
+    },
     "Treatment: %@" : {
 
     },
+    "Type" : {
+
+    },
     "Understand Your Treatment" : {
+
+    },
+    "Unknown Task" : {
 
     },
     "Unsupported Event" : {

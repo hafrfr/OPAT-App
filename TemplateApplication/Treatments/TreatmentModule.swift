@@ -1,32 +1,90 @@
 import Spezi
 import Foundation
-import Combine
-/// Wire everything together: whenever treatments change, re-schedule tasks & notifications.
+import SpeziNotifications
+
+
+/// Coordinates scheduling and notifications based on TreatmentModel changes.
 final class TreatmentModule: Module, DefaultInitializable {
-  @Dependency private var model: TreatmentModel
-  @Dependency private var scheduler: TreatmentScheduler
-  @Dependency private var notifier: TreatmentNotifications
+    // Dependencies injected by Spezi
+    @Dependency private var model: TreatmentModel
+    @Dependency private var scheduler: TreatmentScheduler
+    @Dependency private var notifier: TreatmentNotifications
 
-  func configure() {
-    // initial pass
-    for treatment in model.treatments {
-      try? scheduler.schedule(treatment)
-      Task { [weak self] in // Add weak self capture for the Task
-         try? await self?.notifier.scheduleWithPreReminder(treatment: treatment)
-      }
-    }
-    model.$treatments
-      .sink { [weak self] treatments in
-        guard let self else { return }
-        for treatment in treatments {
-           try? self.scheduler.schedule(treatment)
-           Task { [weak self] in
-              try? await self?.notifier.scheduleWithPreReminder(treatment: treatment)
-           }
+    func configure() {
+        let initialTreatments = model.treatments
+        let capturedScheduler = self.scheduler
+        let capturedNotifier = self.notifier
+
+        Task { @MainActor in // Run the loop on the MainActor
+            for treatment in initialTreatments { // Use captured array
+                do {
+
+                    try await self.scheduleInitial(
+                        treatment: treatment,
+                        using: capturedScheduler, // Pass captured scheduler
+                        notifier: capturedNotifier  // Pass captured notifier
+                    )
+                } catch {
+                    print("Error during initial scheduling for \(treatment.id): \(error)")
+                    // Consider logging this error more formally
+                }
+            }
         }
-      }
-      .store(in: &cancellables)
-  }
+    }
 
-  private var cancellables = Set<AnyCancellable>()
+    @MainActor
+    private func scheduleInitial(
+        treatment: Treatment,
+        using scheduler: TreatmentScheduler, // Accept scheduler instance
+        notifier: TreatmentNotifications // Accept notifier instance
+    ) async throws {
+        // Use the passed-in (captured) instances
+        try scheduler.schedule(treatment) // This is @MainActor, safe here
+
+        // Assuming notifier.scheduleWithPreReminder is safe to call from MainActor
+        // If it performs heavy work, it should dispatch to a background task internally.
+        try await notifier.scheduleWithPreReminder(treatment: treatment)
+    }
+
+    @MainActor
+    func treatmentAdded(_ treatment: Treatment) {
+        // --- FIX: Capture dependencies ---
+        let capturedScheduler = self.scheduler
+        let capturedNotifier = self.notifier
+
+        Task {
+            do {
+                try await self.scheduleInitial(
+                    treatment: treatment,
+                    using: capturedScheduler,
+                    notifier: capturedNotifier
+                )
+                print("Scheduled new treatment: \(treatment.id)")
+            } catch {
+                print("Error scheduling added treatment \(treatment.id): \(error)")
+            }
+        }
+    }
+
+    /// Called when a treatment is removed (e.g., from ManageTreatmentsView).
+    @MainActor // Ensure this is called on the main actor
+    func treatmentRemoved(_ treatment: Treatment) {
+        // --- FIX: Capture dependencies ---
+        let capturedScheduler = self.scheduler
+        // let capturedNotifier = self.notifier // Uncomment if notifier needs removal logic
+        // --- End FIX ---
+
+        // Task can run off the main actor
+        Task {
+            // Use captured scheduler
+            // Note: `remove` doesn't throw, it uses try? internally.
+            await capturedScheduler.remove(treatment)
+
+            // If notifier needs removal logic:
+            // await capturedNotifier.remove(treatment) // Implement if needed
+
+            print("Removed schedules/notifications for treatment: \(treatment.id)")
+            // No catch needed as `remove` doesn't throw
+        }
+    }
 }

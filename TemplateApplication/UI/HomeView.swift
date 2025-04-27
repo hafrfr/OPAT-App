@@ -15,6 +15,7 @@ struct HomeView: View {
         case schedule
         case contact
         case instructions
+        case faq
     }
 
 
@@ -37,6 +38,9 @@ struct HomeView: View {
             Tab("Instructions", systemImage: "list.bullet.clipboard.fill", value: .instructions) {
                 InstructionsListView()
             } .customizationID("home.instructions")
+            Tab("FAQ", systemImage: "questionmark.circle", value: .faq) {
+                FAQView()
+            }.customizationID("home.faq")
         }
             .tabViewStyle(.sidebarAdaptable)
             .tabViewCustomization($tabViewCustomization)
