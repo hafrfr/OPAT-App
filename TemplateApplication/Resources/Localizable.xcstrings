@@ -172,9 +172,6 @@
     "Daily OPAT Check-in" : {
 
     },
-    "Details for %@" : {
-
-    },
     "FEATURE1_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -367,12 +364,6 @@
         }
       }
     },
-    "Finish" : {
-
-    },
-    "Get Started" : {
-
-    },
     "GET_STARTED" : {
       "localizations" : {
         "en" : {
@@ -389,10 +380,10 @@
         }
       }
     },
-    "Go to CheckList" : {
+    "Grant Access" : {
 
     },
-    "Grant Access" : {
+    "Guide for %@" : {
 
     },
     "HealthKit Access" : {
@@ -663,9 +654,6 @@
     "OPAT @ HOME" : {
 
     },
-    "Previous" : {
-
-    },
     "Schedule" : {
 
     },
@@ -717,12 +705,6 @@
 
     },
     "Start Questionnaire" : {
-
-    },
-    "Steps" : {
-
-    },
-    "Supplies Checklist" : {
 
     },
     "Swift Package Manager" : {

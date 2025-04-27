@@ -68,6 +68,19 @@
 		A973C10B2D7DC7C600BA148C /* Exceptions for "TemplateApplication" folder in "OPATApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Jacob Instructions/CheckListItem.swift",
+				"Jacob Instructions/InstructionGuideDataSource.swift",
+				"Jacob Instructions/InstructionGuideInfo.swift",
+				"Jacob Instructions/InstructionGuideView.swift",
+				"Jacob Instructions/InstructionHeaderView.swift",
+				"Jacob Instructions/InstructionsListView.swift",
+				"Jacob Instructions/InstructionStep.swift",
+				"Jacob Instructions/InstructionStepOverviewView.swift",
+				"Jacob Instructions/InstructionStepView.swift",
+				"Jacob Instructions/OpatInstructionView.swift",
+				"Jacob Instructions/SubStep.swift",
+				"Jacob Instructions/SubstepProgressView.swift",
+				"Jacob Instructions/SuppliesChecklistView.swift",
 				Resources/Archive/AppIconStanford.png,
 				"Supporting Files/Info.plist",
 			);

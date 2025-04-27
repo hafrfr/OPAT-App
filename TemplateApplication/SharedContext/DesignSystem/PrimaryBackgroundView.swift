@@ -31,7 +31,7 @@ struct PrimaryBackgroundView<Content: View>: View {
         ZStack {
             gradientBackground // The colorful gradient background
 
-            VStack(spacing: 0) {
+            VStack(spacing: Layout.Spacing.medium) {
                 header // Title + subtitle
                 contentContainer // Main white rounded container
             }
@@ -112,4 +112,3 @@ struct PrimaryBackgroundView<Content: View>: View {
     }
 }
 #endif
-
