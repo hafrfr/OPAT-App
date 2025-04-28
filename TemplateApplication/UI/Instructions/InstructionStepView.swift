@@ -1,9 +1,11 @@
+//
 // InstructionStepView.swift
-// Part of the OPAT @ Home application
+// OPAT @ Home
 //
 // A reusable, polished view for presenting a step in the instruction flow.
-// Built to sit on top of PrimaryBackgroundView, with animated transitions and encouragement support.
-// Created by harre on 2025-04-27.
+// Built to sit on top of PrimaryBackgroundView, with animated transitions and optional more info support.
+// Created by harre 2025-04-27.
+//
 
 import SwiftUI
 
@@ -13,24 +15,13 @@ struct InstructionStepView: View {
     let totalSteps: Int
     let image: Image?
     let description: String
+    let moreInfo: String? // <-- NEW
     let buttonText: String
     let onNext: () -> Void
     let onStepSelected: ((Int) -> Void)? // step jumping
-
+    
     @State private var animateContent = false
-// Could use similiar logic to below but not needed
-    /*
-    private var encouragementText: String? {
-        if stepNumber == totalSteps {
-            return "You're all set!"
-        } else if stepNumber == totalSteps / 2 {
-            return "Halfway there!"
-        } else {
-            return nil
-        }
-    }
-    */
-
+    @State private var showMoreInfoAlert = false // <-- NEW
 
     var body: some View {
         PrimaryBackgroundView(title: title) {
@@ -48,7 +39,10 @@ struct InstructionStepView: View {
             )
             .padding(.bottom, Layout.Spacing.medium)
 
-            // encouragementView
+            if let moreInfo = moreInfo, !moreInfo.isEmpty {
+                moreInfoButton(moreInfo: moreInfo) // <-- NEW
+                    .padding(.bottom, Layout.Spacing.small)
+            }
 
             instructionImage
 
@@ -63,21 +57,6 @@ struct InstructionStepView: View {
             animateContent = true
         }
     }
-    
-    /*
-    // MARK: - Subviews
-    private var encouragementView: some View {
-        Group {
-            if let encouragement = encouragementText {
-                Text(encouragement)
-                    .font(FontTheme.progress)
-                    .foregroundColor(ColorTheme.progressActive)
-                    .transition(.opacity)
-                    .padding(.bottom, Layout.Spacing.small)
-            }
-        }
-    }
-    */
 
     private var instructionImage: some View {
         Group {
@@ -118,6 +97,24 @@ struct InstructionStepView: View {
         }
         .padding(.bottom)
     }
+
+    // MARK: - More Info Button
+    private func moreInfoButton(moreInfo: String) -> some View {
+        Button(action: {
+            showMoreInfoAlert = true
+        }) {
+            Image(systemName: "questionmark.circle.fill")
+                .foregroundColor(ColorTheme.progressActive)
+                .font(.system(size: 24))
+        }
+        .alert(isPresented: $showMoreInfoAlert) {
+            Alert(
+                title: Text("More Info"),
+                message: Text(moreInfo),
+                dismissButton: .default(Text("Got it!"))
+            )
+        }
+    }
 }
 
 #if DEBUG
@@ -128,6 +125,7 @@ struct InstructionStepView: View {
         totalSteps: 4,
         image: Image(systemName: "cross.case.fill"),
         description: "Gather all necessary IV equipment for today's treatment.",
+        moreInfo: "Make sure all supplies are within expiration dates and properly sanitized.",
         buttonText: "Next",
         onNext: { print("Next tapped") },
         onStepSelected: { tappedStep in print("Tapped step \(tappedStep)") }

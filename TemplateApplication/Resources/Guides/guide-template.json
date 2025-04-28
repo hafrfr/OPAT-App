@@ -1,0 +1,17 @@
+{
+  "title": "Your Guide Title Here",
+  "steps": [
+    {
+      "stepNumber": 1,
+      "description": "Write your first instruction step here.",
+      "moreInfo": "You can optionally add a longer explanation here. If not needed, leave it as an empty string as seen below. DON'T REMOVE THIS PARAMETER<3", 
+      "imageName": "step1-example.png"
+    },
+    {
+      "stepNumber": 2,
+      "description": "Write your second instruction step here.",
+      "moreInfo": "",
+      "imageName": "step2-example.png"
+    }
+  ]
+}
