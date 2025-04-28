@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@ guide coming soon!" : {
-
-    },
     "ACCOUNT_SETUP_DESCRIPTION" : {
 
     },
@@ -11,6 +8,15 @@
 
     },
     "ACCOUNT_SUBTITLE" : {
+
+    },
+    "Add Time" : {
+
+    },
+    "Add Treatment" : {
+
+    },
+    "All Done!" : {
 
     },
     "Allow Notifications" : {
@@ -173,6 +179,18 @@
 
     },
     "Daily OPAT Check-in" : {
+
+    },
+    "Done" : {
+
+    },
+    "Duration" : {
+
+    },
+    "End Date" : {
+
+    },
+    "FAQ" : {
 
     },
     "FEATURE1_DESCRIPTION" : {
@@ -383,6 +401,9 @@
         }
       }
     },
+    "Got it!" : {
+
+    },
     "Grant Access" : {
 
     },
@@ -569,10 +590,16 @@
     "Learn More" : {
 
     },
-    "LELAND_STANFORD_BIO" : {
+    "License Information" : {
 
     },
-    "License Information" : {
+    "Manage Treatments" : {
+
+    },
+    "Mark Complete" : {
+
+    },
+    "More Info" : {
 
     },
     "Next" : {
@@ -654,7 +681,25 @@
     "OPAT @ HOME" : {
 
     },
+    "Pre-treatment task: %@" : {
+
+    },
+    "Return to Instructions" : {
+
+    },
+    "Save" : {
+
+    },
     "Schedule" : {
+
+    },
+    "Scheduled Times" : {
+
+    },
+    "Search Help" : {
+
+    },
+    "Set End Date" : {
 
     },
     "Settings" : {
@@ -704,6 +749,9 @@
     "Start" : {
 
     },
+    "Start Date" : {
+
+    },
     "Start Questionnaire" : {
 
     },
@@ -722,7 +770,25 @@
     "Time for your %@" : {
 
     },
+    "Time to take your %@ out of the Fridge" : {
+
+    },
+    "To Instructions" : {
+
+    },
+    "Treatment Details" : {
+
+    },
+    "Treatment time:  %lld" : {
+
+    },
     "Treatment: %@" : {
+
+    },
+    "Type" : {
+
+    },
+    "Unknown Task" : {
 
     },
     "Unsupported Event" : {

@@ -18,10 +18,10 @@ struct InstructionStepView: View {
     let moreInfo: String? // <-- NEW
     let buttonText: String
     let onNext: () -> Void
-    let onStepSelected: ((Int) -> Void)? // step jumping
+    let onStepSelected: ((Int) -> Void)?
     
     @State private var animateContent = false
-    @State private var showMoreInfoAlert = false // <-- NEW
+    @State private var showMoreInfoAlert = false
 
     var body: some View {
         PrimaryBackgroundView(title: title) {

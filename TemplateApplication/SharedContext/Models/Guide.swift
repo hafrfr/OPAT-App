@@ -12,7 +12,7 @@
 import Foundation
 
 struct Guide: Codable, Identifiable {
-    let id = UUID() // Local unique ID (not from JSON)
+    let id = UUID() 
     let title: String
     let steps: [InstructionStep]
 
