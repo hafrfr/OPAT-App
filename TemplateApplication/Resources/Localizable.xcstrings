@@ -10,12 +10,14 @@
     "ACCOUNT_SUBTITLE" : {
 
     },
+
     "Add Time" : {
 
     },
     "Add Treatment" : {
 
     },
+
     "All Done!" : {
 
     },
@@ -599,6 +601,9 @@
     "More Info" : {
 
     },
+    "More Info" : {
+
+    },
     "Next" : {
 
     },
@@ -678,6 +683,7 @@
     "OPAT @ HOME" : {
 
     },
+
     "Pre-treatment task: %@" : {
 
     },
@@ -687,6 +693,7 @@
     "Save" : {
 
     },
+
     "Schedule" : {
 
     },
