@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@ guide coming soon!" : {
-
-    },
     "ACCOUNT_SETUP_DESCRIPTION" : {
 
     },
@@ -11,6 +8,9 @@
 
     },
     "ACCOUNT_SUBTITLE" : {
+
+    },
+    "All Done!" : {
 
     },
     "Allow Notifications" : {
@@ -383,6 +383,9 @@
         }
       }
     },
+    "Got it!" : {
+
+    },
     "Grant Access" : {
 
     },
@@ -575,6 +578,9 @@
     "License Information" : {
 
     },
+    "More Info" : {
+
+    },
     "Next" : {
 
     },
@@ -652,6 +658,9 @@
 
     },
     "OPAT @ HOME" : {
+
+    },
+    "Return to Instructions" : {
 
     },
     "Schedule" : {
