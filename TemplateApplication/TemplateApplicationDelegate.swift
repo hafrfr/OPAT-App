@@ -1,4 +1,3 @@
-//
 // This source file is part of the Stanford Spezi Template Application open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -33,7 +32,9 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
 
                     ]
                 )
-
+                
+              
+                
                 firestore
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
@@ -47,8 +48,10 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
             Scheduler()
             OnboardingDataSource()
             TreatmentModel()
+            TreatmentScheduler()
             TreatmentModule()
             Notifications()
+            FAQModule()
         }
     }
 

@@ -10,6 +10,14 @@
     "ACCOUNT_SUBTITLE" : {
 
     },
+
+    "Add Time" : {
+
+    },
+    "Add Treatment" : {
+
+    },
+
     "All Done!" : {
 
     },
@@ -173,6 +181,15 @@
 
     },
     "Daily OPAT Check-in" : {
+
+    },
+    "Duration" : {
+
+    },
+    "End Date" : {
+
+    },
+    "FAQ" : {
 
     },
     "FEATURE1_DESCRIPTION" : {
@@ -572,10 +589,16 @@
     "Learn More" : {
 
     },
-    "LELAND_STANFORD_BIO" : {
+    "License Information" : {
 
     },
-    "License Information" : {
+    "Manage Treatments" : {
+
+    },
+    "Mark Complete" : {
+
+    },
+    "More Info" : {
 
     },
     "More Info" : {
@@ -660,10 +683,27 @@
     "OPAT @ HOME" : {
 
     },
+
+    "Pre-treatment task: %@" : {
+
+    },
     "Return to Instructions" : {
 
     },
+    "Save" : {
+
+    },
+
     "Schedule" : {
+
+    },
+    "Scheduled Times" : {
+
+    },
+    "Search Help" : {
+
+    },
+    "Set End Date" : {
 
     },
     "Settings" : {
@@ -713,6 +753,9 @@
     "Start" : {
 
     },
+    "Start Date" : {
+
+    },
     "Start Questionnaire" : {
 
     },
@@ -731,7 +774,25 @@
     "Time for your %@" : {
 
     },
+    "Time to take your %@ out of the Fridge" : {
+
+    },
+    "To Instructions" : {
+
+    },
+    "Treatment Details" : {
+
+    },
+    "Treatment time:  %lld" : {
+
+    },
     "Treatment: %@" : {
+
+    },
+    "Type" : {
+
+    },
+    "Unknown Task" : {
 
     },
     "Unsupported Event" : {

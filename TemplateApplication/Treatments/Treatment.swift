@@ -1,6 +1,5 @@
 import Foundation
-import SwiftUI // Needed for Codable Color if you add it, etc.
-
+import SwiftUI 
 // Enum to categorize treatments, helps link to specific instructions later
 enum TreatmentType: String, Codable, CaseIterable, Identifiable {
     case opat = "OPAT Antibiotics" // Example specific type
