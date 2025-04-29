@@ -42,9 +42,6 @@ struct ManageTreatmentsView: View {
              ToolbarItem(placement: .navigationBarTrailing) {
                  Button { showingAddTreatmentSheet = true } label: { Label("Add Treatment", systemImage: "plus") }
              }
-             ToolbarItem(placement: .navigationBarLeading) {
-                  Button("Done") { dismiss() } // Assuming this view might be presented modally
-             }
         }
         .sheet(isPresented: $showingAddTreatmentSheet) {
             AddTreatmentSheet() // Assuming this view exists

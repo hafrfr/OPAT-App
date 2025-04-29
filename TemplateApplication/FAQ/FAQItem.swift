@@ -6,9 +6,8 @@
 //
 import Foundation
 
-struct FAQItem: Identifiable, Hashable,Codable {
+struct FAQItem: Identifiable, Hashable,Codable{
     let id: UUID = UUID()
     let question: String
     let answer: String
 }
-
