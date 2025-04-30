@@ -52,6 +52,7 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
             TreatmentModule()
             Notifications()
             FAQModule()
+            GuideModule()
         }
     }
 

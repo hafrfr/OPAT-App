@@ -68,10 +68,6 @@ enum GuideLoader {
                     print("❌ Error processing guide file \(url.lastPathComponent): \(error). Skipping this file.")
                 }
             }
-
-            // Sort guides alphabetically by title for consistent order (optional)
-            allGuides.sort { $0.title < $1.title }
-
             return allGuides
         } catch {
             print("❌ Error accessing top-level resource directory \(resourceUrl.path): \(error)")

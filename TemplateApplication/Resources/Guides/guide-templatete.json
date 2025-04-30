@@ -1,0 +1,40 @@
+{
+  "GuideTitle": "Sample Guide Title",
+  "steps": [
+    {
+      "title": "Main Step 1 Title",
+      "substeps": [
+        {
+          "title": "First Substep Title (Step 1)",
+          "moreInfo": "",
+          "description": "Write your first instruction substep for main step 1 here.",
+          "imageName": "image_for_substep_1_1"
+        },
+        {
+          "title": "Second Substep Title (Step 1)",
+          "moreInfo": "",
+          "description": "Write your second instruction substep for main step 1 here.",
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "Main Step 2 Title",
+      "substeps": [
+        {
+          "title": "First Substep Title (Step 2)",
+          "moreInfo": "",
+          "description": "Instruction for the first substep of main step 2.",
+          "imageName": "image_for_substep_2_1"
+        },
+        {
+          "title": "Second Substep Title (Step 2)",
+        "moreInfo": "Additional info for substep 2.2",
+          "description": "Instruction for the second substep of main step 2, without a title.",
+          "imageName": null
+        }
+      ]
+    }
+
+  ]
+}

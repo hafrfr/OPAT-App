@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "ACCOUNT_SETUP_DESCRIPTION" : {
 
     },
@@ -37,6 +40,9 @@
           }
         }
       }
+    },
+    "Back" : {
+
     },
     "Close" : {
 
@@ -185,6 +191,9 @@
 
     },
     "End Date" : {
+
+    },
+    "Error Loading Step" : {
 
     },
     "FAQ" : {
@@ -747,6 +756,9 @@
 
     },
     "Start Date" : {
+
+    },
+    "Start from the beginning" : {
 
     },
     "Start Questionnaire" : {

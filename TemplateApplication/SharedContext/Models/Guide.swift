@@ -4,23 +4,19 @@
 //
 //  Created by harre on 2025-04-28.
 //
-
-
-// Guide.swift
-// Represents a complete instructional guide loaded from JSON
-
 import Foundation
 
-struct Guide: Codable, Identifiable {
-    let id = UUID() 
-    let title: String
-    let steps: [InstructionStep]
-
-    struct InstructionStep: Codable, Identifiable {
-        var id: Int { stepNumber }
-        let stepNumber: Int
-        let description: String
-        let moreInfo: String
-        let imageName: String
+struct Guide: Codable, Identifiable, Hashable {
+    // 1. Subtype (enum CodingKeys) comes first
+    enum CodingKeys: String, CodingKey {
+        case title = "GuideTitle" // Map title (Swift) to "GuideTitle" (JSON)
+        case steps
+        // Note: 'id' is often omitted here if not present in JSON
     }
+
+    // 2. Instance properties follow
+    let id = UUID() // If id is only used locally, it doesn't need to be in CodingKeys
+    let title: String
+    let steps: [MainStep] // Assumes MainStep is defined elsewhere (part of the new structure)
+
 }
