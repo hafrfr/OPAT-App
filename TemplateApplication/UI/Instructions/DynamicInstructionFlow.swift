@@ -61,16 +61,11 @@ struct DynamicInstructionFlow: View {
             // --- Use if let to unwrap optionals before calling subview ---
             } else if let mainStep = currentMainStep, let subStep = currentSubStep {
                 InstructionSubStepView(
-                    // --- FIX 1: Use guide.guideTitle ---
                     guideTitle: guide.title,
-                    // --- Use unwrapped mainStep ---
                     mainStepTitle: mainStep.title,
-                    // --- Use unwrapped subStep ---
                     subStep: subStep,
                     currentSubStepNumber: currentSubStepIndex + 1,
-                    // --- Use unwrapped mainStep ---
                     totalSubStepsInMain: mainStep.substeps.count,
-                    // --- FIX 2: Pass the correct computed property ---
                     isFirstStep: isFirstStepOfFlow,
                     isFinalStep: isFinalStep,
                     onNext: handleNext,
