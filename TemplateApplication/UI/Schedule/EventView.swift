@@ -23,8 +23,9 @@ struct EventView: View {
                 dismiss()
 
                 guard case let .completed(response) = result else {
-                    return // user cancelled the task
+                    return
                 }
+
                 await standard.add(response: response)
             }
         } else {
@@ -34,11 +35,13 @@ struct EventView: View {
                     systemImage: "list.bullet.clipboard",
                     description: Text("This type of event is currently unsupported. Please contact the developer of this app.")
                 )
-                    .toolbar {
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
                         Button("Close") {
                             dismiss()
                         }
                     }
+                }
             }
         }
     }

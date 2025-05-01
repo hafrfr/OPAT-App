@@ -10,14 +10,12 @@
     "ACCOUNT_SUBTITLE" : {
 
     },
-
     "Add Time" : {
 
     },
     "Add Treatment" : {
 
     },
-
     "All Done!" : {
 
     },
@@ -229,13 +227,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clear advice on what symptoms to watch for, and when to call your nurse, 1177, or emergency care."
+            "value" : "Know who to call — your nurse, 1177, or emergency — and when."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clear advice on what symptoms to watch for, and when to call your nurse, 1177, or emergency care."
+            "value" : "Know who to call — your nurse, 1177, or emergency — and when."
           }
         }
       }
@@ -245,13 +243,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When to Contact and What to Watch For"
+            "value" : "Contact & Support"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When to Contact and What to Watch For"
+            "value" : "Contact & Support"
           }
         }
       }
@@ -261,13 +259,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quick answers to common questions and guidance on what to do if something feels unclear."
+            "value" : "We’ll help you know what to keep an eye on and when to take action — calmly and clearly."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quick answers to common questions and guidance on what to do if something feels unclear."
+            "value" : "We’ll help you know what to keep an eye on and when to take action — calmly and clearly."
           }
         }
       }
@@ -277,13 +275,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "FAQs and Tips"
+            "value" : "Symptoms to Watch For"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "FAQs and Tips"
+            "value" : "Symptoms to Watch For"
           }
         }
       }
@@ -293,13 +291,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Access OPAT guidance in both Swedish and English — with more languages coming soon."
+            "value" : "Quick answers to common questions and guidance on what to do if something feels unclear."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Access OPAT guidance in both Swedish and English — with more languages coming soon."
+            "value" : "Quick answers to common questions and guidance on what to do if something feels unclear."
           }
         }
       }
@@ -309,13 +307,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Multilingual Support"
+            "value" : "FAQs and Tips"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Multilingual Support"
+            "value" : "FAQs and Tips"
           }
         }
       }
@@ -325,13 +323,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We’re continuously working to expand support — like adding more languages and text-to-speech features."
+            "value" : "A simple daily check-in helps you stay on track and reflect on how things are going."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We’re continuously working to expand support — like adding more languages and text-to-speech features."
+            "value" : "A simple daily check-in helps you stay on track and reflect on how things are going."
           }
         }
       }
@@ -341,13 +339,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always Improving"
+            "value" : "Daily Check-In"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always Improving"
+            "value" : "Daily Check-In"
           }
         }
       }
@@ -601,9 +599,6 @@
     "More Info" : {
 
     },
-    "More Info" : {
-
-    },
     "Next" : {
 
     },
@@ -683,7 +678,6 @@
     "OPAT @ HOME" : {
 
     },
-
     "Pre-treatment task: %@" : {
 
     },
@@ -693,7 +687,6 @@
     "Save" : {
 
     },
-
     "Schedule" : {
 
     },

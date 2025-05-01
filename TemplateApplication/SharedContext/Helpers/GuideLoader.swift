@@ -54,7 +54,7 @@ enum GuideLoader {
 
             // Attempt to load and decode each JSON file
             for url in jsonFileURLs {
-                 guard !url.lastPathComponent.contains("Questionnaire") && !url.lastPathComponent.contains("OPATFollowUp") else {
+                 guard !url.lastPathComponent.contains("Questionnaire") && !url.lastPathComponent.contains("OPAT_checkin") else {
                      print("ℹ️ Skipping non-guide JSON file: \(url.lastPathComponent)")
                      continue
                  }

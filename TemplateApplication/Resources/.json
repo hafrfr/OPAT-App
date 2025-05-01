@@ -1,0 +1,310 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "opat-checkin",
+  "name": "OPATCheckIn",
+  "title": "Daily OPAT Check-In",
+  "status": "active",
+  "version": "2",
+  "language": "en-US",
+  "date": "2025-05-01",
+  "publisher": "Chalmers x Stanford (Student Prototype)",
+  "purpose": "Support OPAT patients with daily self-check-in, monitoring treatment adherence, symptoms, and overall wellbeing.",
+  "description": "Patient-friendly daily check-in for use during outpatient parenteral antimicrobial therapy (OPAT).",
+  "copyright": "For research and educational use only. Not for clinical diagnosis or treatment.",
+  "url": "http://spezi.stanford.edu/fhir/questionnaire/opat-checkin",
+  "meta": {
+    "profile": [
+      "http://spezi.stanford.edu/fhir/StructureDefinition/sdf-Questionnaire"
+    ]
+  },
+  "useContext": [
+    {
+      "code": {
+        "system": "http://hl7.org/fhir/ValueSet/usage-context-type",
+        "code": "focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "133938004",
+            "display": "Antibiotic therapy"
+          }
+        ]
+      }
+    }
+  ],
+  "subjectType": ["Patient"],
+  "item": [
+    {
+      "linkId": "section1-intro",
+      "type": "display",
+      "text": "👋 Welcome to your daily OPAT check-in. This helps you reflect on how you're doing and flag anything that needs support."
+    },
+    {
+      "linkId": "feeling-today",
+      "type": "choice",
+      "text": "How are you feeling today overall?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "fine",
+            "display": "I feel fine",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "mild",
+            "display": "A bit off",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "bad",
+            "display": "Unwell",
+            "system": "http://snomed.info/sct"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "confidence-today",
+      "type": "choice",
+      "text": "Do you feel confident managing your treatment today?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "yes",
+            "display": "Yes, I feel confident",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "unsure",
+            "display": "I'm not sure",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "no",
+            "display": "No, I feel unsure",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "section2-intro",
+      "type": "display",
+      "text": "🧺 Let’s check for any symptoms or issues that might need attention."
+    },
+    {
+      "linkId": "systemic-symptoms",
+      "type": "choice",
+      "text": "Have you experienced any of the following?",
+      "repeats": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "check-box"
+              }
+            ]
+          }
+        }
+      ],
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "fever",
+            "display": "Fever or chills",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "fatigue",
+            "display": "Unusual tiredness",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "nausea",
+            "display": "Nausea or stomach upset",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "none",
+            "display": "None of the above",
+            "system": "http://snomed.info/sct"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "iv-site-symptoms",
+      "type": "choice",
+      "text": "Any changes at your IV site?",
+      "repeats": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "check-box"
+              }
+            ]
+          }
+        }
+      ],
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "none",
+            "display": "No changes, looks normal",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "redness",
+            "display": "Redness",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "swelling",
+            "display": "Swelling",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "pain",
+            "display": "Pain or tenderness",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "fluid",
+            "display": "Fluid or leakage",
+            "system": "http://snomed.info/sct"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "section3-intro",
+      "type": "display",
+      "text": "💉 Let’s check how your treatment went today."
+    },
+    {
+      "linkId": "treatment-done",
+      "type": "choice",
+      "text": "Did you complete your antibiotic treatment as planned today?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "yes",
+            "display": "Yes",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "no",
+            "display": "No",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "treatment-missed-reason",
+      "type": "string",
+      "text": "What made it difficult?",
+      "enableWhen": [
+        {
+          "question": "treatment-done",
+          "operator": "=",
+          "answerCoding": {
+            "code": "no",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "infusion-issues",
+      "type": "choice",
+      "text": "Any problems with infusion or equipment?",
+      "repeats": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "none",
+            "display": "No, everything worked fine",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "equipment",
+            "display": "Equipment issues",
+            "system": "http://snomed.info/sct"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "infusion",
+            "display": "Infusion-related issues",
+            "system": "http://snomed.info/sct"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "contact-request",
+      "type": "choice",
+      "text": "Would you like your care team to follow up with you?",
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "yes",
+            "display": "Yes, please check in with me",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "no",
+            "display": "No, I’m fine today",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "thank-you",
+      "type": "display",
+      "text": "✅ Thanks for checking in today! You’re doing great. If anything changes, reach out to your nurse or 1177."
+    }
+  ]
+}
