@@ -1,5 +1,5 @@
 {
-  "originHash" : "db91c54ac80b4652c5d1b19cb32a4d0a53d2e435c933b5bd074867152f598a36",
+  "originHash" : "eb7192f6b8f509278f2404329345b77572aa7191e9603d7d8bb4ce66785b5d7a",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -35,6 +35,15 @@
       "state" : {
         "revision" : "b4f23e24b5a1bff301efc5e70871083ca029ff95",
         "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "confetti3d",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maxime-day/Confetti3D.git",
+      "state" : {
+        "revision" : "4ef100957e78f798ebf0e75fc7f1a00525d3c511",
+        "version" : "1.0.4"
       }
     },
     {

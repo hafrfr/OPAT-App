@@ -1,131 +1,161 @@
+import SwiftUI
 @_spi(TestingSupport) import SpeziAccount
-import SpeziScheduler // Ensure Scheduler is available for event completion
+import SpeziScheduler    // Ensure Scheduler is available for event completion
 import SpeziSchedulerUI
 import SpeziViews
-import SwiftUI
-
 
 struct OPATScheduleViewStyled: View {
-    // MARK: Environment Variables
+    // MARK: - Static Date Range Helper
+    private static var todayRange: Range<Date> {
+        let start = Calendar.current.startOfDay(for: .now)
+        let end = Calendar.current.date(byAdding: .day, value: 1, to: start)!
+        return start..<end
+    }
+
+    // MARK: - Environment Modules
     @Environment(Account.self) private var account: Account?
-    @Environment(TemplateApplicationScheduler.self) private var appScheduler: TemplateApplicationScheduler 
+    @Environment(TemplateApplicationScheduler.self) private var appScheduler: TemplateApplicationScheduler
     @Environment(TreatmentModel.self) private var treatmentModel
-
     @Environment(TreatmentScheduler.self) private var treatmentScheduler
-    
-    
-    // MARK: State Variables
 
-    @State private var presentedEvent: Event? // For presenting questionnaires via sheet
-    @Binding private var presentingAccount: Bool // For presenting account sheet
+    // MARK: - Query Today’s Events
+    @EventQuery(in: Self.todayRange) private var todaysEvents: [Event]
+
+    // MARK: - View State
+    @State private var presentedEvent: Event?    // For presenting questionnaires
+    @Binding private var presentingAccount: Bool // For account sheet
+
+    // MARK: - Progress State
+    @State private var completedTaskCount: Int = 0
+    @State private var totalTaskCount: Int     = 0
 
     // MARK: - Body
     var body: some View {
-            @Bindable var appScheduler = appScheduler
-
-            // --- Add NavigationStack back ---
-            NavigationStack { // <-- ADDED: Provides context for the 
-                PrimaryBackgroundView(title: "Schedule") { // Title
-                    VStack {
-                        EventScheduleList(date: .today) { event in
-                            InstructionsTile(event) {
-                                actionButton(for: event)
-                            }
-                            // --- Row Styling & Modifiers ---
-                            .padding()
-                            .background(ColorTheme.listItemBackground)
-                            .cornerRadius(Layout.Radius.medium)
-                            .shadowStyle(ShadowTheme.card)
-                            .listRowInsets(EdgeInsets(top: Layout.Spacing.small, leading: 0, bottom: Layout.Spacing.small, trailing: 0))
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
-                            // -----------------------------
-                        }
-                        .listStyle(.plain)
-                        .scrollContentBackground(.hidden)
-                        .background(Color.clear)
+        NavigationStack {
+            // Attach an .id to force view refresh when completedTaskCount changes
+            PrimaryBackgroundView(title: "Schedule") {
+                VStack(spacing: Layout.Spacing.medium) {
+                    if totalTaskCount > 0 {
+                        TreatmentProgressBar(
+                            completedCount: completedTaskCount,
+                            totalCount:     totalTaskCount
+                        )
+                        .padding(.horizontal)
+                        .id(completedTaskCount)
                     }
-                     // .padding(.horizontal) // Optional padding for VStack content
-                }
-                // Apply modifiers to the content INSIDE NavigationStack but OUTSIDE PrimaryBackgroundView
-                .viewStateAlert(state: $appScheduler.viewState)
-                .sheet(item: $presentedEvent) { event in EventView(event) }
-                .toolbar { toolbarContent } // Toolbar attached here works because of NavigationStack
 
-                // Note: .navigationTitle is NOT needed here as PrimaryBackgroundView shows title
-            } // --- End NavigationStack ---
+                    EventScheduleList(date: .today) { event in
+                        eventRow(event)
+                    }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
+                }
+                .onAppear {
+                    // Initialize progress counts
+                    totalTaskCount = todaysEvents.count
+                    completedTaskCount = todaysEvents.filter { $0.isCompleted }.count
+                }
+            }
+            .id(completedTaskCount) // Ensures PrimaryBackgroundView reloads
+            .toolbar { toolbarContent }
+            .sheet(item: $presentedEvent) { EventView($0) }
+            .viewStateAlert(state: Binding(
+                get: { appScheduler.viewState },
+                set: { appScheduler.viewState = $0 }
+            ))
         }
+    }
+
+    // MARK: - Extracted Row Builder
+    @ViewBuilder
+    private func eventRow(_ event: Event) -> some View {
+        InstructionsTile(event) {
+            actionButton(for: event)
+        }
+        .padding()
+        .background(ColorTheme.listItemBackground)
+        .cornerRadius(Layout.Radius.medium)
+        .shadowStyle(ShadowTheme.card)
+        .listRowInsets(EdgeInsets(
+            top: Layout.Spacing.small,
+            leading: 0,
+            bottom: Layout.Spacing.small,
+            trailing: 0
+        ))
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
+    }
 
     // MARK: - Initialization
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
     }
-    @ToolbarContentBuilder private var toolbarContent: some ToolbarContent {
+
+    // MARK: - Toolbar Content
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             if account != nil {
                 AccountButton(isPresented: $presentingAccount)
             } else {
-                NavigationLink {
-                    ManageTreatmentsView()
-                } label: {
+                NavigationLink(
+                    destination: ManageTreatmentsView()
+                ) {
                     Label("Manage Treatments", systemImage: "list.bullet.clipboard")
                 }
             }
         }
     }
 
-    // MARK: - Private Helper Views
-    @ViewBuilder private func actionButton(for event: Event) -> some View {
-        let isDisabled = event.isCompleted
-
+    // MARK: - Action Button Builder
+    @ViewBuilder
+    private func actionButton(for event: Event) -> some View {
+        let disabled = event.isCompleted
         if event.task.id.starts(with: "treatment-") {
-                    HStack {
-                        EventActionButton(event: event, "Mark Complete", action: {
-                            completeTreatmentTask(event)
-                        })
-                        .disabled(isDisabled)
-
-                        Spacer()
-                        Button("To Instructions") {
-                        }
-                        .buttonStyle(.bordered).disabled(isDisabled)
-
-                    }
+            HStack {
+                EventActionButton(event: event, "Mark Complete") {
+                    completeTreatmentTask(event)
+                }
+                .disabled(disabled)
+                Spacer()
+                Button("To Instructions") {
+                    // TODO: navigate
+                }
+                .buttonStyle(.bordered)
+                .disabled(disabled)
+            }
         } else if event.task.id == "opat-followup" {
-            EventActionButton(event: event, "Start", action: {
+            EventActionButton(event: event, "Start") {
                 presentedEvent = event
-            })
-            .disabled(isDisabled)
+            }
+            .disabled(disabled)
         } else {
-             Text("Unknown Task")
+            Text("Unknown Task")
                 .font(.caption)
                 .foregroundColor(.gray)
                 .padding(.horizontal)
         }
     }
 
-    // MARK: - Private Helper Functions
-    /// Marks a treatment-related event as complete.
+    // MARK: - Completion Handler
     private func completeTreatmentTask(_ event: Event) {
-            do {
-                try  event.complete()
-                print("Marked event \(event.task.id) as complete.")
-            } catch {
-                print("Error completing event \(event.task.id): \(error)")
-            }
+        do {
+            try event.complete()
+            // Manually increment and trigger refresh
+            completedTaskCount += 1
+        } catch {
+            print("Error completing event \(event.task.id): \(error)")
         }
+    }
 }
 
-// MARK: - Preview
 #if DEBUG
 #Preview {
     @Previewable @State var presentingAccount = false
-
-
     OPATScheduleViewStyled(presentingAccount: $presentingAccount)
         .previewWith(standard: TemplateApplicationStandard()) {
-            Scheduler() // The actual scheduler module
-            TemplateApplicationScheduler() // Your app-specific scheduler logic
+            Scheduler()
+            TemplateApplicationScheduler()
             TreatmentModel()
             TreatmentScheduler()
             AccountConfiguration(service: InMemoryAccountService())

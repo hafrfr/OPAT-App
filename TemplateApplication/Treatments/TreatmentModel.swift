@@ -22,4 +22,6 @@ final class TreatmentModel: Module,
         ]
         print("TreatmentModel configured. Treatments count: \(treatments.count)")
     }
+    
+    
 }

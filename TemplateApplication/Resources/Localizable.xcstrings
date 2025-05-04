@@ -4,6 +4,12 @@
     "" : {
 
     },
+    "%lld days remaining" : {
+
+    },
+    "%lld%%" : {
+
+    },
     "ACCOUNT_SETUP_DESCRIPTION" : {
 
     },
@@ -11,6 +17,9 @@
 
     },
     "ACCOUNT_SUBTITLE" : {
+
+    },
+    "Add a treatment schedule via the Account settings to see your progress calendar." : {
 
     },
     "Add Time" : {
@@ -42,6 +51,9 @@
       }
     },
     "Back" : {
+
+    },
+    "Care-Plan" : {
 
     },
     "Close" : {
@@ -185,6 +197,19 @@
 
     },
     "Daily OPAT Check-in" : {
+
+    },
+    "Day %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Day %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "Done" : {
 
     },
     "Duration" : {
@@ -428,6 +453,9 @@
     "HL7 FHIR" : {
 
     },
+    "Hospital" : {
+
+    },
     "I_UNDERSTAND" : {
       "localizations" : {
         "en" : {
@@ -627,6 +655,9 @@
         }
       }
     },
+    "No Treatments Defined" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
 
     },
@@ -687,6 +718,9 @@
     "OPAT @ HOME" : {
 
     },
+    "Overall Treatment Progress" : {
+
+    },
     "Pre-treatment task: %@" : {
 
     },
@@ -703,6 +737,12 @@
 
     },
     "Search Help" : {
+
+    },
+    "Select Hospital" : {
+
+    },
+    "Select Your Hospital" : {
 
     },
     "Set End Date" : {
@@ -783,6 +823,9 @@
 
     },
     "To Instructions" : {
+
+    },
+    "Treatment Calendar" : {
 
     },
     "Treatment Details" : {
@@ -932,6 +975,9 @@
       }
     },
     "Your Account" : {
+
+    },
+    "Your selection is saved automatically on this device." : {
 
     }
   },
