@@ -1,47 +1,69 @@
 // TemplateApplication/UI/Schedule/TreatmentProgressCalenderView.swift
 import SwiftUI
+import SpeziScheduler
+import SpeziSchedulerUI
 // Remove SpeziScheduler import if not needed elsewhere in this file
 
 struct TreatmentProgressCalendarView: View {
     // Environment objects
-    @Environment(TreatmentModel.self) private var treatmentModel // Use treatmentModel consistently
-
+    @Environment(TreatmentModel.self) private var treatmentModel
+    @Environment(TemplateApplicationScheduler.self) private var appScheduler: TemplateApplicationScheduler
+    @Environment(TreatmentScheduler.self) private var treatmentScheduler
     // State variables for calculated progress and dates
     @State private var totalTreatmentDays: Int = 0
     @State private var daysCompleted: Int = 0
     @State private var overallDateRange: (start: Date, end: Date)? = nil
     // State variable for the set of ALL dates within the treatment range
     @State private var treatmentDatesList: [DateComponents] = []
+    @State private var selectedDay: Date? = Calendar.current.startOfDay(for: Date())
 
     // Calendar instance
     private let calendar = Calendar.current
 
     // MARK: - Body
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                // Show progress bar only if calculation is complete
-                if overallDateRange != nil && totalTreatmentDays > 0 {
-                    progressSection
-                    Divider()
-                } else {
-                     ContentUnavailableView(
-                         "No Treatments Defined",
-                         systemImage: "list.bullet.clipboard",
-                         description: Text("Add a treatment schedule via the Account settings to see your progress calendar.")
-                     )
-                    .padding()
+        //ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // --- Progress Section ---
+                    if overallDateRange != nil && totalTreatmentDays > 0 {
+                        progressSection.padding()
+                        Divider()
+                    }
+
+                    // --- Calendar Section ---
+                    calendarSection
+
+
+                    if var day = selectedDay {
+                            EventScheduleList(date: day) { event in
+                               InstructionsTile(event)
+                                 .id(event.id)
+                            }
+                        .padding(.horizontal) // Add padding to the Section
+
+                    } else {
+                        // Optional: View when no date is selected
+                        Section("Events") {
+                             Text("Tap on a date in the calendar to view events.")
+                                .foregroundColor(.secondary)
+                                .padding(.vertical)
+                        }
+                        .padding(.horizontal)
+                    }
+
                 }
-                // Always show calendar section (it will be empty if no range)
-                calendarSection
+                .padding(.vertical)
+                .onAppear { // Keep existing onAppear logic
+                    calculateProgressAndDates()
+                    
+                }
+                .onChange(of: treatmentModel.treatments) {
+                    calculateProgressAndDates()
+                }
+                .navigationTitle("Care Plan")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .padding(.vertical)
-            .onAppear(perform: calculateProgressAndDates)
-            .onChange(of: treatmentModel.treatments) {
-                 calculateProgressAndDates()
-             }
-        }
-    } // End body
+
 
     // MARK: - Calculation Functions
 
@@ -117,6 +139,7 @@ struct TreatmentProgressCalendarView: View {
     }
 
     // MARK: - Subviews
+    
 
     // Progress calculation for the bar
     private var progress: Double {
@@ -143,15 +166,14 @@ struct TreatmentProgressCalendarView: View {
 
     // calendarSection passes the calculated treatmentDatesSet
     private var calendarSection: some View {
-         VStack {
-             Text("Treatment Calendar").font(.title2).fontWeight(.semibold).padding(.top)
-             // Pass the set of ALL dates within the treatment range
-             CalendarViewRepresentable(treatmentDates: treatmentDatesList)
-                 .frame(height: 350)
-                 .padding(.horizontal)
-         }
-     }
-}
+            VStack {
+                CalendarViewRepresentable(treatmentDates: treatmentDatesList, selectedDate: $selectedDay)
+                    .frame(height: 350)
+            }
+        }
+    
+    
+    }
 // MARK: - Preview
 #Preview {
     // --- Create Sample Data (Necessary for this preview) ---
@@ -163,8 +185,14 @@ struct TreatmentProgressCalendarView: View {
 
     let configuredTreatmentModel = TreatmentModel() // Create instance
     configuredTreatmentModel.treatments = [ // Configure with sample data
-        Treatment(type: .opat, timesOfDay: [], startDate: startDate, endDate: endDate)
+        Treatment(type: .opat,
+                  timesOfDay: [
+            .init(hour: 8, minute: 0),
+            .init(hour: 14, minute: 0),
+                  ], startDate: startDate, endDate: endDate)
     ]
+    
+    
 
     return NavigationView { // Use NavigationView if appropriate
         TreatmentProgressCalendarView()
@@ -172,6 +200,8 @@ struct TreatmentProgressCalendarView: View {
             .previewWith(standard: TemplateApplicationStandard()) {
                 TemplateApplicationScheduler()
                 TreatmentScheduler()
+                Scheduler() // The actual scheduler module
+                TemplateApplicationScheduler() // Your app-specific scheduler logic
             }
     }
 }
