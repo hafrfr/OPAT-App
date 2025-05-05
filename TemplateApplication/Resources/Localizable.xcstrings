@@ -658,6 +658,9 @@
         }
       }
     },
+    "No events scheduled for this day." : {
+
+    },
     "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
 
     },
