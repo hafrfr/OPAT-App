@@ -20,6 +20,7 @@ import SpeziScheduler
 import SwiftUI
 
 
+
 class TemplateApplicationDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: TemplateApplicationStandard()) {

@@ -1,0 +1,93 @@
+
+{
+  "GuideTitle": "Preparation",
+  "steps": [
+    {
+      "title": "Verify Patient and Physician Order",
+      "substeps": [
+        {
+          "title": "Confirm the Prescription",
+          "moreInfo": "Check drug name, dose, route, frequency, and infusion duration against the MAR.",
+          "description": "Review the antibiotic order and compare it with the patient’s MAR to ensure accuracy.",
+          "imageName": "verify_physician_order"
+        },
+        {
+          "title": "Assess Patient Allergies and IV Site",
+          "moreInfo": "",
+          "description": "Ask the patient about known drug allergies, inspect the existing peripheral IV site for patency, redness, or infiltration.",
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "Prepare the Medication",
+      "substeps": [
+        {
+          "title": "Gather Supplies",
+          "moreInfo": "IV antibiotic vial/bag, syringe with blunt‑fill needle, 0.9 % saline flush, alcohol swabs, gloves, IV tubing, pump (if used).",
+          "description": "Collect all necessary items before entering the room to minimize delays.",
+          "imageName": "iv_supplies_layout"
+        },
+        {
+          "title": "Reconstitute or Dilute the Antibiotic",
+          "moreInfo": "Follow manufacturer guidelines for diluent volume and compatibility.",
+          "description": "Using aseptic technique, draw up diluent, inject into the vial, gently swirl until dissolved, and transfer to the IV bag or syringe.",
+          "imageName": "reconstitute_antibiotic"
+        }
+      ]
+    },
+    {
+      "title": "Prime and Connect IV Tubing",
+      "substeps": [
+        {
+          "title": "Spike the Bag and Remove Air",
+          "moreInfo": "",
+          "description": "Insert the spike into the bag port, invert the bag, and allow fluid to fill and purge air from the tubing.",
+          "imageName": "prime_iv_tubing"
+        },
+        {
+          "title": "Disinfect the IV Port",
+          "moreInfo": "Use 70 % alcohol for at least 15 s; allow to dry.",
+          "description": "Scrub the peripheral IV hub or port vigorously before connection.",
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "Initiate the Infusion",
+      "substeps": [
+        {
+          "title": "Program the IV Pump (or Set Drip Rate)",
+          "moreInfo": "Typical infusion times range from 15 min to 2 h depending on the antibiotic.",
+          "description": "Enter total volume and time on the pump, or adjust roller clamp for gravity infusion per calculated drops/min.",
+          "imageName": "program_iv_pump"
+        },
+        {
+          "title": "Monitor Patient and Site",
+          "moreInfo": "Observe for pain, swelling, rash, or anaphylaxis during the first 5 min.",
+          "description": "Remain with the patient briefly, then check vitals and site at least every 15 min until completion.",
+          "imageName": "site_monitoring"
+        }
+      ]
+    },
+    {
+      "title": "Post‑Infusion Care",
+      "substeps": [
+        {
+          "title": "Flush and Secure Line",
+          "moreInfo": "",
+          "description": "Disconnect tubing, flush the catheter with 5–10 mL normal saline, and cap or resume primary fluids as ordered.",
+          "imageName": null
+        },
+        {
+          "title": "Document Administration",
+          "moreInfo": "",
+          "description": "Record start/stop times, dose, lot number, patient response, and IV site assessment in the EMR.",
+          "imageName": "document_med_admin"
+        }
+      ]
+    }
+  ]
+}
+
+
