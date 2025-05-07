@@ -45,7 +45,6 @@ Built as part of a course at **Chalmers University of Technology** in collaborat
 | FAQ Module | ![FAQ](./screenshots/faq.png) |
 | Daily Check-In UI | ![Check-In](./screenshots/daily-checkin.png) |
 
-> 📸 _Add real screenshot files to `/screenshots` and replace file names above._
 
 ---
 
