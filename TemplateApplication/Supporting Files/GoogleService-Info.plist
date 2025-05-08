@@ -3,28 +3,28 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBTujm9kz_9tiM6DYBORASeh_l2sqkViXA</string>
+	<string>AIzaSyCXdKsg2tPpDNzAupcAmQeM_A0z-lp9Lw0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>883151838216</string>
+	<string>462317045341</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.Opat.Tracks</string>
+	<string>com.chalmers.digitalhealth.opatathome</string>
 	<key>PROJECT_ID</key>
-	<string>opat-tracks</string>
+	<string>opatlive</string>
 	<key>STORAGE_BUCKET</key>
-	<string>opat-tracks.firebasestorage.app</string>
+	<string>opatlive.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:883151838216:ios:972c6ac3a63bc1f57e05bd</string>
+	<string>1:462317045341:ios:72c4dfeb2206694c876fb4</string>
 </dict>
 </plist>

@@ -66,14 +66,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8E70EA232DCA983E00249E92 /* Exceptions for "TemplateApplication" folder in "OPATAppTests" target */ = {
+		8EC818902DCCBEF200C2796E /* Exceptions for "TemplateApplication" folder in "OPATAppTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Supporting Files/GoogleService-Info.plist",
 			);
 			target = 653A255C28338800005D4D48 /* OPATAppTests */;
 		};
-		8E70EA242DCA983E00249E92 /* Exceptions for "TemplateApplication" folder in "OPATAppUITests" target */ = {
+		8EC818912DCCBEF200C2796E /* Exceptions for "TemplateApplication" folder in "OPATAppUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Supporting Files/GoogleService-Info.plist",
@@ -95,8 +95,8 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				A973C10B2D7DC7C600BA148C /* Exceptions for "TemplateApplication" folder in "OPATApp" target */,
-				8E70EA232DCA983E00249E92 /* Exceptions for "TemplateApplication" folder in "OPATAppTests" target */,
-				8E70EA242DCA983E00249E92 /* Exceptions for "TemplateApplication" folder in "OPATAppUITests" target */,
+				8EC818902DCCBEF200C2796E /* Exceptions for "TemplateApplication" folder in "OPATAppTests" target */,
+				8EC818912DCCBEF200C2796E /* Exceptions for "TemplateApplication" folder in "OPATAppUITests" target */,
 			);
 			path = TemplateApplication;
 			sourceTree = "<group>";
@@ -526,7 +526,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = PN5H45484S;
+				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TemplateApplication/Supporting Files/Info.plist";
@@ -552,7 +552,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Opat.Tracks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chalmers.digitalhealth.opatathome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -741,7 +741,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = PN5H45484S;
+				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TemplateApplication/Supporting Files/Info.plist";
@@ -767,7 +767,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Opat.Tracks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chalmers.digitalhealth.opatathome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -789,12 +789,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 637867499T;
+				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TemplateApplication/Supporting Files/Info.plist";
@@ -820,10 +818,9 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Opat.Tracks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chalmers.digitalhealth.opatathome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Spezi Template Application";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
