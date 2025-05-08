@@ -64,7 +64,7 @@ The following screenshots highlight core features of the **OPAT @ Home** prototy
 ## Built With
 
 - [Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication)
-- Spezi FHIR / Questionnaire / Onboarding / Views
+- Spezi Modules (e.g. SpeziQuestionnaire, SpeziOnboarding, SpeziViews, SpeziNotifications)
 - SwiftUI
 
 ---
@@ -72,7 +72,7 @@ The following screenshots highlight core features of the **OPAT @ Home** prototy
 ## Acknowledgements
 
 This project builds on the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication) and incorporates several open-source [Spezi modules](https://github.com/StanfordSpezi).  
-Special thanks to the [Stanford Biodesign Digital Health Group](https://biodesign.stanford.edu/) and the clinical experts from Sahlgrenska University Hospital, Oxford University Hospitals NHS Foundation Trust and Skåne University Hospital who provided valuable guidance and feedback during the design of this prototype.
+Special thanks to the [Stanford Biodesign Digital Health Group](https://biodesign.stanford.edu/) and the clinical experts from Sahlgrenska University Hospital, Oxford University Hospitals NHS Foundation Trust and Skåne University Hospital who are providing valuable guidance and feedback during the design of this prototype.
 
 ---
 
