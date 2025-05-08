@@ -28,10 +28,10 @@ struct HomeView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("Schedule", systemImage: "list.clipboard", value: .schedule) {
-                OPATScheduleViewStyled(presentingAccount: $presentingAccount)
+                OPATScheduleView(presentingAccount: $presentingAccount)
             }
                 .customizationID("home.schedule")
-            Tab("Contacts", systemImage: "person.fill", value: .contact) {
+            Tab("Contacts", systemImage: "phone.fill", value: .contact) {
                 Contacts(presentingAccount: $presentingAccount)
             }
                 .customizationID("home.contacts")

@@ -46,7 +46,7 @@ final class TemplateApplicationScheduler: Module, DefaultInitializable, Environm
                 category: .questionnaire,
                 schedule: .daily(hour: 9, minute: 0, startingAt: .today)
             ) { context in
-                context.questionnaire = Bundle.main.questionnaire(withName: "OPAT_checkin")
+                context.questionnaire = Bundle.main.questionnaire(withName: "OPATFollowUp")
             }
 
             // You can add more scheduled tasks here later (e.g., weekly follow-ups, injection helper prompts, etc.)

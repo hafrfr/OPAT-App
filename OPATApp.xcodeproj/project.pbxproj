@@ -83,7 +83,6 @@
 		A973C10B2D7DC7C600BA148C /* Exceptions for "TemplateApplication" folder in "OPATApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/Archive/AppIconStanford.png,
 				"Supporting Files/Info.plist",
 			);
 			target = 653A254C283387FE005D4D48 /* OPATApp */;

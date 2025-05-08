@@ -11,7 +11,7 @@ import SwiftUI
 struct PrimaryBackgroundView<Content: View>: View {
     let title: String
     let subtitle: String?
-    let showsSettingsButton: Bool
+    let showsSettingsButton: Bool // Probably not going to use it but maybe in the future
     let content: () -> Content
 
     // MARK: - Animation states (header + button doesnt show up instantly)
@@ -58,11 +58,14 @@ struct PrimaryBackgroundView<Content: View>: View {
     private var gradientBackground: some View {
         LinearGradient(
             gradient: Gradient(stops: [
-                .init(color: ColorTheme.headerGradientStart, location: 0.0),
-                .init(color: ColorTheme.headerGradientEnd, location: 0.4) // Faster gradient fade
+                .init(color: .white, location: 0.0),
+                .init(color: .white, location: 0.77), // tweaking for perfection :D
+                .init(color: ColorTheme.headerGradientStart, location: 0.87),
+                .init(color: ColorTheme.headerGradientEnd, location: 1.0)
+
             ]),
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
+            startPoint: .bottom,
+            endPoint: .top
         )
         .ignoresSafeArea()
     }
@@ -107,7 +110,7 @@ struct PrimaryBackgroundView<Content: View>: View {
 
 #if DEBUG
 #Preview {
-    PrimaryBackgroundView(title: "Title", subtitle: "Optional subtitle here.", showsSettingsButton: true) {
+    PrimaryBackgroundView(title: "Title", subtitle: nil) {
         Text("Content goes here")
     }
 }

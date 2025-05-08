@@ -28,9 +28,6 @@
     "All Done!" : {
 
     },
-    "Allow Notifications" : {
-
-    },
     "ALLOW_NOTIFICATIONS" : {
       "localizations" : {
         "en" : {
@@ -155,9 +152,6 @@
         }
       }
     },
-    "CONSENT_LOADING_ERROR" : {
-
-    },
     "CONSENT_SUBTITLE" : {
       "localizations" : {
         "en" : {
@@ -189,9 +183,6 @@
           }
         }
       }
-    },
-    "Contact" : {
-
     },
     "Contacts" : {
 
@@ -438,24 +429,6 @@
     "Got it!" : {
 
     },
-    "Grant Access" : {
-
-    },
-    "HealthKit Access" : {
-
-    },
-    "HealthKit Data Source" : {
-
-    },
-    "HEALTHKIT_PERMISSIONS_DESCRIPTION" : {
-
-    },
-    "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
-
-    },
-    "HL7 FHIR" : {
-
-    },
     "Hospital" : {
 
     },
@@ -476,24 +449,6 @@
       }
     },
     "Instructions" : {
-
-    },
-    "Interesting Modules" : {
-
-    },
-    "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
-
-    },
-    "INTERESTING_MODULES_AREA2_DESCRIPTION" : {
-
-    },
-    "INTERESTING_MODULES_AREA3_DESCRIPTION" : {
-
-    },
-    "INTERESTING_MODULES_AREA4_DESCRIPTION" : {
-
-    },
-    "INTERESTING_MODULES_SUBTITLE" : {
 
     },
     "INTRO_AREA1_DESCRIPTION" : {
@@ -624,9 +579,6 @@
         }
       }
     },
-    "Learn More" : {
-
-    },
     "License Information" : {
 
     },
@@ -637,9 +589,6 @@
 
     },
     "More Info" : {
-
-    },
-    "Next" : {
 
     },
     "NEXT" : {
@@ -659,12 +608,6 @@
       }
     },
     "No events scheduled for this day." : {
-
-    },
-    "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
-
-    },
-    "Notifications" : {
 
     },
     "NOTIFICATIONS_BODY" : {
@@ -714,9 +657,6 @@
           }
         }
       }
-    },
-    "Onboarding" : {
-
     },
     "OPAT @ HOME" : {
 
@@ -770,15 +710,6 @@
         }
       }
     },
-    "Spezi Modules" : {
-
-    },
-    "Spezi Scheduler Notifications." : {
-
-    },
-    "Spezi Template Application" : {
-
-    },
     "SPLASH_SUBTITLE" : {
       "localizations" : {
         "en" : {
@@ -795,7 +726,7 @@
         }
       }
     },
-    "Start" : {
+    "Start Check-In" : {
 
     },
     "Start Date" : {
@@ -804,19 +735,10 @@
     "Start from the beginning" : {
 
     },
-    "Start Questionnaire" : {
-
-    },
-    "Swift Package Manager" : {
-
-    },
     "Take a moment to check in and let us know how you're doing today." : {
 
     },
     "Tap on a date in the calendar to view events." : {
-
-    },
-    "The Spezi Framework" : {
 
     },
     "This type of event is currently unsupported. Please contact the developer of this app." : {
