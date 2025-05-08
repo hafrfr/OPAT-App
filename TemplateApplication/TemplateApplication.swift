@@ -27,6 +27,14 @@ struct TemplateApplication: App {
         UserDefaults.standard.set(["en"], forKey: "AppleLanguages") // remove after presentation (forces system language to be english)
         UserDefaults.standard.synchronize() // remove as well
         UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
+        
+        // Apply global tab bar styling using your ColorTheme
+        UITabBar.appearance().tintColor = UIColor(ColorTheme.tabBarItemActive)
+        UITabBar.appearance().unselectedItemTintColor = UIColor.black.withAlphaComponent(0.25)
+
+        UITabBar.appearance().tintColor = UIColor(ColorTheme.tabBarItemActive) // Active icon color
+        UITabBar.appearance().unselectedItemTintColor = UIColor(ColorTheme.tabBarItemInactive) // Inactive icon color
+        UITabBar.appearance().backgroundColor = UIColor(ColorTheme.tabBarBackground) // Optional
     }
     
     var body: some Scene {

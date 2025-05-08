@@ -16,7 +16,6 @@ struct OPATScheduleViewStyled: View {
 
     var body: some View {
         @Bindable var appScheduler = appScheduler
-
         NavigationStack {
             PrimaryBackgroundView(title: "Schedule") {
                 VStack(spacing: Layout.Spacing.medium) {
@@ -80,39 +79,41 @@ struct OPATScheduleViewStyled: View {
         let isDisabled = event.isCompleted
 
         if event.task.id.starts(with: "treatment-") {
-            HStack(spacing: Layout.Spacing.medium) {
-                Button("Mark Complete") {
+            VStack(spacing: Layout.Spacing.small) {
+                Button {
                     completeTreatmentTask(event)
+                } label: {
+                    Label("Mark Complete", systemImage: "checkmark.circle")
+                        .frame(maxWidth: .infinity)
+                        .font(FontTheme.button)
+                        .foregroundColor(.white)
+                        .padding(.vertical, Layout.Spacing.medium)
+                        .background(ColorTheme.buttonLarge)
+                        .cornerRadius(Layout.Radius.medium)
                 }
-                .font(FontTheme.button)
-                .foregroundColor(.white)
-                .padding(.vertical, Layout.Spacing.medium)
-                .padding(.horizontal, Layout.Spacing.large)
-                .background(ColorTheme.buttonLarge)
-                .cornerRadius(Layout.Radius.medium)
                 .disabled(isDisabled)
 
-                Spacer()
-
-                Button("To Instructions") {
-                    // Placeholder
+                Button {
+                    // Instructions action here
+                } label: {
+                    Label("To Instructions", systemImage: "book")
+                        .frame(maxWidth: .infinity)
+                        .font(FontTheme.button)
+                        .foregroundColor(.white)
+                        .padding(.vertical, Layout.Spacing.medium)
+                        .background(ColorTheme.buttonLarge)
+                        .cornerRadius(Layout.Radius.medium)
                 }
-                .font(FontTheme.button)
-                .foregroundColor(.white)
-                .padding(.vertical, Layout.Spacing.medium)
-                .padding(.horizontal, Layout.Spacing.large)
-                .background(ColorTheme.buttonLarge)
-                .cornerRadius(Layout.Radius.medium)
                 .disabled(isDisabled)
             }
-        } else if event.task.id == "opat-checkin" {
+        } else if event.task.id == "opatfollowup" {
             Button("Start") {
                 presentedEvent = event
             }
             .font(FontTheme.button)
             .foregroundColor(.white)
             .padding(.vertical, Layout.Spacing.medium)
-            .padding(.horizontal, Layout.Spacing.large)
+            .frame(maxWidth: .infinity) // stretches the button
             .background(ColorTheme.buttonLarge)
             .cornerRadius(Layout.Radius.medium)
             .disabled(isDisabled)

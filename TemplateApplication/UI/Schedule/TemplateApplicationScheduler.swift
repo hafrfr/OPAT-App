@@ -40,7 +40,7 @@ final class TemplateApplicationScheduler: Module, DefaultInitializable, Environm
 
             // OPAT questionnaire – added here!
             try scheduler.createOrUpdateTask(
-                id: "opat-checkin",
+                id: "opatfollowup",
                 title: "Daily OPAT Check-in",
                 instructions: "Take a moment to check in and let us know how you're doing today.",
                 category: .questionnaire,

@@ -72,7 +72,7 @@ struct OPATScheduleView: View {
                 .buttonStyle(.bordered)
                 .disabled(isDisabled)
             }
-        } else if event.task.id == "opat-checkin" {
+        } else if event.task.id == "opatfollowup" {
             EventActionButton(event: event, "Start", action: {
                 presentedEvent = event
             })
