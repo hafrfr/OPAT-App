@@ -1,0 +1,151 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "opat-checkin",
+  "name": "OPATCheckIn",
+  "title": "Daily OPAT Check-In",
+  "status": "active",
+  "version": "1.1",
+  "language": "en-US",
+  "date": "2025-05-01",
+  "publisher": "Chalmers x Stanford (Student Prototype)",
+  "purpose": "Support OPAT patients with daily self-check-in focused on wellbeing, confidence, and symptom monitoring.",
+  "description": "Friendly and structured daily check-in for use during outpatient parenteral antimicrobial therapy (OPAT).",
+  "copyright": "For research and educational use only.",
+  "subjectType": ["Patient"],
+  "item": [
+    {
+      "linkId": "welcome",
+      "type": "display",
+      "text": "👋 Welcome to your daily OPAT check-in. This helps you reflect on how you're doing and flag anything that needs support."
+    },
+    {
+      "linkId": "feeling",
+      "type": "choice",
+      "text": "How are you feeling today?",
+      "required": true,
+      "answerOption": [
+        { "valueCoding": { "code": "fine", "display": "I feel fine", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "mild", "display": "A bit off", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "unwell", "display": "Unwell", "system": "http://snomed.info/sct" } }
+      ]
+    },
+    {
+      "linkId": "confidence-scale",
+      "type": "choice",
+      "text": "How confident did you feel managing your treatment today?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "1",
+            "display": "1 – Not at all confident",
+            "system": "http://example.org/fhir/ValueSet/confidence-scale"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "2",
+            "display": "2 – Slightly confident",
+            "system": "http://example.org/fhir/ValueSet/confidence-scale"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "3",
+            "display": "3 – Moderately confident",
+            "system": "http://example.org/fhir/ValueSet/confidence-scale"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "4",
+            "display": "4 – Very confident",
+            "system": "http://example.org/fhir/ValueSet/confidence-scale"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "5",
+            "display": "5 – Completely confident",
+            "system": "http://example.org/fhir/ValueSet/confidence-scale"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "symptoms",
+      "type": "choice",
+      "text": "Any general symptoms today?",
+      "repeats": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "check-box"
+              }
+            ]
+          }
+        }
+      ],
+      "answerOption": [
+        { "valueCoding": { "code": "fever", "display": "Fever or chills", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "fatigue", "display": "Tiredness", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "nausea", "display": "Nausea or upset stomach", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "none", "display": "No symptoms", "system": "http://snomed.info/sct" } }
+      ]
+    },
+    {
+      "linkId": "ivsite",
+      "type": "choice",
+      "text": "Have you noticed anything at your IV site?",
+      "repeats": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "check-box"
+              }
+            ]
+          }
+        }
+      ],
+      "answerOption": [
+        { "valueCoding": { "code": "redness", "display": "Redness", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "swelling", "display": "Swelling", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "pain", "display": "Pain or tenderness", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "fluid", "display": "Fluid or leakage", "system": "http://snomed.info/sct" } },
+        { "valueCoding": { "code": "normal", "display": "Looks normal", "system": "http://snomed.info/sct" } }
+      ]
+    },
+    {
+      "linkId": "treatment",
+      "type": "choice",
+      "text": "Did you take your antibiotic treatment today?",
+      "required": true,
+      "answerOption": [
+        { "valueCoding": { "code": "yes", "display": "Yes", "system": "http://hl7.org/fhir/ValueSet/yesnodontknow" } },
+        { "valueCoding": { "code": "no", "display": "No", "system": "http://hl7.org/fhir/ValueSet/yesnodontknow" } }
+      ]
+    },
+    {
+      "linkId": "support",
+      "type": "choice",
+      "text": "Would you like the care team to follow up with you?",
+      "answerOption": [
+        { "valueCoding": { "code": "yes", "display": "Yes, please check in", "system": "http://hl7.org/fhir/ValueSet/yesnodontknow" } },
+        { "valueCoding": { "code": "no", "display": "No, I'm okay today", "system": "http://hl7.org/fhir/ValueSet/yesnodontknow" } }
+      ]
+    },
+    {
+      "linkId": "thanks",
+      "type": "display",
+      "text": "✅ Thanks for checking in today. You're doing a great job — keep it up!"
+    }
+  ]
+}

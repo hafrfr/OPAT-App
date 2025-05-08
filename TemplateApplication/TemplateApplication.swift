@@ -15,17 +15,20 @@ import SpeziFirebaseAccount
 import SpeziViews
 import SwiftUI
 
+
 @main
 struct TemplateApplication: App {
     @UIApplicationDelegateAdaptor(TemplateApplicationDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @State private var showSplash = true // Controls splash screen visibility
-
+    
     // Always reset onboarding state for development/testing
     init() {
+        UserDefaults.standard.set(["en"], forKey: "AppleLanguages") // remove after presentation (forces system language to be english)
+        UserDefaults.standard.synchronize() // remove as well
         UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
     }
-
+    
     var body: some Scene {
         WindowGroup {
             ZStack {
