@@ -12,49 +12,92 @@ import SwiftUI
 
 
 struct AccountSheet: View {
+    // MARK: - Properties
+    let availableHospitals = [
+        "Sahlgrenska University Hospital",
+        "Östra Sjukhuset"
+    ].sorted()
+    @AppStorage("userSelectedHospital") private var selectedHospital: String = "Sahlgrenska University Hospital"
+
     private let dismissAfterSignIn: Bool
 
-    @Environment(\.dismiss) var dismiss
-    
+    @Environment(\.dismiss) private var dismiss
     @Environment(Account.self) private var account
-    @Environment(\.accountRequired) var accountRequired
-    
-    @State var isInSetup = false
-    
-    
+    @Environment(\.accountRequired) private var accountRequired
+
+    @State private var isInSetup = false
+
+    // MARK: - Body
     var body: some View {
         NavigationStack {
             ZStack {
                 if account.signedIn && !isInSetup {
-                    AccountOverview(close: .showCloseButton) {
-                        NavigationLink {
-                            ContributionsList(projectLicense: .mit)
-                        } label: {
-                            Text("License Information")
-                        }
-                    }
+                    signedInView
                 } else {
-                    AccountSetup { _ in
-                        if dismissAfterSignIn {
-                            dismiss() // we just signed in, dismiss the account setup sheet
-                        }
-                    } header: {
-                        AccountSetupHeader()
-                    }
-                        .onAppear {
-                            isInSetup = true
-                        }
-                        .toolbar {
-                            if !accountRequired {
-                                closeButton
-                            }
-                        }
+                    setupView
                 }
             }
         }
     }
 
-    @ToolbarContentBuilder private var closeButton: some ToolbarContent {
+    // MARK: - Subviews
+    private var signedInView: some View {
+        AccountOverview(close: .showCloseButton) {
+            accountOptions
+        }
+    }
+
+    private var accountOptions: some View {
+        Group {
+            NavigationLink {
+                EditHospitalView()
+            } label: {
+                Label(
+                    selectedHospital.isEmpty ? "Not Set" : selectedHospital,
+                    systemImage: "stethoscope"
+                )
+            }
+
+            NavigationLink {
+                ManageTreatmentsView()
+            } label: {
+                Label("Manage Treatments", systemImage: "list.bullet.clipboard")
+            }
+            NavigationLink {
+                TreatmentProgressCalendarView()
+            } label: {
+                Label("Care-Plan",systemImage: "calender.and.person")
+            }
+            
+            NavigationLink {
+                ContributionsList(projectLicense: .mit)
+            } label: {
+                Text("License Information")
+            }
+        }
+    }
+
+    private var setupView: some View {
+        AccountSetup { _ in
+            if dismissAfterSignIn {
+                dismiss()
+            }
+        } header: {
+            AccountSetupHeader()
+        }
+        .onAppear {
+            isInSetup = true
+        }
+        .toolbar {
+            if !accountRequired {
+                closeButton
+            }
+        }
+    }
+
+    // MARK: - Toolbar
+    @ToolbarContentBuilder
+    private var closeButton: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
             Button("Close") {
                 dismiss()
@@ -62,11 +105,11 @@ struct AccountSheet: View {
         }
     }
 
+    // MARK: - Initialization
     init(dismissAfterSignIn: Bool = true) {
         self.dismissAfterSignIn = dismissAfterSignIn
     }
 }
-
 
 #if DEBUG
 #Preview("AccountSheet") {

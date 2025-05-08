@@ -1,0 +1,248 @@
+
+// TemplateApplication/UI/Schedule/TreatmentProgressCalenderView.swift
+import SwiftUI
+import SpeziScheduler // Keep SpeziScheduler for @EventQuery and Event type
+
+struct TreatmentProgressCalendarView: View {
+    @Environment(TemplateApplicationScheduler.self) private var appScheduler: TemplateApplicationScheduler
+    @Environment(TreatmentModel.self) private var treatmentModel // Use treatmentModel consistently
+
+    // Keep the query range for event-based decorations
+    private static var queryRange: Range<Date> {
+        let calendar = Calendar.current
+        let startOfToday = calendar.startOfDay(for: Date()) // Use Date()
+        guard let startDate = calendar.date(byAdding: .month, value: -1, to: startOfToday),
+              let endDate = calendar.date(byAdding: .month, value: 2, to: startOfToday) else {
+            return startOfToday ..< calendar.date(byAdding: .day, value: 1, to: startOfToday)!
+        }
+        return startDate ..< endDate
+    }
+
+    // MARK: - State Variables for Progress Bar (will be calculated)
+    @State private var totalTreatmentDays: Int = 0 // Initialize to 0
+    @State private var daysCompleted: Int = 0    // Initialize to 0
+
+    // Keep @EventQuery for Calendar Decorations
+    @EventQuery(in: Self.queryRange) private var allEventsInRange: [Event]
+
+    // Calendar instance for calculations
+    private let calendar = Calendar.current
+
+    // MARK: - Computed Properties for Progress Bar
+
+    // Progress calculation for the bar (uses the state variables)
+    private var progress: Double {
+        guard totalTreatmentDays > 0 else { return 0.0 }
+        return min(1.0, max(0.0, Double(daysCompleted) / Double(totalTreatmentDays)))
+    }
+
+    // Days left calculation for the bar (uses the state variables)
+    private var daysLeft: Int {
+        max(0, totalTreatmentDays - daysCompleted)
+    }
+
+    // MARK: - Computed Properties for Calendar Decoration
+
+    // Keep eventCompletionStatusByDate for decorating the calendar based on individual events
+    private var eventCompletionStatusByDate: [DateComponents: Bool] {
+        let components: Set<Calendar.Component> = [.year, .month, .day]
+        var statusDict = [DateComponents: Bool]()
+        var eventsByDate = [DateComponents: [Event]]()
+
+        // Group events by date components
+        for event in allEventsInRange {
+            // Filter for MAIN treatment tasks (exclude pre-tasks) for decoration
+            guard event.task.id.starts(with: "treatment-"),
+                  !event.task.id.hasSuffix("-pre-task") else { // Make sure to exclude pre-tasks if desired
+                continue
+            }
+            let dateComponents = calendar.dateComponents(components, from: event.occurrence.start)
+            eventsByDate[dateComponents, default: []].append(event)
+        }
+
+        // Determine completion status for each date
+        for (dateComponents, eventsOnDate) in eventsByDate {
+            let allComplete = eventsOnDate.allSatisfy { $0.isCompleted }
+            statusDict[dateComponents] = allComplete
+        }
+
+        // Keep the print statement if helpful for debugging decorations
+        // print("--- eventCompletionStatusByDate calculation (for decoration) ---")
+        // print(statusDict)
+
+        return statusDict
+    }
+
+    // MARK: - Body
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                // Conditionally show progress section only if calculated
+                if totalTreatmentDays > 0 {
+                    progressSection
+                    Divider()
+                } else {
+                     // Optional: You could show a message if progress can't be calculated yet
+                     Text("Calculating overall progress...")
+                         .font(.caption)
+                         .foregroundColor(.secondary)
+                         .padding(.horizontal)
+                }
+                calendarSection // Calendar section always shown
+            }
+            .padding(.vertical)
+            // Calculate overall progress metrics when the view appears or treatments change
+            .onAppear(perform: updateOverallProgressMetrics)
+            .onChange(of: treatmentModel.treatments) {
+                 updateOverallProgressMetrics()
+            }
+        }
+    }
+
+    // MARK: - Calculation Functions
+
+    // Keep calculateOverallDateRange as provided by user
+     func calculateOverallDateRange(for treatments: [Treatment]) -> (start: Date, end: Date)? {
+         guard !treatments.isEmpty else {
+             return nil
+         }
+
+         // Ensure valid dates before proceeding
+          let validTreatments = treatments.filter { treatment in
+              // Add more robust checks if necessary, e.g., ensuring endDate is after startDate if present
+              true // Assuming startDate always exists for now
+          }
+
+          guard !validTreatments.isEmpty else { return nil }
+
+
+          // Use compactMap to safely handle optional end dates and get the latest date per treatment
+           let latestDatesPerTreatment = validTreatments.compactMap { treatment -> Date? in
+               if let endDate = treatment.endDate {
+                   // Ensure endDate is not before startDate
+                   return endDate >= treatment.startDate ? endDate : treatment.startDate
+               } else {
+                   return treatment.startDate // If no end date, the "latest" is the start date
+               }
+           }
+
+           guard let earliestStartDate = validTreatments.map({ $0.startDate }).min(), // Find the absolute earliest start
+                 let latestOverallEndDate = latestDatesPerTreatment.max() else { // Find the absolute latest end (or start)
+               return nil // Should not happen if validTreatments is not empty, but good practice
+           }
+
+
+           // Final check: Ensure the calculated end date is not before the start date
+           guard latestOverallEndDate >= earliestStartDate else {
+               print("Warning: Calculated latest end date is before earliest start date in calculateOverallDateRange. Returning nil.")
+               return nil
+           }
+
+
+           return (start: earliestStartDate, end: latestOverallEndDate)
+     }
+
+
+    // Function to calculate and update ONLY the progress bar metrics
+    private func updateOverallProgressMetrics() {
+        print("Updating overall progress metrics...")
+        guard let range = calculateOverallDateRange(for: treatmentModel.treatments) else {
+            // Reset progress bar metrics if no valid range
+            self.totalTreatmentDays = 0
+            self.daysCompleted = 0
+            print("Overall progress metrics reset: No treatments or invalid range.")
+            return
+        }
+
+        let startDay = calendar.startOfDay(for: range.start)
+        let endDay = calendar.startOfDay(for: range.end)
+        let today = calendar.startOfDay(for: Date()) // Use Date()
+
+        // --- Calculate Total Days for Progress Bar ---
+        guard endDay >= startDay else {
+             print("Progress calculation error: End date is before start date.")
+             self.totalTreatmentDays = 0
+             self.daysCompleted = 0
+             return
+        }
+        let totalDaysDifference = calendar.dateComponents([.day], from: startDay, to: endDay).day ?? 0
+        // Update the state variable for the progress bar
+        self.totalTreatmentDays = max(0, totalDaysDifference + 1) // Inclusive
+
+        // --- Calculate Completed Days for Progress Bar ---
+        let completedDifference = calendar.dateComponents([.day], from: startDay, to: today).day ?? -1
+        // Update the state variable for the progress bar, clamped
+        self.daysCompleted = max(0, min(completedDifference + 1, self.totalTreatmentDays))
+
+        print("--- Updated Progress Metrics ---")
+        print("Overall Range: \(startDay) to \(endDay)")
+        print("Total Treatment Days (for progress bar): \(self.totalTreatmentDays)")
+        print("Days Completed (for progress bar): \(self.daysCompleted)")
+    }
+
+    // MARK: - Subviews
+
+    // progressSection uses the calculated state variables
+    private var progressSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Overall Treatment Progress") // Clarified title
+                .font(.title2)
+                .fontWeight(.semibold)
+
+            ProgressView(value: progress) {
+                Text("Day \(daysCompleted) of \(totalTreatmentDays)")
+                    .font(.caption)
+            } currentValueLabel: {
+                Text("\(Int((progress * 100).rounded()))%") // Use rounded percentage
+                    .font(.caption)
+            }
+            .progressViewStyle(.linear)
+
+            Text("\(daysLeft) days left")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+        }
+        .padding(.horizontal)
+    }
+
+    // calendarSection passes the event-based completion status for decorations
+    private var calendarSection: some View {
+        VStack {
+            Text("Daily Task Calendar") // Clarified title
+                .font(.title2)
+                .fontWeight(.semibold)
+                .padding(.top)
+
+            // Pass the dictionary derived from @EventQuery for individual day decorations
+            CalendarViewRepresentable(eventCompletionStatus: eventCompletionStatusByDate)
+                .frame(height: 350)
+                .padding(.horizontal)
+        }
+    }
+}
+
+// MARK: - Preview
+#Preview {
+    // --- Create Sample Data for Preview ---
+     let calendar = Calendar.current
+     let today = Date()
+     let startDate = calendar.date(byAdding: .day, value: -5, to: today)!
+     let endDate = calendar.date(byAdding: .day, value: 25, to: today)!
+
+     let mockTreatmentModel = TreatmentModel()
+     mockTreatmentModel.treatments = [
+         Treatment(type: .opat, timesOfDay: [.init(hour: 8, minute: 0)], startDate: startDate, endDate: endDate)
+     ]
+    
+
+    return NavigationView {
+        TreatmentProgressCalendarView()
+            .previewWith(standard: TemplateApplicationStandard()) {
+                Scheduler()
+                TemplateApplicationScheduler()
+                mockTreatmentModel // Use model with sample data
+                // TreatmentModule() // Not strictly required for this view's preview if not directly used
+                TreatmentScheduler()
+            }
+    }
+}

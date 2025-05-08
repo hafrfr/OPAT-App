@@ -20,6 +20,7 @@ import SpeziScheduler
 import SwiftUI
 
 
+
 class TemplateApplicationDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: TemplateApplicationStandard()) {
@@ -28,13 +29,9 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
                     service: FirebaseAccountService(providers: [.emailAndPassword, .signInWithApple], emulatorSettings: accountEmulator),
                     storageProvider: FirestoreAccountStorage(storeIn: FirebaseConfiguration.userCollection),
                     configuration: [
-                        // additional values stored using the `FirestoreAccountStorage` within our Standard implementation
-
+                    
                     ]
                 )
-                
-              
-                
                 firestore
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
@@ -52,6 +49,7 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
             TreatmentModule()
             Notifications()
             FAQModule()
+            GuideModule()
         }
     }
 

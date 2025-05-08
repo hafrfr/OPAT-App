@@ -1,10 +1,3 @@
-//
-//  CelebrationView.swift
-//  OPATApp
-//
-//  Created by harre on 2025-04-28.
-//
-
 // CelebrationView.swift
 // Part of the OPAT @ Home application
 //
@@ -12,41 +5,32 @@
 // Created by OPAT @ Home team, Chalmers University of Technology, 2025.
 
 import SwiftUI
+import Confetti3D
 
 struct CelebrationView: View {
-    @State private var showConfetti = false
+    private let confettiView = C3DView()
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         PrimaryBackgroundView(title: "") {
             ZStack {
-                confettiLayer
+                confettiView
+                           .ignoresSafeArea()
+                           .zIndex(0)
                 contentLayer
+                            .zIndex(1)
             }
             .onAppear {
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    showConfetti = true
-                }
+                confettiView.throwConfetti()
             }
         }
     }
 
     // MARK: - Layers
 
-    private var confettiLayer: some View {
-        Group {
-            if showConfetti {
-                ConfettiView()
-                    .transition(.opacity)
-                    .zIndex(1)
-            }
-        }
-    }
-
     private var contentLayer: some View {
         VStack(spacing: Layout.Spacing.large) {
             Spacer()
-            
             Image(systemName: "party.popper.fill")
                 .resizable()
                 .scaledToFit()

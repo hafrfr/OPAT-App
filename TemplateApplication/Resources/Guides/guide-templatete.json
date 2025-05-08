@@ -1,0 +1,33 @@
+{
+  "GuideTitle": "Preperation",
+  "steps": [
+    {
+      "title": "Equipment",
+      "substeps": [
+        {
+          "title": "Set Up a Clean Workspace",
+          "moreInfo": "You can optionally add a longer explanation here. If not needed, leave it as an empty string as seen below. DON'T REMOVE THIS PARAMETER<3",
+          "description": "Select a clean part of your home where you always handle your IV equipment. Ensure you have the following kit available:\n• Hand sanitizer\n• Surface disinfectant\n• Your prescribed treatment (infusion pump OR pre‑filled syringes)\n• Chlorhexidine\n• Sodium chloride syringes\n• Tray\n• Tissues\n\nIf you are missing any of the items on the list, notify your healthcare provider.",
+          "imageName": "step1-example.png"
+        },
+        {
+          "title": "Inspect Packaging and Expiry Dates",
+          "moreInfo": "",
+          "description": "Check each item’s packaging for damage or tampering and confirm that all solutions, syringes, and dressings are within their expiration dates. Do not use any product that is cloudy, leaking, or expired; contact your healthcare provider for replacements.",
+          "imageName": "step2-example.png"
+        }
+      ]
+    },
+    {
+      "title": "Hygiene",
+      "substeps": [
+        {
+          "title": "Perform Thorough Handwashing",
+          "moreInfo": "You can optionally add a longer explanation here. If not needed, leave it as an empty string as seen below. DON'T REMOVE THIS PARAMETER<3",
+          "description": "When preparing for infusion, it is very important to ensure that your hands are clean. The hand‑washing process should take around two minutes.\n1. Wet your hands with running water.\n2. Cover the whole surface of your hands with soap.\n3. Rub hands palm to palm and rub in a circular motion.\n4. Place right palm on left hand and rub with interlaced fingers.\n5. Repeat with left palm on right hand.\n6. Place hands palm to palm and rub with interlaced fingers.\n7. Rub with interlocked fingers.\n8. Grab your thumb and rotate, rubbing firmly.\n9. Repeat with the other thumb.\n10. Place fingers of right hand in left palm and rotate.\n11. Repeat with left hand fingers.\n12. Rinse your hands with water.\n13. Dry your hands thoroughly with a paper towel.\n14. Use the towel to turn off the tap.\n15. Dispose of the towel.\n16. Apply hand sanitizer using the same technique as above.",
+          "imageName": "step1-example.png"
+        }
+      ]
+    }
+  ]
+}

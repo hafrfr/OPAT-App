@@ -1,71 +1,104 @@
+import SwiftUI
 @_spi(TestingSupport) import SpeziAccount
-import SpeziScheduler
+import SpeziScheduler    // Ensure Scheduler is available for event completion
 import SpeziSchedulerUI
 import SpeziViews
-import SwiftUI
-
 
 struct OPATScheduleViewStyled: View {
+    // MARK: - Static Date Range Helper
+    private static var todayRange: Range<Date> {
+        let start = Calendar.current.startOfDay(for: .now)
+        let end = Calendar.current.date(byAdding: .day, value: 1, to: start)!
+        return start..<end
+    }
+
+    // MARK: - Environment Modules
     @Environment(Account.self) private var account: Account?
     @Environment(TemplateApplicationScheduler.self) private var appScheduler: TemplateApplicationScheduler
     @Environment(TreatmentModel.self) private var treatmentModel
     @Environment(TreatmentScheduler.self) private var treatmentScheduler
 
-    @State private var presentedEvent: Event?
-    @Binding private var presentingAccount: Bool
+    // MARK: - Query Today’s Events
+    @EventQuery(in: Self.todayRange) private var todaysEvents: [Event]
+
+    // MARK: - View State
+    @State private var presentedEvent: Event?    // For presenting questionnaires
+    @Binding private var presentingAccount: Bool // For account sheet
+
+    // MARK: - Progress State
+    @State private var completedTaskCount: Int = 0
+    @State private var totalTaskCount: Int     = 0
 
     var body: some View {
-        @Bindable var appScheduler = appScheduler
         NavigationStack {
+            // Attach an .id to force view refresh when completedTaskCount changes
             PrimaryBackgroundView(title: "Schedule") {
                 VStack(spacing: Layout.Spacing.medium) {
-                    EventScheduleList(date: .today) { event in
-                        InstructionsTile(event) {
-                            actionButton(for: event)
-                        }
-                        .padding()
-                        .background(ColorTheme.listItemBackground)
-                        .cornerRadius(Layout.Radius.medium)
-                        .shadowStyle(ShadowTheme.card)
-                        .listRowInsets(
-                            EdgeInsets(
-                                top: Layout.Spacing.small,
-                                leading: 0,
-                                bottom: Layout.Spacing.small,
-                                trailing: 0
-                            )
+                    if totalTaskCount > 0 {
+                        TreatmentProgressBar(
+                            completedCount: completedTaskCount,
+                            totalCount:     totalTaskCount
                         )
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.clear)
+                        .padding(.horizontal)
+                        .id(completedTaskCount)
+                    }
+
+                    EventScheduleList(date: .today) { event in
+                        eventRow(event)
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
-                    .background(Color.clear)
+                }
+                .onAppear {
+                    // Initialize progress counts
+                    totalTaskCount = todaysEvents.count
+                    completedTaskCount = todaysEvents.filter { $0.isCompleted }.count
                 }
             }
-            .viewStateAlert(state: $appScheduler.viewState)
-            .sheet(item: $presentedEvent) { event in
-                EventView(event)
-            }
-            .toolbar {
-                toolbarContent
-            }
+            .id(completedTaskCount) // Ensures PrimaryBackgroundView reloads
+            .toolbar { toolbarContent }
+            .sheet(item: $presentedEvent) { EventView($0) }
+            .viewStateAlert(state: Binding(
+                get: { appScheduler.viewState },
+                set: { appScheduler.viewState = $0 }
+            ))
         }
+    }
+
+    // MARK: - Extracted Row Builder
+    @ViewBuilder
+    private func eventRow(_ event: Event) -> some View {
+        InstructionsTile(event) {
+            actionButton(for: event)
+        }
+        .padding()
+        .background(ColorTheme.listItemBackground)
+        .cornerRadius(Layout.Radius.medium)
+        .shadowStyle(ShadowTheme.card)
+        .listRowInsets(EdgeInsets(
+            top: Layout.Spacing.small,
+            leading: 0,
+            bottom: Layout.Spacing.small,
+            trailing: 0
+        ))
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
     }
 
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
     }
 
+    // MARK: - Toolbar Content
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             if account != nil {
                 AccountButton(isPresented: $presentingAccount)
             } else {
-                NavigationLink {
-                    ManageTreatmentsView()
-                } label: {
+                NavigationLink(
+                    destination: ManageTreatmentsView()
+                ) {
                     Label("Manage Treatments", systemImage: "list.bullet.clipboard")
                         .font(FontTheme.body)
                         .foregroundColor(ColorTheme.title)
@@ -74,61 +107,42 @@ struct OPATScheduleViewStyled: View {
         }
     }
 
+    // MARK: - Action Button Builder
     @ViewBuilder
     private func actionButton(for event: Event) -> some View {
-        let isDisabled = event.isCompleted
-
+        let disabled = event.isCompleted
         if event.task.id.starts(with: "treatment-") {
-            VStack(spacing: Layout.Spacing.small) {
-                Button {
+            HStack {
+                EventActionButton(event: event, "Mark Complete") {
                     completeTreatmentTask(event)
-                } label: {
-                    Label("Mark Complete", systemImage: "checkmark.circle")
-                        .frame(maxWidth: .infinity)
-                        .font(FontTheme.button)
-                        .foregroundColor(.white)
-                        .padding(.vertical, Layout.Spacing.medium)
-                        .background(ColorTheme.buttonLarge)
-                        .cornerRadius(Layout.Radius.medium)
                 }
-                .disabled(isDisabled)
-
-                Button {
-                    // Instructions action here
-                } label: {
-                    Label("To Instructions", systemImage: "book")
-                        .frame(maxWidth: .infinity)
-                        .font(FontTheme.button)
-                        .foregroundColor(.white)
-                        .padding(.vertical, Layout.Spacing.medium)
-                        .background(ColorTheme.buttonLarge)
-                        .cornerRadius(Layout.Radius.medium)
+                .disabled(disabled)
+                Spacer()
+                Button("To Instructions") {
+                    // TODO: navigate
                 }
-                .disabled(isDisabled)
+                .buttonStyle(.bordered)
+                .disabled(disabled)
             }
-        } else if event.task.id == "opatfollowup" {
-            Button("Start") {
+        } else if event.task.id == "opat-followup" {
+            EventActionButton(event: event, "Start") {
                 presentedEvent = event
             }
-            .font(FontTheme.button)
-            .foregroundColor(.white)
-            .padding(.vertical, Layout.Spacing.medium)
-            .frame(maxWidth: .infinity) // stretches the button
-            .background(ColorTheme.buttonLarge)
-            .cornerRadius(Layout.Radius.medium)
-            .disabled(isDisabled)
+            .disabled(disabled)
         } else {
             Text("Unknown Task")
-                .font(FontTheme.body)
+                .font(.caption)
                 .foregroundColor(.gray)
                 .padding(.horizontal, Layout.Spacing.small)
         }
     }
 
+    // MARK: - Completion Handler
     private func completeTreatmentTask(_ event: Event) {
         do {
             try event.complete()
-            print("Marked event \(event.task.id) as complete.")
+            // Manually increment and trigger refresh
+            completedTaskCount += 1
         } catch {
             print("Error completing event \(event.task.id): \(error)")
         }
@@ -138,7 +152,6 @@ struct OPATScheduleViewStyled: View {
 #if DEBUG
 #Preview {
     @Previewable @State var presentingAccount = false
-
     OPATScheduleViewStyled(presentingAccount: $presentingAccount)
         .previewWith(standard: TemplateApplicationStandard()) {
             Scheduler()

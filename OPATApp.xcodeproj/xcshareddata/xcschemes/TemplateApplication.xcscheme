@@ -79,6 +79,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--disableFirebase"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--setupTestAccount"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
