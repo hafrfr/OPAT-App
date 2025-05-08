@@ -47,14 +47,15 @@ Here’s a quick preview of the prototype in action:
 
 ## Screenshots
 
-| Screen | Preview |
-|--------|---------|
-| Splash / Launch Screen | ![Splash](./screenshots/01_splash.png) |
-| Welcome Screen | ![Welcome](./screenshots/02_onboarding_intro.png) |
-| Schedule View | ![Schedule](./screenshots/03_schedule.png) |
-| Contact Module | ![Contacts](./screenshots/04_contacts.png) |
-| All Done Screen | ![All Done](./screenshots/05_all_done.png) |
-| FAQ Module | ![FAQ](./screenshots/06_faq.png) |
+<div align="center">
+  <img src="./01_splash.png" alt="Splash Screen" width="200"/>
+  <img src="./02_onboarding_intro.png" alt="Onboarding Intro" width="200"/>
+  <img src="./03_schedule.png" alt="Schedule View" width="200"/>
+  <img src="./04_contacts.png" alt="Contacts" width="200"/>
+  <img src="./05_all_done.png" alt="All Done" width="200"/>
+  <img src="./06_faq.png" alt="FAQ" width="200"/>
+</div>
+
 
 ---
 
