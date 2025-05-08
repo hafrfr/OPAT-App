@@ -47,14 +47,16 @@ Here’s a quick preview of the prototype in action:
 
 ## Screenshots
 
-<div align="center">
-  <img src="./01_splash.png" alt="Splash Screen" width="200"/>
-  <img src="./02_onboarding_intro.png" alt="Onboarding Intro" width="200"/>
-  <img src="./03_schedule.png" alt="Schedule View" width="200"/>
-  <img src="./04_contacts.png" alt="Contacts" width="200"/>
-  <img src="./05_all_done.png" alt="All Done" width="200"/>
-  <img src="./06_faq.png" alt="FAQ" width="200"/>
-</div>
+The following screenshots highlight core features of the **OPAT @ Home** prototype, designed to support confidence, safety, and independence during home-based IV treatment.
+
+| ![Splash](./screenshots/01_splash.png) | ![Welcome](./screenshots/02_onboarding_intro.png) | ![Schedule](./screenshots/03_schedule.png) |
+|:--:|:--:|:--:|
+| Splash Screen | Welcome / Onboarding | Schedule View |
+
+| ![Contacts](./screenshots/04_contacts.png) | ![All Done](./screenshots/05_all_done.png) | ![FAQ](./screenshots/06_faq.png) |
+|:--:|:--:|:--:|
+| Contact Module | All Done Screen | FAQ Module |
+
 
 
 ---
