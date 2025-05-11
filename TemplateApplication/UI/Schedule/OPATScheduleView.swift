@@ -31,40 +31,33 @@ struct OPATScheduleView: View {
     @State private var totalTaskCount: Int     = 0
 
     var body: some View {
-        NavigationStack {
-            // Attach an .id to force view refresh when completedTaskCount changes
-            PrimaryBackgroundView(title: "Schedule") {
-                VStack(spacing: Layout.Spacing.medium) {
-                    if totalTaskCount > 0 {
-                        TreatmentProgressBar(
-                            completedCount: completedTaskCount,
-                            totalCount:     totalTaskCount
-                        )
-                        .padding(.horizontal)
-                        .id(completedTaskCount)
+            NavigationStack {
+                // The .id for refreshing might need to be tied to a different trigger
+                // if completedTaskCount is no longer a @State here.
+                // Perhaps tie it to a change in `todaysEventsForList` or a specific action.
+                PrimaryBackgroundView(title: "Schedule") {
+                    VStack(spacing: Layout.Spacing.medium) {
+                        TreatmentProgressBar()
+                            .padding(.horizontal)
+                        EventScheduleList(date: .today) { event in // This list will show today's events
+                            eventRow(event)
+                        }
+                        .listStyle(.plain)
+                        .scrollContentBackground(.hidden)
+                         //.id(todaysEventsForList.count) // Example: refresh if number of events changes
                     }
-
-                    EventScheduleList(date: .today) { event in
-                        eventRow(event)
-                    }
-                    .listStyle(.plain)
-                    .scrollContentBackground(.hidden)
+                    // }
                 }
-                .onAppear {
-                    // Initialize progress counts
-                    totalTaskCount = todaysEvents.count
-                    completedTaskCount = todaysEvents.filter { $0.isCompleted }.count
-                }
+                // To refresh PrimaryBackgroundView if needed, you could observe todaysEventsForList's completion status
+                // .id(todaysEventsForList.filter { $0.isCompleted }.count)
+                .toolbar { toolbarContent }
+                .sheet(item: $presentedEvent) { EventView($0) }
+                .viewStateAlert(state: Binding(
+                    get: { appScheduler.viewState },
+                    set: { appScheduler.viewState = $0 }
+                ))
             }
-            .id(completedTaskCount) // Ensures PrimaryBackgroundView reloads
-            .toolbar { toolbarContent }
-            .sheet(item: $presentedEvent) { EventView($0) }
-            .viewStateAlert(state: Binding(
-                get: { appScheduler.viewState },
-                set: { appScheduler.viewState = $0 }
-            ))
         }
-    }
 
     // MARK: - Extracted Row Builder
     @ViewBuilder
@@ -185,14 +178,13 @@ struct OPATScheduleView: View {
     }
     // MARK: - Completion Handler
     private func completeTreatmentTask(_ event: Event) {
-        do {
-            try event.complete()
-            // Manually increment and trigger refresh
-            completedTaskCount += 1
-        } catch {
-            print("Error completing event \(event.task.id): \(error)")
-        }
-    }
+           do {
+               try event.complete()
+               print("OPATScheduleView: Completed event \(event.task.id)")
+           } catch {
+               print("Error completing event \(event.task.id): \(error)")
+           }
+       }
 }
 
 #if DEBUG

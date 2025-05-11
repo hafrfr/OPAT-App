@@ -46,10 +46,10 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
             OnboardingDataSource()
             TreatmentModel()
             TreatmentScheduler()
-            TreatmentModule()
             Notifications()
             FAQModule()
             GuideModule()
+            TreatmentModule()
         }
     }
 

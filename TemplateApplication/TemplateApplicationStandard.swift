@@ -96,6 +96,77 @@ actor TemplateApplicationStandard: Standard,
         }
     }
     
+    
+    func save(treatment: Treatment) async {
+            if FeatureFlags.disableFirebase {
+                // Log locally or handle differently if Firebase is off
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = .prettyPrinted // For readable log output
+                if let jsonData = try? encoder.encode(treatment),
+                   let jsonString = String(data: jsonData, encoding: .utf8) {
+                    logger.debug("Received treatment to save (Firebase disabled): \(jsonString)")
+                } else {
+                    logger.debug("Received treatment to save (Firebase disabled), but couldn't encode: \(treatment.id)")
+                }
+                return
+            }
+
+            do {
+                // Get the reference to the current user's document
+                let userDocRef = try await configuration.userDocumentReference
+
+                // Create a reference to a "treatments" subcollection and a document for this specific treatment
+                // Using treatment.id.uuidString ensures each treatment has its own document.
+                let treatmentDocRef = userDocRef.collection("treatments").document(treatment.id.uuidString)
+
+                // Save the treatment data. Firestore's setData(from:) can take a Codable object.
+                try await treatmentDocRef.setData(from: treatment)
+                logger.info("Successfully saved treatment \(treatment.id.uuidString) to Firestore.")
+            } catch {
+                logger.error("Could not store treatment \(treatment.id.uuidString): \(error)")
+            }
+        }
+
+        // New method to delete a single treatment
+        func delete(treatment: Treatment) async {
+            if FeatureFlags.disableFirebase {
+                logger.debug("Received treatment to delete (Firebase disabled): \(treatment.id)")
+                return
+            }
+
+            do {
+                let userDocRef = try await configuration.userDocumentReference
+                let treatmentDocRef = userDocRef.collection("treatments").document(treatment.id.uuidString)
+                try await treatmentDocRef.delete()
+                logger.info("Successfully deleted treatment \(treatment.id.uuidString) from Firestore.")
+            } catch {
+                logger.error("Could not delete treatment \(treatment.id.uuidString): \(error)")
+            }
+        }
+
+        // Optional: Method to fetch all treatments for the current user
+        func fetchTreatments() async -> [Treatment] {
+            if FeatureFlags.disableFirebase {
+                logger.debug("Fetching treatments skipped (Firebase disabled).")
+                return [] // Or return locally stored treatments if you implement that
+            }
+
+            do {
+                let userDocRef = try await configuration.userDocumentReference
+                let snapshot = try await userDocRef.collection("treatments").getDocuments()
+
+                let treatments = snapshot.documents.compactMap { document -> Treatment? in
+                    try? document.data(as: Treatment.self)
+                }
+                logger.info("Successfully fetched \(treatments.count) treatments from Firestore.")
+                return treatments
+            } catch {
+                logger.error("Failed to fetch treatments: \(error)")
+                return []
+            }
+        }
+    
+    
     /// Stores the given consent form in the user's document directory with a unique timestamped filename.
     ///
     /// - Parameter consent: The consent form's data to be stored as a `PDFDocument`.

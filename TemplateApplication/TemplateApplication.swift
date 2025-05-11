@@ -24,9 +24,9 @@ struct TemplateApplication: App {
     
     // Always reset onboarding state for development/testing
     init() {
-        UserDefaults.standard.set(["en"], forKey: "AppleLanguages") // remove after presentation (forces system language to be english)
-        UserDefaults.standard.synchronize() // remove as well
-        UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
+        UserDefaults.standard.set(["en"], forKey: "AppleLanguages") // remove after presentation (forces system language to
+        UserDefaults.standard.synchronize()
+      
     }
     
     var body: some Scene {
