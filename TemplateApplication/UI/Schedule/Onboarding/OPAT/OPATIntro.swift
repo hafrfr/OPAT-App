@@ -52,6 +52,7 @@ struct OPATIntro: View {
             ],
             actionText: String(localized: "NEXT"),
             action: {
+                SoundManager.shared.playSound(.nextTap)
                 onboardingNavigationPath.nextStep()
             }
         )

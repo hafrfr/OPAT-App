@@ -45,7 +45,7 @@ struct OPATNotifications: View {
                 OnboardingActionsView(
                     verbatim: String(localized: "ALLOW_NOTIFICATIONS"),
                     action: {
-                        SoundManager.shared.playSound(.notificationSound) // Play sound right when tapped
+                        SoundManager.shared.playSound(.nextTap) // Play sound right when tapped
                         
                         do {
                             notificationProcessing = true

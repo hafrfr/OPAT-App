@@ -45,6 +45,7 @@ struct OPATFeatures: View {
             ],
             actionText: String(localized: "SOUNDS_GOOD"),
             action: {
+                SoundManager.shared.playSound(.nextTap)
                 onboardingNavigationPath.nextStep()
             }
         )

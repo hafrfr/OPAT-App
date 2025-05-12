@@ -52,6 +52,7 @@ struct OPATConsent: View {
             ],
             actionText: String(localized: "I_UNDERSTAND"),
             action: {
+                SoundManager.shared.playSound(.nextTap)
                 onboardingNavigationPath.nextStep()
             }
         )

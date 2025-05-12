@@ -62,7 +62,6 @@ struct PrimaryBackgroundView<Content: View>: View {
                 .init(color: .white, location: 0.77), // tweaking for perfection :D
                 .init(color: ColorTheme.headerGradientStart, location: 0.87),
                 .init(color: ColorTheme.headerGradientEnd, location: 1.0)
-
             ]),
             startPoint: .bottom,
             endPoint: .top

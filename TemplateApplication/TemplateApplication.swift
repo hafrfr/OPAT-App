@@ -22,11 +22,11 @@ struct TemplateApplication: App {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @State private var showSplash = true // Controls splash screen visibility
     
-    // Always reset onboarding state for development/testing
     init() {
         UserDefaults.standard.set(["en"], forKey: "AppleLanguages") // remove after presentation (forces system language to
+        // Always reset onboarding state for development/testing, only for our internal testing! Not for external users
+        // UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
         UserDefaults.standard.synchronize()
-      
     }
     
     var body: some Scene {
