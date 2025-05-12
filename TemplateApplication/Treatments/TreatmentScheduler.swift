@@ -47,7 +47,7 @@ final class TreatmentScheduler: Module,
             }
         }
     }
-
+    @MainActor
     func remove(_ treatment: Treatment) async {
         for idx in treatment.timesOfDay.indices {
             let id = "treatment-\(treatment.id.uuidString)-\(idx)"
@@ -57,5 +57,4 @@ final class TreatmentScheduler: Module,
             try? await scheduler.deleteAllVersions(ofTask: preId)
         }
     }
-    
 }

@@ -9,6 +9,7 @@ struct AddTreatmentSheet: View {
     @Environment(TreatmentModel.self) private var treatmentModel
     @Environment(TreatmentScheduler.self) private var treatmentScheduler
     @Environment(\.dismiss) var dismiss
+    @Environment(TreatmentModule.self) private var treatmentModule
 
     // MARK: State Variables for Form Input
     @State private var selectedType: TreatmentType = .opat
@@ -45,8 +46,7 @@ struct AddTreatmentSheet: View {
                  guard triggerSave else { return }
 
                  // Perform the save operation
-                 await saveAndScheduleTreatment()
-
+                await saveTreatmentViaModule()
                  // Reset the trigger AFTER the task is done or has failed
                  // This prevents the task from restarting immediately.
                  // Important: Do this regardless of success/failure of the save operation.
@@ -138,54 +138,47 @@ struct AddTreatmentSheet: View {
     // MARK: – Save & Schedule
 
     @MainActor
-    private func saveAndScheduleTreatment() async {
-        let comps = times.map {
-            Calendar.current.dateComponents([.hour, .minute], from: $0)
-        }
-        let treatment = Treatment(
-            type: selectedType,
-            timesOfDay: comps,
-            startDate: startDate,
-            endDate: endDateEnabled ? endDate : nil
-        )
-        treatmentModel.treatments.append(treatment)
-        print("Saved new treatment to model: \(treatment.id)")
+       private func saveTreatmentViaModule() async { // <<< RENAMED FUNCTION
+           // 1. Create the treatment object from state
+           // Ensure times are not empty before proceeding (button disable helps, but double-check)
+           guard !times.isEmpty else {
+                print("AddTreatmentSheet: Cannot save treatment with no scheduled times.")
+                // triggerSave is reset by the .task modifier
+                return
+           }
 
+           let comps = times.map {
+               Calendar.current.dateComponents([.hour, .minute], from: $0)
+           }
+           // Create with a unique ID
+           let newTreatment = Treatment(
+               id: UUID(),
+               type: selectedType,
+               timesOfDay: comps,
+               startDate: startDate,
+               endDate: endDateEnabled ? endDate : nil
+           )
+           print("AddTreatmentSheet: Created new treatment object: \(newTreatment.id)")
 
-        do {
-            // 3) Schedule background tasks
-            try treatmentScheduler.schedule(treatment)
-            print("Scheduled tasks for treatment: \(treatment.id)")
+           do {               try await treatmentModule.treatmentAdded(newTreatment)
+               print("AddTreatmentSheet: TreatmentModule successfully processed treatment \(newTreatment.id).")
+               
+               saveState = .idle
+               dismiss()
 
-            // 4) Schedule notifications
-            
-            //try await treatmentNotifier.scheduleWithPreReminder(
-             //   treatment: treatment,
-              //  endDate: treatment.endDate
-            //)
-            print("Scheduled notifications for treatment: \(treatment.id)")
-
-            // 5) All set - Reset state and dismiss
-            saveState = .idle
-            // triggerSave is reset by the .task modifier closure itself
-            dismiss()
-
-        } catch {
-            print("Error scheduling treatment \(treatment.id): \(error)")
-            // Roll back & show error
-            treatmentModel.treatments.removeAll { $0.id == treatment.id }
-            saveState = .error(
-                AnyLocalizedError(
-                    error: error,
-                    defaultErrorDescription:
-                        "Failed to schedule the new treatment. Please try again."
-                )
-            )
-
-            // triggerSave is reset by the .task modifier closure itself
-        }
-    }
-}
+           } catch {
+               print("AddTreatmentSheet: Error adding treatment via module \(newTreatment.id): \(error)")
+ 
+               saveState = .error(
+                   AnyLocalizedError(
+                       error: error,
+                       defaultErrorDescription: "Failed to save or schedule the new treatment. Please try again."
+                   )
+               )
+               // triggerSave is reset by the .task modifier closure itself
+           }
+       }
+   }
 
 
 
