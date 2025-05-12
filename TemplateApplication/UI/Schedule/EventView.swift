@@ -25,8 +25,16 @@ struct EventView: View {
                 guard case let .completed(response) = result else {
                     return
                 }
-
+                do {
+                    try event.complete()
+                    // Optional: Add any logic here that should only execute if complete() succeeds
+                } catch {
+                    // Handle the error appropriately
+                    print("Failed to complete event \(event.id): \(error)")
+                    // You might want to show an alert to the user or log this more formally.
+                }
                 await standard.add(response: response)
+                
             }
         } else {
             NavigationStack {

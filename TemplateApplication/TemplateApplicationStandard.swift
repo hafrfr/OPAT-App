@@ -96,72 +96,76 @@ actor TemplateApplicationStandard: Standard,
         }
     }
     
-    
-    func save(treatment: Treatment) async {
+    //Treament
+    /// - Parameter treatment: The `Treatment` object to be saved.
+        func add(treatment: Treatment) async {
             if FeatureFlags.disableFirebase {
-                // Log locally or handle differently if Firebase is off
-                let encoder = JSONEncoder()
-                encoder.outputFormatting = .prettyPrinted // For readable log output
-                if let jsonData = try? encoder.encode(treatment),
-                   let jsonString = String(data: jsonData, encoding: .utf8) {
-                    logger.debug("Received treatment to save (Firebase disabled): \(jsonString)")
-                } else {
-                    logger.debug("Received treatment to save (Firebase disabled), but couldn't encode: \(treatment.id)")
-                }
+                logger.debug("Firebase is disabled. Received treatment: \(treatment.id.uuidString)")
+              
                 return
             }
 
             do {
-                // Get the reference to the current user's document
-                let userDocRef = try await configuration.userDocumentReference
-
-                // Create a reference to a "treatments" subcollection and a document for this specific treatment
-                // Using treatment.id.uuidString ensures each treatment has its own document.
-                let treatmentDocRef = userDocRef.collection("treatments").document(treatment.id.uuidString)
-
-                // Save the treatment data. Firestore's setData(from:) can take a Codable object.
-                try await treatmentDocRef.setData(from: treatment)
-                logger.info("Successfully saved treatment \(treatment.id.uuidString) to Firestore.")
+                // Construct the path: users/{userID}/treatments/{treatmentID}
+                // The document ID will be the UUID string of the treatment.
+                try await configuration.userDocumentReference // This gives you /users/{userID}
+                    .collection("treatments")                         // This appends /treatments
+                    .document(treatment.id.uuidString)                // This sets the document ID
+                    .setData(from: treatment) // Encodes the Treatment object and saves it
+                logger.debug("Successfully added/updated treatment: \(treatment.id.uuidString)")
             } catch {
-                logger.error("Could not store treatment \(treatment.id.uuidString): \(error)")
+                logger.error("Could not store treatment \(treatment.id.uuidString): \(error.localizedDescription)")
             }
         }
 
-        // New method to delete a single treatment
-        func delete(treatment: Treatment) async {
+        /// Removes a specific treatment from the user's Firestore collection.
+        ///
+        /// - Parameter treatmentId: The UUID of the `Treatment` to be removed.
+        func removeTreatment(withId treatmentId: UUID) async {
             if FeatureFlags.disableFirebase {
-                logger.debug("Received treatment to delete (Firebase disabled): \(treatment.id)")
+                logger.debug("Firebase is disabled. Received request to remove treatment: \(treatmentId.uuidString)")
                 return
             }
 
             do {
-                let userDocRef = try await configuration.userDocumentReference
-                let treatmentDocRef = userDocRef.collection("treatments").document(treatment.id.uuidString)
-                try await treatmentDocRef.delete()
-                logger.info("Successfully deleted treatment \(treatment.id.uuidString) from Firestore.")
+                try await configuration.userDocumentReference
+                    .collection("treatments")
+                    .document(treatmentId.uuidString)
+                    .delete()
+                 logger.debug("Successfully removed treatment: \(treatmentId.uuidString)")
             } catch {
-                logger.error("Could not delete treatment \(treatment.id.uuidString): \(error)")
+                 logger.error("Could not remove treatment \(treatmentId.uuidString): \(error.localizedDescription)")
             }
         }
-
-        // Optional: Method to fetch all treatments for the current user
+        
+        /// Fetches all treatments for the current user.
+        /// - Returns: An array of `Treatment` objects or an empty array if none are found or an error occurs.
         func fetchTreatments() async -> [Treatment] {
             if FeatureFlags.disableFirebase {
-                logger.debug("Fetching treatments skipped (Firebase disabled).")
-                return [] // Or return locally stored treatments if you implement that
+                logger.debug("Firebase is disabled. Skipping fetch treatments.")
+                return [] // Return empty or potentially mock data for debugging
             }
 
             do {
-                let userDocRef = try await configuration.userDocumentReference
-                let snapshot = try await userDocRef.collection("treatments").getDocuments()
-
+                let snapshot = try await configuration.userDocumentReference
+                    .collection("treatments")
+                    .getDocuments()
+                
+                // Attempt to decode each document into a Treatment object
+                // compactMap will ignore documents that fail to decode
                 let treatments = snapshot.documents.compactMap { document -> Treatment? in
-                    try? document.data(as: Treatment.self)
+                    do {
+                        return try document.data(as: Treatment.self)
+                    } catch {
+                        // Log individual decoding errors if needed
+                        logger.error("Failed to decode treatment document \(document.documentID): \(error.localizedDescription)")
+                        return nil
+                    }
                 }
-                logger.info("Successfully fetched \(treatments.count) treatments from Firestore.")
+                logger.debug("Successfully fetched \(treatments.count) treatments.")
                 return treatments
             } catch {
-                logger.error("Failed to fetch treatments: \(error)")
+                logger.error("Could not fetch treatments: \(error.localizedDescription)")
                 return []
             }
         }

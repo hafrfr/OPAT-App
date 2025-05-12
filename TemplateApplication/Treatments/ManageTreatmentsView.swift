@@ -4,7 +4,8 @@ import SpeziViews
 
 struct ManageTreatmentsView: View {
     @Environment(TreatmentModel.self) private var treatmentModel
-    @Environment(TreatmentScheduler.self) private var treatmentScheduler
+    @Environment(TreatmentModule.self) private var treatmentModule
+
     @Environment(\.dismiss) private var dismiss // Use dismiss environment action
 
     @State private var showingAddTreatmentSheet = false
@@ -21,7 +22,7 @@ struct ManageTreatmentsView: View {
                             summary: scheduleSummary(for: treatment),
                             onDelete: {
                             
-                                deleteTreatment(treatment: treatment)
+                                deleteTreatmentViaModule(treatment: treatment)
                             }
                         )
                         
@@ -50,31 +51,30 @@ struct ManageTreatmentsView: View {
     }
 
     // --- Function to delete a SINGLE treatment (called by the button's closure) ---
-    private func deleteTreatment(treatment: Treatment) {
-        // Capture environment objects safely for the background Task
-        let scheduler = self.treatmentScheduler
-        let model = self.treatmentModel
-        Task { @MainActor in
-            guard model.treatments.contains(where: { $0.id == treatment.id }) else {
-                 print("Attempted to delete already removed treatment: \(treatment.id)")
-                 return
+    private func deleteTreatmentViaModule(treatment: Treatment) { // <<< RENAMED FUNCTION
+            // Optional: Implement a confirmation dialog here before proceeding.
+            
+            deleteState = .processing // Set state to processing for UI feedback
+
+            Task { @MainActor in // Ensure UI updates happen on the main actor
+                let treatmentID = treatment.id // Capture id for logging
+                print("ManageTreatmentsView: Requesting module to remove treatment \(treatmentID)...")
+                
+                // Call the module's method - it handles model removal, Firestore, and scheduling
+                await treatmentModule.treatmentRemoved(treatment)
+                
+                print("ManageTreatmentsView: Module finished removal process for \(treatmentID).")
+
+                // Reset UI state after the module's async operations complete
+                // Yielding might help ensure UI updates fully reflect the change
+                await Task.yield()
+                deleteState = .idle
+                
+                // Note: Error handling currently happens within the module (logging).
+                // If you needed the View to show specific errors from deletion,
+                // treatmentRemoved would need to be modified to throw errors.
             }
-
-            deleteState = .processing // Show processing state
-            print("Attempting to delete treatment via button: \(treatment.id)")
-
-            await scheduler.remove(treatment) // Remove scheduled tasks first
-
-            // Remove the treatment from the @Published array in the model
-            // This should automatically trigger a UI update in the List
-            model.treatments.removeAll { $0.id == treatment.id }
-            print("Removed treatment from model: \(treatment.id)")
-
-            // Yield to allow UI updates if needed, then reset state
-            await Task.yield()
-            deleteState = .idle // Hide processing state
         }
-    }
     // --- End deleteTreatment function ---
 
 
@@ -100,7 +100,6 @@ struct ManageTreatmentsView: View {
 
 #if DEBUG
 #Preview {
-
     let treatmentModel = TreatmentModel()
     let treatmentScheduler = TreatmentScheduler()
     treatmentModel.configure()

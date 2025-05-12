@@ -17,7 +17,14 @@
 
     },
     "ACCOUNT_SUBTITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feel free to login with test account or sign up"
+          }
+        }
+      }
     },
     "Add Time" : {
 
