@@ -22,6 +22,7 @@ struct CelebrationView: View {
             }
             .onAppear {
                 confettiView.throwConfetti()
+                SoundManager.shared.playSound(.celebration) // plays as soon as the screen appears
             }
         }
     }
