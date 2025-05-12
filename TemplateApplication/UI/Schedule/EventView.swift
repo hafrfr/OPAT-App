@@ -35,6 +35,12 @@ struct EventView: View {
                 }
                 await standard.add(response: response)
                 
+                let eventLogEntry = EventLog(from: event, completionTime: Date())
+                                       
+                       // Call the Standard to save the generic log entry
+                       await standard.logCompletedEvent(eventLogEntry)
+                       print("EventView: Logged generic completion for SpeziScheduler event \(event.id)")
+
             }
         } else {
             NavigationStack {

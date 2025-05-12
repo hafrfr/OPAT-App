@@ -617,6 +617,9 @@
     "No events scheduled for this day." : {
 
     },
+    "No events scheduled for today." : {
+
+    },
     "NOTIFICATIONS_BODY" : {
       "localizations" : {
         "en" : {
@@ -748,6 +751,9 @@
     "Tap on a date in the calendar to view events." : {
 
     },
+    "Task: %@" : {
+
+    },
     "This type of event is currently unsupported. Please contact the developer of this app." : {
 
     },
@@ -770,9 +776,6 @@
 
     },
     "Type" : {
-
-    },
-    "Unknown Task" : {
 
     },
     "Unsupported Event" : {

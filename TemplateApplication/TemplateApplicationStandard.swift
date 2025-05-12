@@ -58,6 +58,59 @@ actor TemplateApplicationStandard: Standard,
             logger.error("Could not remove HealthKit sample: \(error)")
         }
     }
+    
+    func logCompletedEvent(_ eventLog: EventLog) async {
+            // 1. Handle Firebase Disabled Case
+            if FeatureFlags.disableFirebase {
+                // Log locally using the injected logger
+                await logger.debug("""
+                    Firebase disabled. Logging event locally:
+                    EventID: \(eventLog.eventID, privacy: .public)
+                    TaskID: \(eventLog.taskID, privacy: .public)
+                    Scheduled: \(eventLog.scheduledTimestamp.description, privacy: .public)
+                    Completed: \(eventLog.completionTimestamp.description, privacy: .public)
+                """)
+                // If you needed actual local *storage* (e.g., to upload later),
+                // you would implement that logic here (e.g., save to UserDefaults, CoreData, file).
+                return // Don't proceed to Firestore logic
+            }
+
+            // 2. Get Firestore User Reference
+            guard let userReference = try? await configuration.userDocumentReference else {
+                // Log error if we can't get the user reference (e.g., user not signed in properly)
+                await logger.error("Could not log event: User document reference not available. EventID: \(eventLog.eventID)")
+                return // Cannot save without user reference
+            }
+            let userID = userReference.documentID
+
+            // 3. Prepare the log entry with the User ID
+            var logToSave = eventLog
+            logToSave.userID = userID
+
+            // 4. Attempt to save to Firestore
+            do {
+                try await userReference
+                    .collection("event_logs") // Target collection under the user document
+                    .document(logToSave.id.uuidString) // Use the EventLog's own UUID as the document ID
+                    .setData(from: logToSave) // Encode and save the EventLog object
+
+                // Log success
+                await logger.info("""
+                    Successfully logged completed SpeziScheduler Event to Firestore:
+                    LogEntryID: \(logToSave.id.uuidString, privacy: .public)
+                    EventID: \(logToSave.eventID, privacy: .public)
+                    UserID: \(userID, privacy: .private) 
+                    TaskID: \(logToSave.taskID, privacy: .public)
+                """)
+            } catch {
+                // Log Firestore errors
+                await logger.error("""
+                    Could not log completed SpeziScheduler Event \(logToSave.eventID) to Firestore for user \(userID, privacy: .private): 
+                    Error: \(error.localizedDescription, privacy: .public)
+                """)
+                // Consider adding retry logic or caching failed logs locally here if needed.
+            }
+        }
 
     // periphery:ignore:parameters isolation
     func add(response: ModelsR4.QuestionnaireResponse, isolation: isolated (any Actor)? = #isolation) async {
