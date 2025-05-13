@@ -58,7 +58,12 @@ struct OPATScheduleView: View {
         NavigationStack {
             PrimaryBackgroundView(title: "Schedule") {
                 VStack(spacing: Layout.Spacing.medium) {
-                    TreatmentProgressBar().padding(.horizontal)
+                    TreatmentProgressBar()
+                        .padding(.horizontal)
+                        .onTapGesture(count: 3) {
+                            UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
+                            print("🔄 Developer triggered: Onboarding reset via progress bar")
+                        }
 
                     if todaysEvents.isEmpty {
                         Spacer()
