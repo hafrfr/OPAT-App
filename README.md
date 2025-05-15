@@ -66,22 +66,12 @@ The following screenshots highlight core features of the **OPAT @ Home prototype
 ---
 
 <details>
-<summary>📜 Prototype Demo (v1) and Screenshots (Historical Reference)</summary>
+<summary>📜 Prototype Demo (v1) (Historical Reference)</summary>
 
 ### Prototype Demo (v1)
 
 👉 [Watch demo on YouTube (v1)](https://youtube.com/shorts/mlTw7f_ffxE)  
-*A quick walkthrough of key features*
-
-### Screenshots (Prototype v1)
-
-| ![Splash](./screenshots/v1/01_splash.png) | ![Welcome](./screenshots/v1/02_onboarding_intro.png) | ![Schedule](./screenshots/v1/03_schedule.png) |
-|:--:|:--:|:--:|
-| Splash Screen | Welcome / Onboarding | Schedule View |
-
-| ![Contacts](./screenshots/v1/04_contacts.png) | ![All Done](./screenshots/v1/05_all_done.png) | ![FAQ](./screenshots/v1/06_faq.png) |
-|:--:|:--:|:--:|
-| Contact Module | All Done Screen | FAQ Module |
+*A quick walkthrough of Prototype v1*
 
 </details>
 
