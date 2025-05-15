@@ -46,7 +46,7 @@ This prototype was developed as part of the [Digital Health Implementation](http
 Here’s a quick preview of the latest prototype:
 
 👉 [Watch demo on YouTube (v2)](https://youtube.com/shorts/YVcvpVbuJEw)  
-*A walkthrough of the updated v2 prototype*
+*A walkthrough of the updated v2 prototype and its Key Features*
 
 ---
 
