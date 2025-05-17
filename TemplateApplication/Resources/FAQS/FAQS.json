@@ -14,5 +14,192 @@
   {
     "question": "What if I miss a dose?",
     "answer": "Contact your OPAT care team as soon as possible if you miss a dose or have issues administering your medication. Do not double up on doses unless specifically instructed to do so."
+  },
+  
+  
+  
+  {
+    "question": "How can I prevent infection when using a PICC-line?",
+    "answer": "Maintain good hygiene:\n- Wash hands thoroughly before handling.\n- Disinfect work surfaces.\n- Use clean clothes and avoid jewelry.\n- Regularly inspect the skin around the PICC-line for redness, swelling, or warmth.",
+    "tags": [
+      "hygiene",
+      "PICC-line",
+      "infection"
+    ]
+  },
+  {
+    "question": "What if my infusion pump leaks or stops working?",
+    "answer": "If you see a leak, clamp your line right away and disconnect the pump. Put the blue cap back on the tubing and call your OPAT team.\nIf the pump stops working, check:\n- That your IV line is not clamped or twisted.\n- That the tube from the pump is not clamped.\nIf it still does not work, call your OPAT team.",
+    "tags": [
+      "infusion",
+      "troubleshooting",
+      "pump"
+    ]
+  },
+  {
+    "question": "What should I do if the homepump does not start?",
+    "answer": "If the homepump does not start:\n1. Check that the clamp on the tube is open.\n2. Ensure the pump is at room temperature.\n3. Massage the area of the tube where the clamp has been.\n4. Run hot water over the flow restrictor or tubing between the filter and clamp, wait and try again.\nIf still not working, replace the pump and report the issue.",
+    "tags": [
+      "troubleshooting",
+      "pump",
+      "infusion"
+    ]
+  },
+  {
+    "question": "What should I do if there are air bubbles in the pump or tubing?",
+    "answer": "If the bubbles are in the tubing below the filter, open the clamp and flush them out.\nIf the bubbles are inside the pump or above the filter, no action is needed—the filter will block air from reaching you.",
+    "tags": [
+      "homepump",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "What are symptoms of a possible infection from the PICC-line?",
+    "answer": "Symptoms include:\n- Fever and chills\n- Redness, swelling, or pain at the insertion site\n- Discharge from the site\nContact the infection clinic immediately if any of these occur.",
+    "tags": [
+      "infection",
+      "PICC-line",
+      "symptoms"
+    ]
+  },
+  {
+    "question": "What do I do if I suspect a blockage in the PICC-line?",
+    "answer": "If you cannot flush the line or get no blood return:\n- Check for mechanical issues like a kinked or clamped line.\n- Try flushing with start-stop technique using 40-60 ml NaCl.\n- Lie down, lift the arm, or adjust position.\n- If still blocked, contact your OPAT clinic. Do not force flush.",
+    "tags": [
+      "PICC-line",
+      "blockage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "How should I dispose of a used homepump?",
+    "answer": "Used homepumps should be discarded in regular household burnable waste.",
+    "tags": [
+      "homepump",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "Can I shower while using the pump?",
+    "answer": "Yes, but do not put the pump directly in water.\nUse a shower hook with a suction cup to hang the pump while you shower.",
+    "tags": [
+      "shower",
+      "daily life",
+      "pump"
+    ]
+  },
+  {
+    "question": "Where should I keep the pump while I sleep?",
+    "answer": "Keep it level with your IV line—not on the floor or above your head.\nMany people find it comfortable to place it under their pillow.",
+    "tags": [
+      "sleep",
+      "infusion",
+      "comfort"
+    ]
+  },
+  {
+    "question": "How can I carry the pump during the day?",
+    "answer": "Ask your OPAT team for a carrying case that straps around your waist or chest.\nKeep the pump out of direct sunlight and heat.",
+    "tags": [
+      "daily life",
+      "pump",
+      "comfort"
+    ]
+  },
+  {
+    "question": "Can I fly with the infusion pump?",
+    "answer": "Yes, you can fly with it—but check with your OPAT team first in case of other health concerns.\nThe pump must go with you inside the airplane cabin (not in checked luggage).\nAlways review your travel plans with your OPAT specialist before you go.",
+    "tags": [
+      "travel",
+      "pump",
+      "infusion"
+    ]
+  },
+  {
+    "question": "How should I prepare the homepump before use?",
+    "answer": "Take the homepump out of the fridge 12 to 24 hours before use to allow it to reach room temperature. Keep it clean in the zip bag and do not place it at the back of the fridge where it might freeze.",
+    "tags": [
+      "preparation",
+      "pump",
+      "infusion"
+    ]
+  },
+  {
+    "question": "What happens if I forget to take the homepump out of the fridge?",
+    "answer": "It’s not dangerous. The infusion may take longer and the antibiotic might feel colder when entering the body, but it's safe to use.",
+    "tags": [
+      "homepump",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "What types of infusion pumps are used in OPAT?",
+    "answer": "The most common types of infusion pumps used are Homepump® and Intermate®. The choice depends on the antibiotic's stability information. Both function the same way and are equally effective.",
+    "tags": [
+      "homepump",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "What are common side effects of IV antibiotics?",
+    "answer": "Common side effects include:\n- Nausea, vomiting, diarrhea\n- Rash, itching, or skin irritation\n- White patches in mouth, vaginal discharge\nMost are mild and pass after treatment. Contact AOT if symptoms occur.",
+    "tags": [
+      "side effects",
+      "antibiotics",
+      "treatment"
+    ]
+  },
+  {
+    "question": "When should I not do my infusion?",
+    "answer": "Do not start your infusion if:\n- The expiry date has passed on your medication or flushes.\n- The medication name on the pump is different from what your doctor prescribed.\n- The balloon inside the pump is damaged (burst or split), or there is a leak or a break in the tubing.\n- The blue cap or clear cap on top of the pump is missing.",
+    "tags": [
+      "infusion",
+      "safety",
+      "pump"
+    ]
+  },
+  {
+    "question": "How do I know if the infusion with homepump is finished?",
+    "answer": "The infusion is finished when the pump has contracted and formed a solid pillar inside with no visible fluid. For Intermate pumps, check if the center tube is clearly visible.",
+    "tags": [
+      "infusion",
+      "pump",
+      "completion"
+    ]
+  },
+  {
+    "question": "What if something else goes wrong with the pump?",
+    "answer": "Tell your OPAT team about any issues.\nWrite down the batch number (found on the bottom of the pump) in case they need it.",
+    "tags": [
+      "infusion",
+      "troubleshooting",
+      "pump"
+    ]
+  },
+  {
+    "question": "What if there’s some medicine left in the pump after it finishes?",
+    "answer": "It is normal for a little bit of medicine to be left in the pump or tube at the end.\nIf you are unsure, call your OPAT team to check.",
+    "tags": [
+      "infusion",
+      "pump",
+      "medicine"
+    ]
+  },
+  {
+    "question": "What is the purpose of the Ambulatory Outreach Team (AOT)?",
+    "answer": "The AOT delivers antimicrobial treatment and support at home, coordinates blood tests, line care, and ensures regular follow-ups to monitor treatment effectiveness and address complications.",
+    "tags": [
+      "team",
+      "support",
+      "treatment"
+    ]
+  },
+  {
+    "question": "How can I tell if the infusion is complete?",
+    "answer": "The infusion is complete when the pump has contracted with a solid pillar in the middle and no visible fluid remains.",
+    "tags": [
+      "homepump",
+      "usage"
+    ]
   }
 ]

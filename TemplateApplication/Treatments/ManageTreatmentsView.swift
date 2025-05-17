@@ -65,8 +65,6 @@ struct ManageTreatmentsView: View {
                 
                 print("ManageTreatmentsView: Module finished removal process for \(treatmentID).")
 
-                // Reset UI state after the module's async operations complete
-                // Yielding might help ensure UI updates fully reflect the change
                 await Task.yield()
                 deleteState = .idle
                 

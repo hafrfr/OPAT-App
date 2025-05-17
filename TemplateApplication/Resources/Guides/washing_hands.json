@@ -1,0 +1,106 @@
+{
+  "GuideTitle": "Washing Hands",
+  "steps": [
+    {
+      "title": "How to wash your hands before infusion",
+      "substeps": [
+        {
+          "title": "Step 1",
+          "moreInfo": "",
+          "description": "Wet your hands under running water",
+          "imageName": null
+        },
+        {
+          "title": "Step 2",
+          "moreInfo": "",
+          "description": "Add soap and cover all areas of your hands",
+          "imageName": null
+        },
+        {
+          "title": "Step 3",
+          "moreInfo": "",
+          "description": "Rub your hands together, palm to palm, in a circular motion.",
+          "imageName": null
+        },
+        {
+          "title": "Step 4",
+          "moreInfo": "",
+          "description": "Rub the back of your left hand with your right palm, fingers interlaced",
+          "imageName": null
+        },
+        {
+          "title": "Step 5",
+          "moreInfo": "",
+          "description": "Rub the back of your right hand with your left palm, fingers interlaced.",
+          "imageName": null
+        },
+        {
+          "title": "Step 6",
+          "moreInfo": "",
+          "description": "Rub your hands palm to palm again, with fingers interlaced.",
+          "imageName": null
+        },
+        {
+          "title": "Step 7",
+          "moreInfo": "",
+          "description": "Rub with your fingers locked together (interlocked).",
+          "imageName": null
+        },
+        {
+          "title": "Step 8",
+          "moreInfo": "",
+          "description": "Hold your right thumb in your left hand and rub it in circles.",
+          "imageName": null
+        },
+        {
+          "title": "Step 9",
+          "moreInfo": "",
+          "description": "Do the same with your left thumb.",
+          "imageName": null
+        },
+        {
+          "title": "Step 10",
+          "moreInfo": "",
+          "description": "Rub your right fingertips in your left palm using a circular motion.",
+          "imageName": null
+        },
+        {
+          "title": "Step 11",
+          "moreInfo": "",
+          "description": "Repeat with your left fingertips in your right palm.",
+          "imageName": null
+        },
+        {
+          "title": "Step 12",
+          "moreInfo": "",
+          "description": "Rinse your hands well under running water.",
+          "imageName": null
+        },
+        {
+          "title": "Step 13",
+          "moreInfo": "",
+          "description": "Dry your hands completely with a clean paper towel.",
+          "imageName": null
+        },
+        {
+          "title": "Step 14",
+          "moreInfo": "",
+          "description": "Use the towel to turn off the tap.",
+          "imageName": null
+        },
+        {
+          "title": "Step 15",
+          "moreInfo": "",
+          "description": "Throw the towel away.",
+          "imageName": null
+        },
+        {
+          "title": "Step 16",
+          "moreInfo": "",
+          "description": "Apply hand sanitizer, rubbing it in using the same steps above.",
+          "imageName": null
+        }
+      ]
+    }
+  ] 
+}

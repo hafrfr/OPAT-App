@@ -18,6 +18,7 @@ import SpeziNotifications
 import SpeziOnboarding
 import SpeziScheduler
 import SwiftUI
+import SpeziHealthKit
 
 
 
@@ -40,13 +41,14 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
                 }
             }
 
-            
+            healthKit
             TemplateApplicationScheduler()
             Scheduler()
             OnboardingDataSource()
             TreatmentModel()
             TreatmentScheduler()
             Notifications()
+
             FAQModule()
             GuideModule()
             TreatmentModule()
@@ -74,4 +76,12 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
             settings: settings
         )
     }
+    private var healthKit: HealthKit {
+            HealthKit {
+                CollectSample(.stepCount)
+                CollectSample(.heartRate, continueInBackground: true)
+                CollectSample(.bodyTemperature)
+                RequestReadAccess(quantity: [.bloodOxygen])
+            }
+        }
 }

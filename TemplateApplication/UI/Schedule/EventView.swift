@@ -1,10 +1,7 @@
-//
-// This source file is part of the Stanford Spezi Template Application open-source project
-//
-// SPDX-FileCopyrightText: 2023 Stanford University
-//
-// SPDX-License-Identifier: MIT
-//
+// TemplateApplication/UI/Schedule/EventView.swift
+// Handles displaying and completing events, including questionnaires.
+// Modified to store HealthKitSnapshot separately and update EventLog.
+// Logger has been removed from this version.
 
 import SpeziQuestionnaire
 import SpeziScheduler
@@ -13,36 +10,60 @@ import SwiftUI
 
 struct EventView: View {
     private let event: Event
+    private let healthKitSnapshotFromPreamble: HealthKitSnapshot?
 
     @Environment(TemplateApplicationStandard.self) private var standard
     @Environment(\.dismiss) private var dismiss
-
+    // Removed: @Application (\.logger) private var logger
+     
     var body: some View {
         if let questionnaire = event.task.questionnaire {
             QuestionnaireView(questionnaire: questionnaire) { result in
-                dismiss()
+                dismiss() // Dismiss the questionnaire view first
 
-                guard case let .completed(response) = result else {
+                guard case let .completed(questionnaireResponse) = result else {
+                    // logger.debug("Questionnaire \(questionnaire.id ?? "Unknown") dismissed or not completed.")
+                    print("Questionnaire \(questionnaire.id ?? "Unknown") dismissed or not completed.") // Replaced logger with print
                     return
                 }
-                do {
-                    try event.complete()
-                    // Optional: Add any logic here that should only execute if complete() succeeds
-                } catch {
-                    // Handle the error appropriately
-                    print("Failed to complete event \(event.id): \(error)")
-                    // You might want to show an alert to the user or log this more formally.
-                }
-                await standard.add(response: response)
                 
-                let eventLogEntry = EventLog(from: event, completionTime: Date())
-                                       
-                       // Call the Standard to save the generic log entry
-                       await standard.logCompletedEvent(eventLogEntry)
-                       print("EventView: Logged generic completion for SpeziScheduler event \(event.id)")
+                 do {
+                    // 1. Store the QuestionnaireResponse itself
+                    await standard.add(response: questionnaireResponse)
+                    // logger.info("QuestionnaireResponse for event \(event.id) with ID \(questionnaireResponse.id.uuidString) added to standard.")
+                    print("QuestionnaireResponse for event \(event.id) with ID \(questionnaireResponse.identifier) added to standard.") // Replaced logger
+                    
+                    if let snapshot = healthKitSnapshotFromPreamble {
+                        let responseIdString: String? = questionnaireResponse.identifier as? String
+                        await standard.storeHealthKitSnapshot(snapshot, forResponseId: responseIdString ?? "")
+                        // logger.info("HealthKitSnapshot for event \(event.id) stored separately, linked to QR ID \(questionnaireResponse.id.uuidString).")
+                        print("HealthKitSnapshot for event \(event.id) stored separately, linked to QR ID \(questionnaireResponse.id).") // Replaced logger
+                    }
+                    
 
+                    do {
+                        try event.complete()
+                        // logger.info("Event \(event.id) marked as complete.")
+                        print("Event \(event.id) marked as complete.") // Replaced logger
+                    } catch {
+                        // logger.error("Failed to mark event \(event.id) as complete: \(error.localizedDescription)")
+                        print("ERROR: Failed to mark event \(event.id) as complete: \(error.localizedDescription)") // Replaced logger
+                        // Decide if you should proceed with logging if event completion fails
+                    }
+                        
+                    // 4. Create and log the EventLog, now linking to the QuestionnaireResponse ID
+                    let eventLogEntry = EventLog(
+                        from: event,
+                        completionTime: Date(), // Or questionnaireResponse.completionDate if available
+                    )
+                                           
+                    await standard.logCompletedEvent(eventLogEntry)
+                    // logger.info("EventView: Logged completion for SpeziScheduler event \(event.id). Linked QR ID: \(questionnaireResponse.id.uuidString)")
+                    print("EventView: Logged completion for SpeziScheduler event \(event.id). Linked QR ID: \(questionnaireResponse.id)") // Replaced logger
+                }
             }
         } else {
+            // Fallback for non-questionnaire events (unchanged)
             NavigationStack {
                 ContentUnavailableView(
                     "Unsupported Event",
@@ -60,7 +81,10 @@ struct EventView: View {
         }
     }
 
-    init(_ event: Event) {
+    // Modified initializer
+    init(_ event: Event, healthKitSnapshotFromPreamble: HealthKitSnapshot? = nil) {
         self.event = event
+        self.healthKitSnapshotFromPreamble = healthKitSnapshotFromPreamble
     }
 }
+

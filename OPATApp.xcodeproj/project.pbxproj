@@ -69,14 +69,24 @@
 		8EC818902DCCBEF200C2796E /* Exceptions for "TemplateApplication" folder in "OPATAppTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Resources/Guides/connecting_infusion.json,
+				Resources/Guides/disconnecting_infusion.json,
+				Resources/Guides/picc_care.json,
+				Resources/Guides/washing_hands.json,
 				"Supporting Files/GoogleService-Info.plist",
+				UI/Schedule/Onboarding/OPAT/AccountOnboarding.swift,
 			);
 			target = 653A255C28338800005D4D48 /* OPATAppTests */;
 		};
 		8EC818912DCCBEF200C2796E /* Exceptions for "TemplateApplication" folder in "OPATAppUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Resources/Guides/connecting_infusion.json,
+				Resources/Guides/disconnecting_infusion.json,
+				Resources/Guides/picc_care.json,
+				Resources/Guides/washing_hands.json,
 				"Supporting Files/GoogleService-Info.plist",
+				UI/Schedule/Onboarding/OPAT/AccountOnboarding.swift,
 			);
 			target = 653A256628338800005D4D48 /* OPATAppUITests */;
 		};
@@ -523,7 +533,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
@@ -740,7 +750,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
@@ -793,7 +803,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;

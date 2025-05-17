@@ -20,14 +20,10 @@ import SwiftUI
 struct TemplateApplication: App {
     @UIApplicationDelegateAdaptor(TemplateApplicationDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    @State private var showSplash = true // Controls splash screen visibility
-    
+    @State private var showSplash = true
     init() {
-        UserDefaults.standard.set(["en"], forKey: "AppleLanguages") // remove after presentation (forces system language to
-        // Always reset onboarding state for development/testing, only for our internal testing! Not for external users
-        // UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
-        UserDefaults.standard.synchronize()
-    }
+        UserDefaults.standard.set(["en"], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()    }
     
     var body: some Scene {
         WindowGroup {

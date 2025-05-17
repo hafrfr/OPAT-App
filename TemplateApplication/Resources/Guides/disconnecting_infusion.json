@@ -1,0 +1,64 @@
+{
+  "GuideTitle": "Disconnecting Infusion",
+  "steps": [
+    {
+      "title": "How to disconnect your infusion",
+      "substeps": [
+        {
+          "title": "Wash hands",
+          "moreInfo": "",
+          "description": "Wash your hands carefully the way your nurse showed you, then use alcohol gel on them.",
+          "imageName": null
+        },
+        {
+          "title": "Clean space",
+          "moreInfo": "",
+          "description": "Clean your work area (or the blue tray if you have one) with a wipe. Dry it with a clean paper towel. Then wipe again with a disinfecting wipe and let it dry for at least 30 seconds",
+          "imageName": null
+        },
+        {
+          "title": "Set up",
+          "moreInfo": "",
+          "description": "Set up your dressing towel. If you have a dressing pack, open it and take out the towel. If not, just place the towel on the clean work surface or tray. Only touch the corners of the dressing towel.",
+          "imageName": null
+        },
+        {
+          "title": "Clean hands",
+          "moreInfo": "",
+          "description": "Use alcohol gel on your hands again.",
+          "imageName": null
+        },
+        {
+          "title": "Take out flushes",
+          "moreInfo": "",
+          "description": "Take the saline flush(es) out of their packaging and place them on your clean area.",
+          "imageName": null
+        },
+        {
+          "title": "Remove air from syringes",
+          "moreInfo": "",
+          "description": "Remove air from the saline syringes:\n• Take off the white cap.\n• Gently push the saline until you see it at the top of the syringe.\n• Put the white cap back on until you’re ready to use it.\n• Do this for each flush. Do not touch any key parts.\n• Close all clamps on your IV line and on the device tubing (if it has one)",
+          "imageName": null
+        },
+        {
+          "title": "Clean device",
+          "moreInfo": "",
+          "description": "Open an alcohol wipe.\n• Disconnect the device from your IV line.\n• Clean the end of your IV line with the wipe using a scrubbing motion. Let it dry for 30 seconds.",
+          "imageName": null
+        },
+        {
+          "title": "Flush PICC line",
+          "moreInfo": "",
+          "description": "• Flush your line with the saline syringe using the slow push-pause method your nurse taught you.\n• Put the blue cap back on your IV line and throw away your empty device in the waste bin your nurse provided",
+          "imageName": null
+        },
+        {
+          "title": "Clean hands",
+          "moreInfo": "",
+          "description": "Wash your hands again or use alcohol gel once you are finished. Clean up and throw away any rubbish",
+          "imageName": null
+        }
+      ]
+    }
+  ]
+}

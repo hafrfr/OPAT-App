@@ -68,18 +68,16 @@ final class TreatmentModule: Module, DefaultInitializable, EnvironmentAccessible
     /// updates the local model, and schedules local notifications.
     @MainActor
     private func performTreatmentConfiguration() async {
-        initialTreatmentsConfiguredThisSession = false // Reset session flag
-
-        // 1. Clear local state (model and scheduled notifications) before syncing.
+        initialTreatmentsConfiguredThisSession = false
         await clearLocalTreatmentState()
 
         // 2. Fetch current treatments from Firestore (via Standard).
+
         let fetchedTreatments = await standard.fetchTreatments()
-        
+        print(fetchedTreatments)
+        print("fetchedTreatments.count: \(fetchedTreatments.count)")
         var treatmentsToProcessLocally: [Treatment] = []
 
-        // 3. Process fetched data or provision default treatment if Firestore is empty
-        //    and defaults haven't been provisioned before.
         if fetchedTreatments.isEmpty {
             treatmentsToProcessLocally = await handleEmptyFirestore()
         } else {
@@ -201,7 +199,7 @@ final class TreatmentModule: Module, DefaultInitializable, EnvironmentAccessible
         // --- Perform potentially failing operations FIRST ---
         do {
             // 1. Save/Update in Firestore via the Standard (await directly)
-            // This assumes standard.add is correctly implemented and handles potential Firebase errors internally or doesn't throw critical ones here.
+
             await standard.add(treatment: treatment)
             print("TreatmentModule.treatmentAdded: Saved/Updated treatment \(treatment.id) in Firestore.")
             

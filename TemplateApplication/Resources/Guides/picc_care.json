@@ -1,0 +1,47 @@
+{
+  "GuideTitle": "Pic-line Care",
+  "steps": [
+      {
+          "title": "Taking Care of your PICC line",
+          "substeps": [
+              {
+                  "title": "Before Using Your PICC Line",
+                  "moreInfo": "",
+                  "description": "• Check that the green clamps on the extension tubing are open.\n• Try to flush with saline (NaCl) — it should go in easily.\n• Do NOT force it if there is a complete blockage.\n• Try to get a blood return by gently pulling back with a syringe.\n• If you can't get blood back, flush with 20ml saline before and after giving antibiotics.",
+                  "imageName": null
+              },
+              {
+                  "title": "Daily Check",
+                  "moreInfo": "",
+                  "description": "• Look at and gently feel the skin around your PICC line.\n• Watch for redness, swelling, pain, or warmth around the area. Contact your healthcare provider right away if you notice any of these signs",
+                  "imageName": null
+              },
+              {
+                  "title": "Dressing Changes and Check-ups",
+                  "moreInfo": "",
+                  "description": "Your PICC line will be checked and re-dressed at each clinic visit—at least once a week, or sooner if the dressing comes loose.",
+                  "imageName": null
+              },
+              {
+                  "title": "Showering",
+                  "moreInfo": "",
+                  "description": "Cover your PICC line with plastic to keep it dry while showering. If any moisture gets under the plastic, the dressing must be changed. Moisture creates a perfect place for bacteria to grow.",
+                  "imageName": null
+              },
+              {
+                  "title": "WARNING",
+                  "moreInfo": "",
+                  "description": "Do NOT take baths or use saunas.",
+                  "imageName": null
+              },
+              {
+                  "title": "Used Syringes with Blood",
+                  "moreInfo": "",
+                  "description": "Place any syringes that have blood in them into a plastic bag. Bring them with you to your next dressing change",
+                  "imageName": null
+              }
+          ]
+      }
+    ]
+  }
+

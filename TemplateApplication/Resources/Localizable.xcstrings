@@ -4,6 +4,22 @@
     "" : {
 
     },
+    "(%@)" : {
+
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@:" : {
+
+    },
     "%lld days remaining" : {
 
     },
@@ -52,6 +68,12 @@
       }
     },
     "Back" : {
+
+    },
+    "Back to instructions" : {
+
+    },
+    "Cancel" : {
 
     },
     "Care Plan" : {
@@ -194,6 +216,15 @@
     "Contacts" : {
 
     },
+    "Continue to Questions" : {
+
+    },
+    "Continue Without Vitals" : {
+
+    },
+    "Could Not Fetch Vitals" : {
+
+    },
     "Daily OPAT Check-in" : {
 
     },
@@ -217,6 +248,9 @@
 
     },
     "Error Loading Step" : {
+
+    },
+    "Error: %@. You can still proceed." : {
 
     },
     "Events" : {
@@ -417,6 +451,12 @@
         }
       }
     },
+    "Fetch Vitals" : {
+
+    },
+    "Fetching your latest vitals..." : {
+
+    },
     "GET_STARTED" : {
       "localizations" : {
         "en" : {
@@ -434,6 +474,18 @@
       }
     },
     "Got it!" : {
+
+    },
+    "Grant Access" : {
+
+    },
+    "HealthKit Access" : {
+
+    },
+    "HEALTHKIT_PERMISSIONS_DESCRIPTION" : {
+
+    },
+    "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
 
     },
     "Hospital" : {
@@ -586,6 +638,9 @@
         }
       }
     },
+    "Let's Check Your Vitals" : {
+
+    },
     "License Information" : {
 
     },
@@ -596,6 +651,9 @@
 
     },
     "More Info" : {
+
+    },
+    "Next" : {
 
     },
     "NEXT" : {
@@ -618,6 +676,9 @@
 
     },
     "No events scheduled for today." : {
+
+    },
+    "Not available" : {
 
     },
     "NOTIFICATIONS_BODY" : {
@@ -675,6 +736,9 @@
 
     },
     "Pre-treatment task: %@" : {
+
+    },
+    "Retry" : {
 
     },
     "Return to Instructions" : {
@@ -754,6 +818,9 @@
     "Task: %@" : {
 
     },
+    "This data can be saved with your questionnaire response." : {
+
+    },
     "This type of event is currently unsupported. Please contact the developer of this app." : {
 
     },
@@ -761,9 +828,6 @@
 
     },
     "Time to take your %@ out of the Fridge" : {
-
-    },
-    "To Instructions" : {
 
     },
     "Treatment Details" : {
@@ -779,6 +843,15 @@
 
     },
     "Unsupported Event" : {
+
+    },
+    "Vitals Check" : {
+
+    },
+    "Vitals Fetched!" : {
+
+    },
+    "We'll quickly fetch your latest health data before the questionnaire." : {
 
     },
     "WELCOME_AREA1_DESCRIPTION" : {
