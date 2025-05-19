@@ -58,6 +58,7 @@ struct PrimaryBackgroundView<Content: View>: View {
             }
             .frame(maxHeight: .infinity, alignment: .top)
             .ignoresSafeArea(edges: .bottom)
+            .padding(.bottom)
         }
         .overlay(alignment: .topTrailing) {
             if showsSettingsButton {

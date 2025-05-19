@@ -35,8 +35,7 @@ struct OPATOnboardingFlow: View {
                 OPATNotifications()
             }
 
-            // TODO: If more onboarding steps (e.g. LanguageSelector, accessibility settings) are added, insert here
-            // TODO: Consider letting users revisit onboarding later from settings
+    
         }
         .interactiveDismissDisabled(!completedOnboardingFlow)
         .onAppear {

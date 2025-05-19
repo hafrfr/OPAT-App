@@ -75,7 +75,7 @@ struct ManageTreatmentsView: View {
                 // treatmentRemoved would need to be modified to throw errors.
             }
         }
-    }
+    
     private func scheduleSummary(for treatment: Treatment) -> String {
         let count = treatment.timesOfDay.count
         let times = treatment.timesOfDay

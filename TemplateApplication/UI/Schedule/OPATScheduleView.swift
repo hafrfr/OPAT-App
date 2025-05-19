@@ -48,42 +48,35 @@ struct OPATScheduleView: View {
     }
 
     var body: some View {
-        // Use @Bindable if appScheduler is an ObservableObject and you're modifying its ViewState
         @Bindable var appScheduler = appScheduler
 
         NavigationStack {
             PrimaryBackgroundView(title: "Schedule") {
-                VStack(spacing: 16) { TreatmentProgressBar().padding(.horizontal)
+                VStack(spacing: 16) { TreatmentProgressBar().padding(.horizontal).onTapGesture(count: 3)
+                    { UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
+                  }
                     if todaysEvents.isEmpty {
                         Spacer()
                         Text("No events scheduled for today.").foregroundColor(.secondary).padding()
                         Spacer()
-                    } else {
-                        EventScheduleList(date: .now) { event in eventRow(event) }
-                        .listStyle(.plain)
-                        .scrollContentBackground(.hidden)
+                    } else {EventScheduleList(date: .now) { event in eventRow(event) }
+                        .listStyle(.plain).scrollContentBackground(.hidden)
                         .id(todaysEvents.map { "\($0.id)-\($0.isCompleted)" }.joined() + "\(appScheduler.viewState)")
                     }
                 }
             }
             .toolbar { toolbarContent }
-            // Sheet for Vitals Preamble
             .sheet(item: $eventForVitalsPreamble) { eventToPreamble in
-                // Ensure VitalsPreambleView is correctly defined and accepts these parameters
                 VitalsPreambleView(event: eventToPreamble) { snapshot in
-                    // This callback is triggered from VitalsPreambleView
                     self.healthKitSnapshotForQuestionnaire = snapshot
                     self.eventForQuestionnaireSheet = eventToPreamble // Trigger questionnaire sheet
                     self.eventForVitalsPreamble = nil // Dismiss VitalsPreambleView sheet
                 }
             }
-            // Sheet for Questionnaire (EventView) - triggered after preamble
             .sheet(item: $eventForQuestionnaireSheet) { eventForSheet in
-                // Ensure EventView is correctly defined and accepts these parameters
                 EventView(eventForSheet, healthKitSnapshotFromPreamble: healthKitSnapshotForQuestionnaire)
             }
-            .viewStateAlert(state: $appScheduler.viewState) // For general errors from appScheduler
-            // Task Modifier for completing non-questionnaire events
+            .viewStateAlert(state: $appScheduler.viewState)
             .task(id: appScheduler.viewState) {
                 if case .processing = appScheduler.viewState, let event = self.eventToProcessForCompletion {
                     // Use String(describing:) for logging Event.ID if it's not directly a String or UUID
@@ -139,21 +132,20 @@ struct OPATScheduleView: View {
 
         if event.task.id == "opatfollowup" || event.task.id == "opat-checkin" { // Specific handling for daily check-in
             Button(action: {
-                if !isDisabledByCompletion { // Allow re-opening if needed, or keep finalDisabledState
-                    // Use String(describing:) for logging Event.ID
+                if !isDisabledByCompletion {
                     print("OPATScheduleView: 'Start Check-In' tapped for \(String(describing: event.id)). Presenting Vitals Preamble.")
                     self.eventForVitalsPreamble = event // Trigger VitalsPreambleView
                 }
             }, label: {
                  Text("Start Check-In")
             })
-            .buttonStyle(PrimaryActionButtonStyle()) // Assuming PrimaryActionButtonStyle is defined
-            .disabled(isDisabledByCompletion) // Or finalDisabledState if you don't want re-entry while processing other tasks
+            .buttonStyle(PrimaryActionButtonStyle())
+            .disabled(isDisabledByCompletion)
         
         } else if event.task.id.starts(with: "treatment-") { // For other treatment tasks
             VStack(spacing: 8) { // Assuming Layout.Spacing.small
                 markCompleteButton(for: event, disabled: finalDisabledState)
-                // instructionsButton(disabled: isDisabledByCompletion) // Assuming instructionsButton defined
+                instructionsButton(disabled: isDisabledByCompletion)
             }.padding(.top, 8) // Assuming Layout.Spacing.small
         } else {
             // Fallback for other task types
@@ -180,8 +172,17 @@ struct OPATScheduleView: View {
         .disabled(disabled)
     }
     
-    // Removed instructionsButton for brevity, add back if needed
-    // private func instructionsButton(disabled: Bool) -> some View { ... }
+    private func instructionsButton(disabled: Bool) -> some View {
+        Button {
+          print("Instructions button tapped.")
+        } label: {
+          Label("To Instructions", systemImage: "book")
+        }
+        .buttonStyle(PrimaryActionButtonStyle())
+        .disabled(disabled)
+      }
+    
+
     
     @MainActor
     private func completeAndLogRegularEvent(_ event: Event) async {

@@ -15,7 +15,7 @@ struct InstructionsListView: View {
                 GeometryReader { geometry in
                     ScrollView {
                         VStack {
-                            Spacer(minLength: geometry.size.height * 0.35) // Adjust center starting point
+                            Spacer(minLength: geometry.size.height * 0.1) // Adjust center starting point
                             VStack(spacing: Layout.Spacing.large) {
                                 ForEach(guideModule.guides) { guide in
                                     NavigationLink(destination: GuideOverviewView(guide: guide)) {
@@ -30,7 +30,7 @@ struct InstructionsListView: View {
                                     }
                                 }
                             }
-                            Spacer() // Fill remaining space below
+                            Spacer()
                         }
                         .padding(.horizontal)
                     }
