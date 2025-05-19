@@ -74,22 +74,23 @@ struct PrimaryBackgroundView<Content: View>: View {
             showHeader = true
         }
     }
-
-    // MARK: - Background
+    
+    // MARK: - Full Gradient Background
     private var gradientBackground: some View {
         LinearGradient(
             gradient: Gradient(stops: [
-                .init(color: .white, location: 0.0),
-                .init(color: .white.opacity(0.98), location: 0.4),
-                .init(color: ColorTheme.headerGradientStart.opacity(0.7), location: 0.7),
-                .init(color: ColorTheme.headerGradientEnd, location: 1.0)
+                .init(color: .white, location: 0.0), // Bottom
+                .init(color: ColorTheme.headerGradientStart.opacity(0.9), location: 0.2),
+                .init(color: ColorTheme.headerGradientStart, location: 0.68),
+                .init(color: ColorTheme.headerGradientEnd.opacity(0.95), location: 0.99),
+                .init(color: ColorTheme.headerGradientEnd, location: 1.0) // Top
             ]),
             startPoint: .bottom,
             endPoint: .top
         )
+        .blur(radius: 0.6) // just enough to smooth transitions
         .ignoresSafeArea()
     }
-
     // MARK: - Header (Title + Subtitle)
     private var header: some View {
         VStack(spacing: Layout.Spacing.small) {
@@ -99,7 +100,8 @@ struct PrimaryBackgroundView<Content: View>: View {
                 .multilineTextAlignment(.center)
                 .opacity(showHeader ? 1 : 0)
                 .animation(.easeOut(duration: 0.5), value: showHeader)
-
+                .shadowStyle(ShadowTheme.card)
+            
             if let subtitle = subtitle {
                 Text(subtitle)
                     .font(FontTheme.body)
@@ -135,9 +137,9 @@ struct PrimaryBackgroundView<Content: View>: View {
             Text("This content is outside the white container.")
         }
 
-        PrimaryBackgroundView(title: "With White Box", useWhiteContainer: true) {
-            Text("This content is in a rounded white container.")
-        }
+        //PrimaryBackgroundView(title: "With White Box", //useWhiteContainer: true) {
+            //Text("This content is in a rounded white container.")
+        //}
     }
 }
 #endif
