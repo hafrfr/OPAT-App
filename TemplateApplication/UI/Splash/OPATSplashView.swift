@@ -28,7 +28,7 @@ struct OPATSplashView: View {
                     .accessibilityHidden(true)
                     .onAppear {
                         withAnimation(
-                            .easeInOut(duration: 2.0)
+                            .easeInOut(duration: 3.5)
                             .repeatForever(autoreverses: true)
                         ) {
                             scale = 1.15 // Gently grow to 115%
@@ -43,7 +43,7 @@ struct OPATSplashView: View {
 
                 // Supportive subheading (localized)
                 Text(String(localized: "SPLASH_SUBTITLE"))
-                    .font(FontTheme.body)
+                    .font(FontTheme.bodyBold)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color("SandYellow"))
                     .padding(.top, Layout.Spacing.small)

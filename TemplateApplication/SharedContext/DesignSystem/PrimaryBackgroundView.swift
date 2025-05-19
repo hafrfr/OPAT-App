@@ -11,46 +11,67 @@ import SwiftUI
 struct PrimaryBackgroundView<Content: View>: View {
     let title: String
     let subtitle: String?
-    let showsSettingsButton: Bool // Probably not going to use it but maybe in the future
+    let showsSettingsButton: Bool
+    let useWhiteContainer: Bool
     let content: () -> Content
 
-    // MARK: - Animation states (header + button doesnt show up instantly)
     @State private var showSettingsButton = false
     @State private var showHeader = false
 
     // MARK: - Init
-    init(title: String, subtitle: String? = nil, showsSettingsButton: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+    init(
+        title: String,
+        subtitle: String? = nil,
+        showsSettingsButton: Bool = false,
+        useWhiteContainer: Bool = false, // Default = NO box
+        @ViewBuilder content: @escaping () -> Content
+    ) {
         self.title = title
         self.subtitle = subtitle
         self.showsSettingsButton = showsSettingsButton
+        self.useWhiteContainer = useWhiteContainer
         self.content = content
     }
 
     // MARK: - Body
     var body: some View {
         ZStack {
-            gradientBackground // The colorful gradient background
+            gradientBackground
 
             VStack(spacing: Layout.Spacing.medium) {
-                header // Title + subtitle
-                contentContainer // Main white rounded container
+                header
+                Spacer(minLength: 0)
+
+                if useWhiteContainer {
+                    contentContainer
+                } else {
+                    GeometryReader { geometry in
+                        VStack {
+                            Spacer()
+                            content()
+                                .padding(.horizontal, Layout.Spacing.large)
+                            Spacer()
+                        }
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                    }
+                }
             }
+            .frame(maxHeight: .infinity, alignment: .top)
             .ignoresSafeArea(edges: .bottom)
         }
         .overlay(alignment: .topTrailing) {
-            // Optional Settings button in top-right corner
             if showsSettingsButton {
                 SettingsButton(color: ColorTheme.title) {
-                    print("Settings tapped") // Replace later if needed
+                    print("Settings tapped")
                 }
                 .padding()
-                .opacity(showSettingsButton ? 1 : 0) // Fade in
+                .opacity(showSettingsButton ? 1 : 0)
                 .animation(.easeOut(duration: 0.4), value: showSettingsButton)
             }
         }
         .onAppear {
-            showSettingsButton = true // Triggers fade-in animation
-            showHeader = true // Triggers title/subtitle fade-in
+            showSettingsButton = true
+            showHeader = true
         }
     }
 
@@ -59,8 +80,8 @@ struct PrimaryBackgroundView<Content: View>: View {
         LinearGradient(
             gradient: Gradient(stops: [
                 .init(color: .white, location: 0.0),
-                .init(color: .white, location: 0.77), // tweaking for perfection :D
-                .init(color: ColorTheme.headerGradientStart, location: 0.87),
+                .init(color: .white.opacity(0.98), location: 0.4),
+                .init(color: ColorTheme.headerGradientStart.opacity(0.7), location: 0.7),
                 .init(color: ColorTheme.headerGradientEnd, location: 1.0)
             ]),
             startPoint: .bottom,
@@ -76,7 +97,7 @@ struct PrimaryBackgroundView<Content: View>: View {
                 .font(FontTheme.title)
                 .foregroundColor(ColorTheme.title)
                 .multilineTextAlignment(.center)
-                .opacity(showHeader ? 1 : 0) // Fade in
+                .opacity(showHeader ? 1 : 0)
                 .animation(.easeOut(duration: 0.5), value: showHeader)
 
             if let subtitle = subtitle {
@@ -85,18 +106,18 @@ struct PrimaryBackgroundView<Content: View>: View {
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
-                    .opacity(showHeader ? 1 : 0) // Fade in
+                    .opacity(showHeader ? 1 : 0)
                     .animation(.easeOut(duration: 0.6), value: showHeader)
             }
         }
-        .padding(.top, Layout.Spacing.xLarge)
+        .padding(.top, Layout.Spacing.small)
         .padding(.horizontal, Layout.Spacing.large)
     }
 
-    // MARK: - Main Content Area
+    // MARK: - White Container
     private var contentContainer: some View {
         VStack {
-            content() // The custom content passed in
+            content()
                 .padding()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -109,8 +130,14 @@ struct PrimaryBackgroundView<Content: View>: View {
 
 #if DEBUG
 #Preview {
-    PrimaryBackgroundView(title: "Title", subtitle: nil) {
-        Text("Content goes here")
+    VStack(spacing: 30) {
+        PrimaryBackgroundView(title: "Standard (No Box)") {
+            Text("This content is outside the white container.")
+        }
+
+        PrimaryBackgroundView(title: "With White Box", useWhiteContainer: true) {
+            Text("This content is in a rounded white container.")
+        }
     }
 }
 #endif

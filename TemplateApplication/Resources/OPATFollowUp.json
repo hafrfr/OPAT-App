@@ -4,7 +4,7 @@
   "id": "opatfollowup",
   "name": "OPATFollowUp",
   "title": "Daily OPAT Check-in",
-  "description": "This daily check-in helps you and your healthcare team monitor how you're doing during your antibiotic treatment at home.",
+  "description": "This daily check-in helps you and your healthcare team monitor how you're doing during your treatment at home.",
   "version": "1",
   "status": "draft",
   "publisher": "Chalmers x Stanford (Student Prototype)",
@@ -541,7 +541,7 @@
     {
       "linkId": "2f90837d-2afc-4c68-8d82-df901c03f7f5",
       "type": "integer",
-      "text": "How confident do you feel about managing your IV treatment today on a scale from 0 to 10?",
+      "text": "How confident do you feel about managing your IV treatment today? \n0 = Not confident at all \n10 = Fully confident",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/maxValue",

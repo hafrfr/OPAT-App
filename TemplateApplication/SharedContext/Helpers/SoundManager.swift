@@ -14,6 +14,7 @@ enum SoundType: String, CaseIterable {
     case progressTap = "progress-tap"
     case notificationSound = "notification-sound"
     case celebration = "celebration"
+    case tasksCompleted = "tasks-completed"
     // Add new sounds here as needed :D
 }
 

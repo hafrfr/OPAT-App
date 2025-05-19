@@ -38,7 +38,7 @@ struct TemplateApplication: App {
                     OPATSplashView()
                         .onAppear {
                             // Add delay before starting onboarding (to show our splash screen <3, mostly for presentation)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                                 withAnimation {
                                     showSplash = false
                                 }
