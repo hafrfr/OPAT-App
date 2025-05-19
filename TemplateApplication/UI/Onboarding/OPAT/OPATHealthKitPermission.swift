@@ -42,11 +42,11 @@ struct OPATHealthKitPermission: View {
                     action: {
                         do {
                             healthKitProcessing = true
-                            // HealthKit is not available in the preview simulator.
                             if ProcessInfo.processInfo.isPreviewSimulator {
                                 try await _Concurrency.Task.sleep(for: .seconds(5))
                             } else {
-                                try await healthKit.askForAuthorization()
+                                //try await healthKit.askForAuthorization()
+                                
                             }
                         } catch {
                             print("Could not request HealthKit permissions.")
@@ -59,7 +59,6 @@ struct OPATHealthKitPermission: View {
             }
         )
             .navigationBarBackButtonHidden(healthKitProcessing)
-            // Small fix as otherwise "Login" or "Sign up" is still shown in the nav bar
             .navigationTitle(Text(verbatim: ""))
     }
 }

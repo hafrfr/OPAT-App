@@ -159,58 +159,64 @@ struct VitalsPreambleView: View {
     }
 
     @MainActor
-    private func fetchVitals() async {
-
-        showSuccessAnimation = false // Reset animation flag
-        
-        let collectionTime = Date()
-        print("VitalsPreambleView: fetchVitals() called. Attempting to fetch HealthKit data for the last 2 hours from \(collectionTime)")
-        var snapshot = HealthKitSnapshot(collectionDate: collectionTime)
-
-        let timeRangeToQuery = HealthKitQueryTimeRange.last(hours: 2)
-
-        do {
-            let heartRateType = SampleType.heartRate
-            let heartRateSamples: [HKQuantitySample] = try await healthKit.query(
-                heartRateType, timeRange: timeRangeToQuery, limit: 1
-            )
-            if let latestSample = heartRateSamples.first{
-                snapshot.latestHeartRate = .init(
-                    value: latestSample.quantity.doubleValue(for: .count().unitDivided(by: .minute())),
-                    unit: "bpm",
-                    date: latestSample.endDate)
-            }
-
-            let bloodOxygenType = SampleType.bloodOxygen
-            let bloodOxygenSamples: [HKQuantitySample] = try await healthKit.query(
-                bloodOxygenType, timeRange: timeRangeToQuery, limit: 1
-            )
-            if let latestSample = bloodOxygenSamples.first {
-                snapshot.latestBloodOxygen = .init(
-                    value: latestSample.quantity.doubleValue(for: .percent()) * 100,
-                    unit: "%",
-                    date: latestSample.endDate)
-            }
+    private func fetchVitals(test: Bool = false) async {
+        if(test) {
+            showSuccessAnimation = false
+        }
+        else{
             
-            let bodyTemperatureType = SampleType.bodyTemperature
-            let bodyTempSamples: [HKQuantitySample] = try await healthKit.query(
-                bodyTemperatureType, timeRange: timeRangeToQuery, limit: 1
-            )
-            if let latestSample = bodyTempSamples.first{
-                snapshot.latestBodyTemperature = .init(
-                    value: latestSample.quantity.doubleValue(
-                    for: .degreeCelsius()),
-                    unit: "°C",
-                    date: latestSample.endDate)
-            }
+            showSuccessAnimation = false
             
-            self.fetchedSnapshot = snapshot
-            self.viewState = .idle // On success, set to .idle; successView will be shown
-            print("VitalsPreambleView: HealthKit data fetching complete. Snapshot: \(String(describing: self.fetchedSnapshot))")
-
-        } catch {
-            print("ERROR: VitalsPreambleView - Failed to fetch HealthKit data: \(error.localizedDescription)")
-            self.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: "Could not fetch vitals."))
+            let collectionTime = Date()
+            print("VitalsPreambleView: fetchVitals() called. Attempting to fetch HealthKit data for the last 2 hours from \(collectionTime)")
+            var snapshot = HealthKitSnapshot(collectionDate: collectionTime)
+            
+            let timeRangeToQuery = HealthKitQueryTimeRange.last(hours: 2)
+            
+            do {
+                let heartRateType = SampleType.heartRate
+                let heartRateSamples: [HKQuantitySample] = try await healthKit.query(
+                    heartRateType, timeRange: timeRangeToQuery, limit: 1
+                )
+                if let latestSample = heartRateSamples.first{
+                    snapshot.latestHeartRate = .init(
+                        value: latestSample.quantity.doubleValue(for: .count().unitDivided(by: .minute())),
+                        unit: "bpm",
+                        date: latestSample.endDate)
+                }
+                
+                let bloodOxygenType = SampleType.bloodOxygen
+                let bloodOxygenSamples: [HKQuantitySample] = try await healthKit.query(
+                    bloodOxygenType, timeRange: timeRangeToQuery, limit: 1
+                )
+                if let latestSample = bloodOxygenSamples.first {
+                    snapshot.latestBloodOxygen = .init(
+                        value: latestSample.quantity.doubleValue(for: .percent()) * 100,
+                        unit: "%",
+                        date: latestSample.endDate)
+                }
+                
+                let bodyTemperatureType = SampleType.bodyTemperature
+                let bodyTempSamples: [HKQuantitySample] = try await healthKit.query(
+                    bodyTemperatureType, timeRange: timeRangeToQuery, limit: 1
+                )
+                if let latestSample = bodyTempSamples.first{
+                    snapshot.latestBodyTemperature = .init(
+                        value: latestSample.quantity.doubleValue(
+                            for: .degreeCelsius()),
+                        unit: "°C",
+                        date: latestSample.endDate)
+                }
+                
+                self.fetchedSnapshot = snapshot
+                self.viewState = .idle // On success, set to .idle; successView will be shown
+                print("VitalsPreambleView: HealthKit data fetching complete. Snapshot: \(String(describing: self.fetchedSnapshot))")
+                
+            } catch {
+                print("ERROR: VitalsPreambleView - Failed to fetch HealthKit data: \(error.localizedDescription)")
+                self.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription:
+                                                            "Could not fetch vitals. (This will be available in a later version)"))
+            }
         }
     }
 }

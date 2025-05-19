@@ -490,10 +490,24 @@
 
     },
     "HEALTHKIT_PERMISSIONS_DESCRIPTION" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We will not request access (Do not worry, your data will stay on your device).  We will implement this in a later version"
+          }
+        }
+      }
     },
     "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NOT ACTIVATED IN CURRENT PROTOTYPE"
+          }
+        }
+      }
     },
     "Hospital" : {
 
