@@ -126,7 +126,8 @@
                 "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
               }
             }
-          ]
+          ],
+          "maxLength": 250
         }
       ]
     },
@@ -235,7 +236,8 @@
               }
             }
           ],
-          "required": false
+          "required": false,
+          "maxLength": 250
         }
       ]
     },
@@ -403,7 +405,8 @@
               }
             }
           ],
-          "required": false
+          "required": false,
+          "maxLength": 250
         }
       ]
     },
@@ -475,7 +478,8 @@
               }
             }
           ],
-          "required": false
+          "required": false,
+          "maxLength": 250
         }
       ]
     },
@@ -529,9 +533,46 @@
               }
             }
           ],
-          "required": false
+          "required": false,
+          "maxLength": 500
         }
       ]
+    },
+    {
+      "linkId": "2f90837d-2afc-4c68-8d82-df901c03f7f5",
+      "type": "integer",
+      "text": "How confident do you feel about managing your IV treatment today on a scale from 0 to 10?",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+          "valueInteger": 0
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "slider",
+                "display": "Slider"
+              }
+            ]
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+          "valueInteger": 1
+        },
+        {
+          "url": "http://helsenorge.no/fhir/StructureDefinition/sdf-sublabel",
+          "valueMarkdown": "0 = _Not confident at all_  5 = _Somewhat confident_  10 = _Fully confident_"
+        }
+      ],
+      "required": true
     },
     {
       "linkId": "end-display",
