@@ -53,21 +53,8 @@ struct ManageTreatmentsView: View {
         .viewStateAlert(state: $deleteState)
     }
 
-    private func deleteTreatmentViaModule(treatment: Treatment) {
-        deleteState = .processing
 
-        Task { @MainActor in
-            let treatmentID = treatment.id
-            print("ManageTreatmentsView: Requesting module to remove treatment \(treatmentID)...")
-
-            await treatmentModule.treatmentRemoved(treatment)
-
-            print("ManageTreatmentsView: Module finished removal process for \(treatmentID).")
-            await Task.yield()
-            deleteState = .idle
-    // --- Function to delete a SINGLE treatment (called by the button's closure) ---
-    private func deleteTreatmentViaModule(treatment: Treatment) { // <<< RENAMED FUNCTION
-            // Optional: Implement a confirmation dialog here before proceeding.
+    private func deleteTreatmentViaModule(treatment: Treatment) { 
             
             deleteState = .processing // Set state to processing for UI feedback
 
@@ -89,7 +76,6 @@ struct ManageTreatmentsView: View {
             }
         }
     }
-
     private func scheduleSummary(for treatment: Treatment) -> String {
         let count = treatment.timesOfDay.count
         let times = treatment.timesOfDay
