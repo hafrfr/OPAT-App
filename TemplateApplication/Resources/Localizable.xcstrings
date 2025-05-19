@@ -27,7 +27,14 @@
 
     },
     "ACCOUNT_SETUP_DESCRIPTION" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Or log in with an existing account if you already created one."
+          }
+        }
+      }
     },
     "ACCOUNT_SIGNED_IN_DESCRIPTION" : {
 
@@ -37,7 +44,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feel free to login with test account or sign up"
+            "value" : "Sign in with your Apple ID or create a test account to explore the app."
           }
         }
       }

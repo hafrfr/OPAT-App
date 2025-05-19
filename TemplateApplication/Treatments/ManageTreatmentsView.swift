@@ -1,55 +1,70 @@
-import SwiftUI
 import Spezi
 import SpeziViews
+import SwiftUI
 
 struct ManageTreatmentsView: View {
     @Environment(TreatmentModel.self) private var treatmentModel
     @Environment(TreatmentModule.self) private var treatmentModule
-
-    @Environment(\.dismiss) private var dismiss // Use dismiss environment action
+    @Environment(\.dismiss) private var dismiss
 
     @State private var showingAddTreatmentSheet = false
     @State private var deleteState: ViewState = .idle
 
     var body: some View {
         PrimaryBackgroundView(title: "Manage Treatments") {
-            VStack {
-                List {
-
-                    ForEach(treatmentModel.treatments) { treatment in
-                        TreatmentCardView(
-                            treatment: treatment,
-                            summary: scheduleSummary(for: treatment),
-                            onDelete: {
-                            
-                                deleteTreatmentViaModule(treatment: treatment)
-                            }
-                        )
-                        
-                        .listRowInsets(EdgeInsets(top: Layout.Spacing.small, leading: 0, bottom: Layout.Spacing.small, trailing: 0))
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.clear)
-                    }
-                    
-                    // .onDelete(perform: deleteTreatments)
+            List {
+                ForEach(treatmentModel.treatments) { treatment in
+                    TreatmentCardView(
+                        treatment: treatment,
+                        summary: scheduleSummary(for: treatment),
+                        onDelete: {
+                            deleteTreatmentViaModule(treatment: treatment)
+                        }
+                    )
+                    .listRowInsets(EdgeInsets(
+                        top: Layout.Spacing.small,
+                        leading: 0,
+                        bottom: Layout.Spacing.small,
+                        trailing: 0
+                    ))
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
                 }
-                .listStyle(.plain)
-                .scrollContentBackground(.hidden)
-                .background(Color.clear)
             }
-            
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(Color.clear)
+            .safeAreaInset(edge: .bottom) {
+                Spacer().frame(height: Layout.Spacing.xLarge)
+            }
         }
-        .toolbar { // Keep the toolbar attached to ManageTreatmentsView
-             ToolbarItem(placement: .navigationBarTrailing) {
-                 Button { showingAddTreatmentSheet = true } label: { Label("Add Treatment", systemImage: "plus") }
-             }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    showingAddTreatmentSheet = true
+                } label: {
+                    Label("Add Treatment", systemImage: "plus")
+                }
+            }
         }
         .sheet(isPresented: $showingAddTreatmentSheet) {
-            AddTreatmentSheet() // Assuming this view exists
+            AddTreatmentSheet()
         }
-        .viewStateAlert(state: $deleteState) // Keep the alert for delete processing
+        .viewStateAlert(state: $deleteState)
     }
 
+    private func deleteTreatmentViaModule(treatment: Treatment) {
+        deleteState = .processing
+
+        Task { @MainActor in
+            let treatmentID = treatment.id
+            print("ManageTreatmentsView: Requesting module to remove treatment \(treatmentID)...")
+
+            await treatmentModule.treatmentRemoved(treatment)
+
+            print("ManageTreatmentsView: Module finished removal process for \(treatmentID).")
+            await Task.yield()
+            deleteState = .idle
     // --- Function to delete a SINGLE treatment (called by the button's closure) ---
     private func deleteTreatmentViaModule(treatment: Treatment) { // <<< RENAMED FUNCTION
             // Optional: Implement a confirmation dialog here before proceeding.
@@ -73,12 +88,8 @@ struct ManageTreatmentsView: View {
                 // treatmentRemoved would need to be modified to throw errors.
             }
         }
-    // --- End deleteTreatment function ---
+    }
 
-
-    // REMOVED: deleteTreatments(at offsets: IndexSet) function is no longer needed
-
-    /// Generates a summary string for the treatment schedule.
     private func scheduleSummary(for treatment: Treatment) -> String {
         let count = treatment.timesOfDay.count
         let times = treatment.timesOfDay
@@ -87,7 +98,9 @@ struct ManageTreatmentsView: View {
                 dateFormatter.dateStyle = .none
                 dateFormatter.timeStyle = .short
                 var components = time
-                components.year = 2000; components.month = 1; components.day = 1;
+                components.year = 2000
+                components.month = 1
+                components.day = 1
                 guard let date = Calendar.current.date(from: components) else { return "??" }
                 return dateFormatter.string(from: date)
             }
@@ -102,7 +115,7 @@ struct ManageTreatmentsView: View {
     let treatmentScheduler = TreatmentScheduler()
     treatmentModel.configure()
 
-    return NavigationStack { // Wrap in NavigationStack for title/toolbar
+    return NavigationStack {
         ManageTreatmentsView()
             .environment(treatmentModel)
             .environment(treatmentScheduler)

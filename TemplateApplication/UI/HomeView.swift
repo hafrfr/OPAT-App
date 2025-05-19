@@ -9,7 +9,6 @@
 @_spi(TestingSupport) import SpeziAccount
 import SwiftUI
 
-
 struct HomeView: View {
     enum Tabs: String {
         case schedule
@@ -18,41 +17,40 @@ struct HomeView: View {
         case faq
     }
 
-
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
     @AppStorage(StorageKeys.tabViewCustomization) private var tabViewCustomization = TabViewCustomization()
 
     @State private var presentingAccount = false
 
-    
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("Schedule", systemImage: "list.clipboard", value: .schedule) {
                 OPATScheduleView(presentingAccount: $presentingAccount)
             }
-                .customizationID("home.schedule")
+            .customizationID("home.schedule")
             Tab("Contacts", systemImage: "phone.fill", value: .contact) {
                 Contacts(presentingAccount: $presentingAccount)
             }
-                .customizationID("home.contacts")
+            .customizationID("home.contacts")
             Tab("Instructions", systemImage: "list.bullet.clipboard.fill", value: .instructions) {
                 InstructionsListView()
-            } .customizationID("home.instructions")
+            }
+            .customizationID("home.instructions")
             Tab("FAQ", systemImage: "questionmark.circle", value: .faq) {
                 FAQView()
-            }.customizationID("home.faq")
+            }
+            .customizationID("home.faq")
         }
-            .tabViewStyle(.sidebarAdaptable)
-            .tabViewCustomization($tabViewCustomization)
-            .sheet(isPresented: $presentingAccount) {
-                AccountSheet(dismissAfterSignIn: false) // presentation was user initiated, do not automatically dismiss
-            }
-            .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding) {
-                AccountSheet()
-            }
+        .tabViewStyle(.sidebarAdaptable)
+        .tabViewCustomization($tabViewCustomization)
+        .sheet(isPresented: $presentingAccount) {
+            AccountSheet(dismissAfterSignIn: false)
+        }
+        .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding) {
+            AccountSheet()
+        }
     }
 }
-
 
 #if DEBUG
 #Preview {

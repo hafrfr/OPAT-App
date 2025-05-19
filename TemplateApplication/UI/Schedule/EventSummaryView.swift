@@ -46,7 +46,6 @@ struct EventSummaryView: View {
                     .padding(.vertical)
             } else {
                 VStack(alignment: .leading) {
-
                     ForEach(sortedEvents) { event in
                         HStack(spacing: 8) {
                             // Completion Status Icon

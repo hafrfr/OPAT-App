@@ -1,18 +1,17 @@
-
 @_spi(TestingSupport) import SpeziAccount
-import SpeziScheduler    // Ensure Scheduler is available for event completion
+import SpeziScheduler
 import SpeziSchedulerUI
-import SwiftUI
 import SpeziViews
+import SwiftUI
 
 struct PrimaryActionButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(FontTheme.button)
-            .foregroundColor(.white) // Ensures white text
+            .foregroundColor(.white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, Layout.Spacing.medium)
-            .background(ColorTheme.buttonLarge) // Your custom background
+            .background(ColorTheme.buttonLarge)
             .cornerRadius(Layout.Radius.medium)
             .opacity(configuration.isPressed ? 0.85 : 1.0)
             .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
@@ -21,18 +20,16 @@ struct PrimaryActionButtonStyle: ButtonStyle {
 }
 
 struct OPATScheduleView: View {
-    // MARK: - Static Date Range Helper
     private static var todayRange: Range<Date> {
         let start = Calendar.current.startOfDay(for: .now)
         let end = Calendar.current.date(byAdding: .day, value: 1, to: start)!
         return start..<end
     }
-    
-    // MARK: - Environment Modules
+
     @Environment(Account.self) private var account: Account?
     @Environment(TemplateApplicationScheduler.self) private var appScheduler: TemplateApplicationScheduler
     @Environment(TemplateApplicationStandard.self) private var standard
-    
+
     @EventQuery(in: Self.todayRange) private var todaysEvents: [Event]
     
     // MARK: - View State
@@ -100,6 +97,8 @@ struct OPATScheduleView: View {
         }
     }
 
+    // MARK: - Components
+
     @ViewBuilder
     private func eventRow(_ event: Event) -> some View {
         // Assuming InstructionsTile is defined and handles event display
@@ -130,7 +129,7 @@ struct OPATScheduleView: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private func actionButton(for event: Event) -> some View {
         let isDisabledByCompletion = event.isCompleted
@@ -165,7 +164,7 @@ struct OPATScheduleView: View {
                 .padding(.horizontal)
         }
     }
-    
+
     private func markCompleteButton(for event: Event, disabled: Bool) -> some View {
         Button(action: {
             if !disabled {

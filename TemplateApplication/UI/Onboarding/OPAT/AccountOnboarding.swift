@@ -1,10 +1,3 @@
-//
-// This source file is part of the Stanford Spezi Template Application open-source project
-//
-// SPDX-FileCopyrightText: 2023 Stanford University
-//
-// SPDX-License-Identifier: MIT
-//
 
 @_spi(TestingSupport) import SpeziAccount
 import SpeziOnboarding
