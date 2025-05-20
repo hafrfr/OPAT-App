@@ -228,7 +228,7 @@ struct AnyLocalizedError: LocalizedError {
     }
 }
 
-#if DEBUG
+
 struct PreviewPrimaryActionButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -241,5 +241,3 @@ struct PreviewPrimaryActionButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
     }
 }
-
-#endif
