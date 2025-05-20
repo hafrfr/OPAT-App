@@ -54,7 +54,7 @@
     {
       "linkId": "section-welcome",
       "type": "display",
-      "text": "👋 Welcome to your daily check-in! Let’s go through a few quick steps to help you stay safe and on track with your IV treatment.",
+      "text": "👋 Welcome to your daily check-in! \n\nLet’s go through a few quick steps to help you stay safe and on track with your IV treatment.",
       "_text": {
         "extension": [
           {
@@ -134,7 +134,7 @@
     {
       "linkId": "symptom-intro",
       "type": "display",
-      "text": "Next, we’ll check for any general symptoms or changes around your IV site – where your IV line enters your body — usually in your arm. These checks help us make sure your IV site looks healthy and there are no signs of irritation.",
+      "text": "Next, we’ll check for any general symptoms or changes around your IV site – where your IV line enters your body — usually in your arm. \n\nThese checks help us make sure your IV site looks healthy and there are no signs of irritation.",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -307,9 +307,27 @@
       ],
       "item": [
         {
+          "linkId": "e683a953-3184-4303-8561-4caffc41155d",
+          "type": "display",
+          "text": "In the next step, you can take a photo of your IV site (optional). During prototype testing this data is not saved.\nPhotos can help track changes or follow up if something looks unusual.\n\nAfter this step you can also choose to describe anything you’ve noticed in your own words.",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "highlight"
+                  }
+                ]
+              }
+            }
+          ],
+          "required": false
+        },
+        {
           "linkId": "6cd7eefe-14bf-4706-8697-c4061af07ce8",
           "type": "attachment",
-          "text": "Take a photo of your IV site (optional) Taking a picture can help you and your care team track changes over time or follow up if something looks unusual.",
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/maxSize",
@@ -326,10 +344,6 @@
             {
               "url": "http://ehelse.no/fhir/StructureDefinition/repeatstext",
               "valueString": "Add another photo (optional)"
-            },
-            {
-              "url": "http://helsenorge.no/fhir/StructureDefinition/sdf-sublabel",
-              "valueMarkdown": "This image stays on your device unless you decide to share it with your care team."
             }
           ],
           "code": [
@@ -340,6 +354,7 @@
               "id": "f4a587ec-0321-480b-bb9e-816cd25f2201"
             }
           ],
+          "repeats": true,
           "item": [
             {
               "linkId": "160d61ac-a4a6-4fd4-8703-8661b95a1a02",
@@ -370,43 +385,7 @@
                 }
               ]
             }
-          ],
-          "enableWhen": [
-            {
-              "question": "iv-site-symptoms",
-              "operator": "!=",
-              "answerCoding": {
-                "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa",
-                "code": "none"
-              }
-            }
-          ],
-          "_text": {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/rendering-markdown",
-                "valueMarkdown": "Take a photo of your IV site _(optional)_  \nTaking a picture can help you and your care team track changes over time or follow up if something looks unusual."
-              }
-            ]
-          },
-          "repeats": true
-        },
-        {
-          "linkId": "iv-symptoms-other-description",
-          "type": "text",
-          "text": "If you want, you can also describe in your own words what you've noticed.",
-          "enableWhen": [
-            {
-              "question": "iv-site-symptoms",
-              "operator": "!=",
-              "answerCoding": {
-                "code": "none",
-                "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
-              }
-            }
-          ],
-          "required": false,
-          "maxLength": 250
+          ]
         }
       ]
     },

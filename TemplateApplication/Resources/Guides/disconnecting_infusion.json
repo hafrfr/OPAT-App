@@ -1,62 +1,77 @@
 {
-  "GuideTitle": "Disconnecting Infusion",
+  "GuideTitle": "Disconnect Your Infusion",
   "steps": [
     {
-      "title": "How to disconnect your infusion",
+      "title": "Step 1: Prepare Your Environment",
       "substeps": [
         {
           "title": "Wash hands",
-          "moreInfo": "",
-          "description": "Wash your hands carefully the way your nurse showed you, then use alcohol gel on them.",
-          "imageName": null
+          "description": "Wash your hands carefully, then use alcohol gel on them.",
+          "moreInfo": "If unsure, first check out the instruction guide ''Wash Your Hands for IV Treatment''",
+          "imageName": "washing_hands"
         },
         {
           "title": "Clean space",
-          "moreInfo": "",
-          "description": "Clean your work area (or the blue tray if you have one) with a wipe. Dry it with a clean paper towel. Then wipe again with a disinfecting wipe and let it dry for at least 30 seconds",
+          "description": "Clean your work area (or the blue tray if you have one) with a wipe. Dry it with a clean paper towel. Then wipe again with a disinfecting wipe and let it dry for at least 30 seconds.",
+          "moreInfo": "A clean, dry surface helps protect the PICC line from bacteria. Avoid preparing on cloth or uneven surfaces.",
+          "imageName": "clean_space"
+        },
+        {
+          "title": "Set up towel",
+          "description": "Place your dressing towel on the work area. If using a dressing pack, open it and remove the towel. Only touch the corners.",
+          "moreInfo": null,
           "imageName": null
         },
         {
-          "title": "Set up",
-          "moreInfo": "",
-          "description": "Set up your dressing towel. If you have a dressing pack, open it and take out the towel. If not, just place the towel on the clean work surface or tray. Only touch the corners of the dressing towel.",
-          "imageName": null
-        },
-        {
-          "title": "Clean hands",
-          "moreInfo": "",
-          "description": "Use alcohol gel on your hands again.",
-          "imageName": null
-        },
+          "title": "Clean hands again",
+          "description": "Use alcohol gel on your hands again before touching any sterile items.",
+          "moreInfo": null,
+          "imageName": "handsanitizer"
+        }
+      ]
+    },
+    {
+      "title": "Step 2: Get Ready to Disconnect",
+      "substeps": [
         {
           "title": "Take out flushes",
-          "moreInfo": "",
-          "description": "Take the saline flush(es) out of their packaging and place them on your clean area.",
-          "imageName": null
+          "description": "Take the saline flush(es) out of their packaging and place them on your clean work area.",
+          "moreInfo": null,
+          "imageName": "take_out_flushes"
         },
         {
           "title": "Remove air from syringes",
-          "moreInfo": "",
-          "description": "Remove air from the saline syringes:\n• Take off the white cap.\n• Gently push the saline until you see it at the top of the syringe.\n• Put the white cap back on until you’re ready to use it.\n• Do this for each flush. Do not touch any key parts.\n• Close all clamps on your IV line and on the device tubing (if it has one)",
-          "imageName": null
-        },
+          "description": "Remove air from the saline syringes:\n• Take off the white cap.\n• Gently push the saline until you see it at the top of the syringe.\n• Put the white cap back on until ready.\n• Do this for each flush.\n• Close all clamps on your IV line and on the device tubing (if it has one).",
+          "moreInfo": "Removing air is essential to avoid introducing bubbles. Close all clamps before disconnecting to prevent leaks.",
+          "imageName": "remove_air_from_syringe"
+        }
+      ]
+    },
+    {
+      "title": "Step 3: Disconnect and Flush",
+      "substeps": [
         {
-          "title": "Clean device",
-          "moreInfo": "",
-          "description": "Open an alcohol wipe.\n• Disconnect the device from your IV line.\n• Clean the end of your IV line with the wipe using a scrubbing motion. Let it dry for 30 seconds.",
-          "imageName": null
+          "title": "Clean and disconnect",
+          "description": "Open an alcohol wipe.\n• Disconnect the device from your IV line.\n• Clean the end of your IV line thoroughly using a scrubbing motion. Let it dry for 30 seconds.",
+          "moreInfo": "Scrub well and don’t rush the drying time — this is a key infection control step.",
+          "imageName": "clean_PICC_line"
         },
         {
           "title": "Flush PICC line",
-          "moreInfo": "",
-          "description": "• Flush your line with the saline syringe using the slow push-pause method your nurse taught you.\n• Put the blue cap back on your IV line and throw away your empty device in the waste bin your nurse provided",
-          "imageName": null
-        },
+          "description": "Use the saline syringe to flush your line using a slow push-pause method.\n• Re-cap with the blue cap when done.\n• Dispose of the used device in the waste bin provided by your nurse.",
+          "moreInfo": "Push-pause method: Gently push about 2 ml of saline at a time, then pause. Repeat like you’re pumping. You should have flushed a total of 20 ml of saline.",
+          "imageName": "flush_PICC_line"
+        }
+      ]
+    },
+    {
+      "title": "Step 4: Final Cleaning",
+      "substeps": [
         {
-          "title": "Clean hands",
-          "moreInfo": "",
-          "description": "Wash your hands again or use alcohol gel once you are finished. Clean up and throw away any rubbish",
-          "imageName": null
+          "title": "Clean up and wash hands",
+          "description": "Wash your hands again or use alcohol gel. Clean up the area and throw away any used materials.",
+          "moreInfo": "Place sharps and used materials in your provided bin — never in household waste. Ask your nurse if unsure.",
+          "imageName": "washing_hands"
         }
       ]
     }

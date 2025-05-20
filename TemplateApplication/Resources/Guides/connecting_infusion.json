@@ -1,98 +1,113 @@
 {
-  "GuideTitle": "Connecting Infusion",
+  "GuideTitle": "Connect Your Infusion",
   "steps": [
     {
-      "title": "How to connect your infusion",
+      "title": "Step 1: Prepare Your Environment",
       "substeps": [
         {
           "title": "Wash hands",
-          "moreInfo": "",
-          "description": "Wash your hands carefully the way your nurse showed you, then use alcohol gel on them.",
-          "imageName": null
+          "description": "Wash your hands carefully, as per the instructions given in the ''Wash your Hands for IV treatment'' guide, then use alcohol gel on them.",
+          "moreInfo": "Always wash up to the wrists and let hands dry fully after using alcohol gel — this is one of the most important steps to prevent infection.",
+          "imageName": "washing_hands"
         },
         {
           "title": "Clean space",
-          "moreInfo": "",
-          "description": "Clean your work area (or the blue tray if you have one) with a wipe. Dry it with a clean paper towel. Then wipe again with a disinfecting wipe and let it dry for at least 30 seconds",
-          "imageName": null
+          "description": "Clean your work area (or the blue tray if you have one) with a wipe. Dry it with a clean paper towel. Then wipe again with a disinfecting wipe and let it dry for at least 30 seconds.",
+          "moreInfo": "A clean, dry, and disinfected surface helps protect your PICC line from bacteria that can cause bloodstream infections.",
+          "imageName": "clean_space"
         },
         {
           "title": "Set up",
-          "moreInfo": "",
           "description": "Set up your dressing towel. If you have a dressing pack, open it and take out the towel. If not, just place the towel on the clean work surface or tray. Only touch the corners of the dressing towel.",
+          "moreInfo": null,
           "imageName": null
         },
         {
-          "title": "Clean hands",
-          "moreInfo": "",
+          "title": "Clean hands again",
           "description": "Use alcohol gel on your hands again.",
-          "imageName": null
-        },
+          "moreInfo": null,
+          "imageName": "handsanitizer"
+        }
+      ]
+    },
+    {
+      "title": "Step 2: Prepare Equipment",
+      "substeps": [
         {
           "title": "Take out flushes",
-          "moreInfo": "",
           "description": "Take your device and saline flushes out of their packages and place them on your clean work area.",
-          "imageName": null
+          "moreInfo": null,
+          "imageName": "take_out_flushes"
         },
         {
           "title": "Remove air from syringes",
-          "moreInfo": "",
           "description": "Remove air from the saline syringes:\n• Take off the white cap.\n• Gently push the saline until you see it at the top of the syringe.\n• Put the white cap back on until you’re ready to use it.\n• Do this for each flush. Do not touch any key parts.",
-          "imageName": null
+          "moreInfo": "Removing air prevents discomfort and air entering the bloodstream. If unsure, ask your nurse to demonstrate during a follow-up.",
+          "imageName": "remove_air_from_syringe"
         },
         {
           "title": "Prime the device",
-          "moreInfo": "",
           "description": "Get your device ready by taking off the blue cap from the delivery tubing. Keep the blue cap so you can use it again when you disconnect the device.",
-          "imageName": null
+          "moreInfo": null,
+          "imageName": "prime_the_device"
         },
         {
           "title": "Open clamp",
-          "moreInfo": "",
           "description": "If there is a slide clamp, open it. Wait until you see a small drop of liquid – this shows it is ready and there is no air in the line.",
-          "imageName": null
+          "moreInfo": null,
+          "imageName": "open_clamp"
         },
         {
           "title": "Close clamp",
-          "moreInfo": "",
           "description": "Put the blue cap back on and close the clamp (if there is one) until you’re ready to connect it. Take care not to touch any key parts.",
-          "imageName": null
-        },
+          "moreInfo": null,
+          "imageName": "close_clamp"
+        }
+      ]
+    },
+    {
+      "title": "Step 3: Flush Your Line",
+      "substeps": [
         {
           "title": "Clean PICC line",
-          "moreInfo": "",
           "description": "Use an alcohol wipe to clean the connector on the end of your IV line. Scrub it well and let it dry for 30 seconds.",
-          "imageName": null
+          "moreInfo": "Clean for at least 15 seconds using a twisting motion — let it air-dry completely before continuing.",
+          "imageName": "clean_PICC_line"
         },
         {
           "title": "Connect syringe",
-          "moreInfo": "",
-          "description": "Take off the white cap from the saline syringe and connect the syringe to your IV line.\n• Push the syringe into the end of your line.\n• Twist it clockwise to lock it. Do not to touch any key parts.",
-          "imageName": null
+          "description": "Take off the white cap from the saline syringe and connect the syringe to your IV line.\n• Push the syringe into the end of your line.\n• Twist it clockwise to lock it. Do not touch any key parts.",
+          "moreInfo": null,
+          "imageName": "connect_syringe"
         },
         {
           "title": "Flush PICC line",
-          "moreInfo": "",
           "description": "Open the clamp on your line. Slowly push the saline in using a push-pause method to flush your line.",
-          "imageName": null
-        },
+          "moreInfo": "Push-pause technique (2–3 ml at a time with a brief stop) helps clean the line and reduce blockage risk. Finish with positive pressure.",
+          "imageName": "flush_PICC_line"
+        }
+      ]
+    },
+    {
+      "title": "Step 4: Start the Infusion",
+      "substeps": [
         {
-          "title": "Connect",
-          "moreInfo": "",
-          "description": "Now connect your device:",
-          "imageName": null
+          "title": "Connect the device",
+          "description": "Now connect your device.",
+          "moreInfo": null,
+          "imageName": "connect_device"
         },
         {
           "title": "Open clamps",
-          "moreInfo": "",
           "description": "Check the connection is secure. Open the clamp on your device tubing and any other clamps on your line. The infusion will begin.",
-          "imageName": null
+          "moreInfo": "Keep the device near body level for accurate flow — a small carry pouch or waist bag can help.",
+          "imageName": "open_clamps"
         },
         {
-          "title": "Step 17",
-          "moreInfo": "",
+          "title": "Step 5: Clean up and wash hands",
           "description": "Wash your hands again or use alcohol gel once you are finished. Clean up and throw away any rubbish.",
-          "imageName": null
+          "moreInfo": null,
+          "imageName": "washing_hands"
         }
       ]
     }

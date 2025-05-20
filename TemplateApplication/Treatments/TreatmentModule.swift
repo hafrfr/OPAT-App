@@ -128,7 +128,7 @@ final class TreatmentModule: Module, DefaultInitializable, EnvironmentAccessible
             id: UUID(), // Generate a unique ID
             type: .opat,
             timesOfDay: [
-                .init(hour: 8, minute: 0),
+                .init(hour: 10, minute: 0),
                 .init(hour: 14, minute: 0)
             ],
             startDate: .now, // Start today

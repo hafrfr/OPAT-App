@@ -1,0 +1,62 @@
+{
+  "GuideTitle": "Get Ready for Your Infusion",
+  "steps": [
+    {
+      "title": "Step 1: Prepare the Equipment",
+      "substeps": [
+        {
+          "title": "Gather your supplies",
+          "description": "Choose a clean, well-lit area where you always prepare your IV equipment. Make sure you have the following items:\n• Hand sanitizer\n• Surface disinfectant\n• Your prescribed treatment (infusion pump or pre-filled syringes)\n• Pre-filled saline flushes\n• Tray or clean work surface\n• Clean tissues or paper towels\nIf anything is missing, contact your healthcare provider before starting.",
+          "moreInfo": null,
+          "imageName": null
+        },
+        {
+          "title": "Wash your hands",
+          "description": "Wash your hands carefully according to the hand hygiene guide.",
+          "moreInfo": "Clean hands are your best protection against infection. Do this before handling any equipment.",
+          "imageName": "washing_hands"
+        }
+      ]
+    },
+    {
+      "title": "Step 2: Handle Your Medication Safely",
+      "substeps": [
+        {
+          "title": "Take medication out of the fridge",
+          "description": "Take your medication out of the fridge before your infusion to let it reach room temperature. Some pumps need 2 hours, others only 15–30 minutes depending on tubing and model. Follow the instructions from your nurse or the label on your pump packaging.",
+          "moreInfo": "Never place the pump at the back of the fridge — it may freeze. Keep it in a clean ziploc bag while stored.",
+          "imageName": null
+        },
+        {
+          "title": "Check the medication label",
+          "description": "Make sure the label matches your name, the medication, and the dose. Check the expiration date.",
+          "moreInfo": "If anything is incorrect or unclear, do not use the medication and contact your nurse or pharmacy.",
+          "imageName": "checking_expire_date"
+        },
+        {
+          "title": "Inspect the medication and flushes",
+          "description": "Make sure the pump or syringes are intact. Do not use them if damaged, leaking, discolored, or if they contain particles. Check your saline flushes the same way.",
+          "moreInfo": null,
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "Step 3: Set Up Your Work Area",
+      "substeps": [
+        {
+          "title": "Disinfect the surface",
+          "description": "Disinfect your work surface, including your mobile phone. Dry everything with a clean paper towel.",
+          "moreInfo": "Use a disinfectant wipe or spray approved for surfaces. Avoid placing equipment on wet areas.",
+          "imageName": null
+        },
+        {
+          "title": "Open supplies",
+          "description": "Remove your pump, syringes, and flushes from their packaging and place them on the clean work surface.",
+          "moreInfo": null,
+          "imageName": "gather_equipments"
+        }
+      ]
+    }
+  ]
+}

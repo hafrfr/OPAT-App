@@ -24,15 +24,16 @@ struct HomeView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab("Schedule", systemImage: "list.clipboard", value: .schedule) {
+            Tab("Schedule", systemImage: "calendar.badge.clock", value: .schedule) {
                 OPATScheduleView(presentingAccount: $presentingAccount)
+                .tint(ColorTheme.tabBarItemActive)
             }
             .customizationID("home.schedule")
             Tab("Contacts", systemImage: "phone.fill", value: .contact) {
                 Contacts(presentingAccount: $presentingAccount)
             }
             .customizationID("home.contacts")
-            Tab("Instructions", systemImage: "list.bullet.clipboard.fill", value: .instructions) {
+            Tab("Instructions", systemImage: "book.fill", value: .instructions) {
                 InstructionsListView()
             }
             .customizationID("home.instructions")
@@ -53,8 +54,6 @@ struct HomeView: View {
             setupTransparentTabBar()
         }
     }
-    
-    
     
         private func setupTransparentTabBar() {
             let appearance = UITabBarAppearance()

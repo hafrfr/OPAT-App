@@ -74,7 +74,6 @@
 				Resources/Guides/picc_care.json,
 				Resources/Guides/washing_hands.json,
 				"Supporting Files/GoogleService-Info.plist",
-				UI/Schedule/Onboarding/OPAT/AccountOnboarding.swift,
 			);
 			target = 653A255C28338800005D4D48 /* OPATAppTests */;
 		};
@@ -86,7 +85,6 @@
 				Resources/Guides/picc_care.json,
 				Resources/Guides/washing_hands.json,
 				"Supporting Files/GoogleService-Info.plist",
-				UI/Schedule/Onboarding/OPAT/AccountOnboarding.swift,
 			);
 			target = 653A256628338800005D4D48 /* OPATAppUITests */;
 		};
@@ -533,7 +531,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
@@ -562,7 +560,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chalmers.digitalhealth.opatathome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -750,7 +748,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
@@ -779,7 +777,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chalmers.digitalhealth.opatathome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -803,7 +801,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
@@ -832,7 +830,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chalmers.digitalhealth.opatathome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

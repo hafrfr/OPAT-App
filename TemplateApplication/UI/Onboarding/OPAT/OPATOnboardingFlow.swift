@@ -29,13 +29,11 @@ struct OPATOnboardingFlow: View {
             OPATFeatures()
             AccountOnboarding()
             OPATConsent()
-            OPATHealthKitPermission()
+            // OPATHealthKitPermission()
 
             if !localNotificationAuthorization {
                 OPATNotifications()
             }
-
-    
         }
         .interactiveDismissDisabled(!completedOnboardingFlow)
         .onAppear {

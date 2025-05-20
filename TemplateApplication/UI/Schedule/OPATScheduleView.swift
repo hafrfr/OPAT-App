@@ -29,6 +29,10 @@ struct OPATScheduleView: View {
     @Environment(Account.self) private var account: Account?
     @Environment(TemplateApplicationScheduler.self) private var appScheduler: TemplateApplicationScheduler
     @Environment(TemplateApplicationStandard.self) private var standard
+    
+    @Environment(GuideModule.self) private var guideModule
+    
+    let specificGuideTitle: String = "Get Ready for Your Infusion"
 
     @EventQuery(in: Self.todayRange) private var todaysEvents: [Event]
     
@@ -134,7 +138,8 @@ struct OPATScheduleView: View {
             Button(action: {
                 if !isDisabledByCompletion {
                     print("OPATScheduleView: 'Start Check-In' tapped for \(String(describing: event.id)). Presenting Vitals Preamble.")
-                    self.eventForVitalsPreamble = event // Trigger VitalsPreambleView
+                    // self.eventForVitalsPreamble = event // Trigger VitalsPreambleView (Temporarily disabled for v3)
+                    self.eventForQuestionnaireSheet = event // Directly show questionnaire without vitals
                 }
             }, label: {
                  Text("Start Check-In")
@@ -173,16 +178,21 @@ struct OPATScheduleView: View {
     }
     
     private func instructionsButton(disabled: Bool) -> some View {
-        Button {
-          print("Instructions button tapped.")
-        } label: {
-          Label("To Instructions", systemImage: "book")
+        NavigationLink(destination: InstructionsListView()) {
+            Label("To Instructions", systemImage: "book")
+                .font(FontTheme.button)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, Layout.Spacing.medium)
+                .background(ColorTheme.buttonLarge)
+                .cornerRadius(Layout.Radius.medium)
         }
-        .buttonStyle(PrimaryActionButtonStyle())
+        .buttonStyle(.plain)
+        .listRowInsets(EdgeInsets())
         .disabled(disabled)
-      }
+        .opacity(disabled ? 0.5 : 1.0)
+    }
     
-
     
     @MainActor
     private func completeAndLogRegularEvent(_ event: Event) async {

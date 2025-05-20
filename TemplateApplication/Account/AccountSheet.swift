@@ -52,23 +52,33 @@ struct AccountSheet: View {
             NavigationLink {
                 EditHospitalView()
             } label: {
-                Label(
-                    selectedHospital.isEmpty ? "Not Set" : selectedHospital,
-                    systemImage: "stethoscope"
-                )
+                Label {
+                        Text(selectedHospital.isEmpty ? "Not Set" : selectedHospital)
+                    } icon: {
+                        Image(systemName: "stethoscope")
+                            .foregroundColor(ColorTheme.buttonLarge)
+                    }
             }
-
             NavigationLink {
                 ManageTreatmentsView()
             } label: {
-                Label("Manage Treatments", systemImage: "list.bullet.clipboard")
+                Label {
+                    Text("Manage Treatments")
+                } icon: {
+                    Image(systemName: "list.bullet.clipboard")
+                        .foregroundColor(ColorTheme.buttonLarge)
+                }
             }
             NavigationLink {
                 TreatmentProgressCalendarView()
             } label: {
-                Label("Care-Plan",systemImage: "calender.and.person")
+                Label {
+                    Text("Care-Plan")
+                } icon: {
+                    Image(systemName: "calendar.and.person")
+                        .foregroundColor(ColorTheme.buttonLarge)
+                }
             }
-            
             NavigationLink {
                 ContributionsList(projectLicense: .mit)
             } label: {

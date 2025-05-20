@@ -26,7 +26,7 @@ struct InstructionSubStepView: View {
 
     var body: some View {
         // PrimaryBackgroundView now has the toolbar attached
-        PrimaryBackgroundView(title: mainStepTitle) {
+        PrimaryBackgroundView(title: mainStepTitle, useWhiteContainer: true) {
             // instructionContent handles the main view content
             instructionContent
         }
