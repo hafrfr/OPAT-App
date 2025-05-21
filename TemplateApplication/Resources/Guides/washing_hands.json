@@ -40,10 +40,16 @@
           "imageName": "wash_hand_step5"
         },
         {
-          "title": "Knuckles and thumbs",
-          "description": "Rub your knuckles with fingers locked together. Then rotate each thumb inside the opposite palm.",
-          "moreInfo": "Thumbs are often missed — give them extra attention.",
+          "title": "Knuckles",
+          "description": "Rub your knuckles with fingers locked together.",
+          "moreInfo": "",
           "imageName": "wash_hand_step6"
+        },
+        {
+            "title": "Thumbs",
+            "moreInfo": "Thumbs are often missed — give them extra attention.",
+            "description": "Rotate each thumb inside the opposite palm.",
+            "imageName": "wash_hand_step7"
         },
         {
           "title": "Fingertips",
