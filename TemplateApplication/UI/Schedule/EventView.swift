@@ -30,13 +30,12 @@ struct EventView: View {
                  do {
                     // 1. Store the QuestionnaireResponse itself
                     await standard.add(response: questionnaireResponse)
-                    // logger.info("QuestionnaireResponse for event \(event.id) with ID \(questionnaireResponse.id.uuidString) added to standard.")
                     print("QuestionnaireResponse for event \(event.id) with ID \(questionnaireResponse.identifier) added to standard.") // Replaced logger
                     
                     if let snapshot = healthKitSnapshotFromPreamble {
                         let responseIdString: String? = questionnaireResponse.identifier as? String
                         await standard.storeHealthKitSnapshot(snapshot, forResponseId: responseIdString ?? "")
-                        // logger.info("HealthKitSnapshot for event \(event.id) stored separately, linked to QR ID \(questionnaireResponse.id.uuidString).")
+                        
                         print("HealthKitSnapshot for event \(event.id) stored separately, linked to QR ID \(questionnaireResponse.id).") // Replaced logger
                     }
                     

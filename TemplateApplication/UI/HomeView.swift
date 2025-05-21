@@ -34,11 +34,11 @@ struct HomeView: View {
             }
             .customizationID("home.contacts")
             Tab("Instructions", systemImage: "book.fill", value: .instructions) {
-                InstructionsListView()
+                InstructionsListView(presentingAccount: $presentingAccount)
             }
             .customizationID("home.instructions")
             Tab("FAQ", systemImage: "questionmark.circle", value: .faq) {
-                FAQView()
+                FAQView(presentingAccount: $presentingAccount)
             }
             .customizationID("home.faq")
         }
@@ -57,17 +57,8 @@ struct HomeView: View {
     
         private func setupTransparentTabBar() {
             let appearance = UITabBarAppearance()
-            
-            // Option 1: Fully Transparent Background
-            // This will make the tab bar background completely clear.
             appearance.configureWithTransparentBackground()
-            
-            // Option 2: Translucent "Frosted Glass" Effect (Often preferred for "see-through")
-            // Uncomment the lines below and comment out `configureWithTransparentBackground()` above if you prefer this.
-            // appearance.configureWithDefaultBackground() // Good starting point
-            // appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial) // Adjust style as needed
-            // If using backgroundEffect, ensure no opaque backgroundColor is set:
-            // appearance.backgroundColor = UIColor.clear
+
 
 
             // Apply the appearance to the standard and scroll edge states

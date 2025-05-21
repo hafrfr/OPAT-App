@@ -11,9 +11,9 @@ import SpeziAccount
 import SpeziContact
 import SwiftUI
 
+
 struct Contacts: View {
     private let contactsData: [OpatContact] = [
-        // 24/7 contacts
         OpatContact(
             name: "OPAT Nurse Hotline",
             phoneNumber: "031-123-4567",
@@ -57,39 +57,58 @@ struct Contacts: View {
 
     @Environment(Account.self) private var account: Account?
     @Binding var presentingAccount: Bool
+    
 
     var body: some View {
-        PrimaryBackgroundView(title: "Contacts") {
-            ScrollView(showsIndicators: false) {
-                LazyVStack(alignment: .leading, spacing: Layout.Spacing.large) {
-                    ForEach(groupedContacts, id: \.availability) { group in
-                        Text(group.availability)
-                            .font(FontTheme.title.weight(.semibold))
-                            .foregroundColor(ColorTheme.title)
-                            .padding(.top)
-                            .padding(.horizontal)
+        // Wrap your view's content in a NavigationStack
+        NavigationStack {
+            PrimaryBackgroundView(title: "Contacts") { // PrimaryBackgroundView is now inside the NavigationStack
+                ScrollView(showsIndicators: false) {
+                    LazyVStack(alignment: .leading, spacing: Layout.Spacing.large) {
+                        ForEach(groupedContacts, id: \.availability) { group in
+                            Text(group.availability)
+                                .font(FontTheme.title.weight(.semibold))
+                                .foregroundColor(ColorTheme.title)
+                                .padding(.top)
+                                .padding(.horizontal)
 
-                        VStack(spacing: Layout.Spacing.medium) {
-                            ForEach(group.contacts) { contact in
-                                ContactCard(contact: contact)
+                            VStack(spacing: Layout.Spacing.medium) {
+                                ForEach(group.contacts) { contact in
+                                    ContactCard(contact: contact)
+                                }
                             }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
+                    }
+                    .padding(.bottom, Layout.Spacing.xLarge + 15) // Avoid tab overlap
+                }
+                .scrollDismissesKeyboard(.interactively)
+                .safeAreaInset(edge: .bottom) {
+                    Color.clear.frame(height: Layout.Spacing.xLarge) // Adds breathing room
+                }
+            }
+            // The .toolbar is attached to PrimaryBackgroundView.
+            // Since PrimaryBackgroundView is now a child of NavigationStack,
+            // its toolbar items will populate the NavigationStack's navigation bar.
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    // The AccountButton itself usually checks if the user is signed in.
+                    // Your `if account != nil` is an additional safeguard.
+                    if account?.signedIn ?? false { // More robust check for SpeziAccount
+                        AccountButton(isPresented: $presentingAccount)
+                    } else if account != nil { // Fallback if signedIn is not immediately available but account exists
+                         // You might want to log or handle this case differently
+                         // For now, let's assume AccountButton handles non-signed-in state gracefully
+                         // or you might want to hide it if not signedIn
+                        AccountButton(isPresented: $presentingAccount)
                     }
                 }
-                .padding(.bottom, Layout.Spacing.xLarge+15) // Avoid tab overlap
             }
-            .scrollDismissesKeyboard(.interactively)
-            .safeAreaInset(edge: .bottom) {
-                Color.clear.frame(height: Layout.Spacing.xLarge) // Adds breathing room
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if account != nil {
-                    AccountButton(isPresented: $presentingAccount)
-                }
-            }
+            // If PrimaryBackgroundView's "title" prop is for its own internal display
+            // and you want a standard navigation bar title, uncomment and use this:
+            // .navigationTitle("Contacts")
+            // If you use .navigationTitle, you might need to adjust PrimaryBackgroundView
+            // to not show its own title to avoid duplication.
         }
     }
 

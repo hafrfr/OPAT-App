@@ -5,13 +5,20 @@
 // Created by harre on 2025-04-27.
 import Spezi
 import SwiftUI
+import SpeziAccount
 
 struct InstructionsListView: View {
     @Environment(GuideModule.self) private var guideModule
-
+    @Environment(Account.self) private var account: Account?
+    @Binding var presentingAccount: Bool
+    
+    init(presentingAccount: Binding<Bool>) {
+        self._presentingAccount = presentingAccount
+    }
+    
     var body: some View {
-        NavigationStack {
-            PrimaryBackgroundView(title: "Instructions") {
+        NavigationStack { // Your existing NavigationStack
+            PrimaryBackgroundView(title: "Instructions") { // This is the main content view
                 GeometryReader { geometry in
                     ScrollView {
                         VStack {
@@ -36,16 +43,17 @@ struct InstructionsListView: View {
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                  
+                   if account != nil {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
+            
+                }
+            }
         }
-    }
+} // End of body
 }
 
-#if DEBUG
-#Preview {
-    // Preview needs a mock GuideModule instance
-    let mockGuideModule = GuideModule()
-    mockGuideModule.configure()
-    return InstructionsListView()
-        .environment(mockGuideModule) // Provide the mock module to the environment
-}
-#endif
+

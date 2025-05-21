@@ -43,7 +43,7 @@ struct OPATScheduleView: View {
     @State private var eventForVitalsPreamble: Event? = nil
     @State private var eventForQuestionnaireSheet: Event? = nil // Renamed from presentedEvent for clarity
     @State private var healthKitSnapshotForQuestionnaire: HealthKitSnapshot? = nil
-
+    @State private var showInstructionsView = false
     // State for managing completion of non-questionnaire tasks
     @State private var eventToProcessForCompletion: Event? = nil
     
@@ -73,19 +73,18 @@ struct OPATScheduleView: View {
             .sheet(item: $eventForVitalsPreamble) { eventToPreamble in
                 VitalsPreambleView(event: eventToPreamble) { snapshot in
                     self.healthKitSnapshotForQuestionnaire = snapshot
-                    self.eventForQuestionnaireSheet = eventToPreamble // Trigger questionnaire sheet
-                    self.eventForVitalsPreamble = nil // Dismiss VitalsPreambleView sheet
-                }
-            }
+                    self.eventForQuestionnaireSheet = eventToPreamble
+                    self.eventForVitalsPreamble = nil}}
             .sheet(item: $eventForQuestionnaireSheet) { eventForSheet in
-                EventView(eventForSheet, healthKitSnapshotFromPreamble: healthKitSnapshotForQuestionnaire)
-            }
+                EventView(eventForSheet, healthKitSnapshotFromPreamble: healthKitSnapshotForQuestionnaire)}
+            .navigationDestination(isPresented: $showInstructionsView) {
+                        InstructionsListView(presentingAccount: $presentingAccount)
+                    }
             .viewStateAlert(state: $appScheduler.viewState)
             .task(id: appScheduler.viewState) {
                 if case .processing = appScheduler.viewState, let event = self.eventToProcessForCompletion {
-                    // Use String(describing:) for logging Event.ID if it's not directly a String or UUID
                     print("OPATScheduleView: .task triggered by .processing state for event \(String(describing: event.id))")
-                    await completeAndLogRegularEvent(event) // Use a specific function for regular events
+                    await completeAndLogRegularEvent(event)
                 } else if appScheduler.viewState != .processing && self.eventToProcessForCompletion != nil {
                     self.eventToProcessForCompletion = nil
                     print("OPATScheduleView: .task detected viewState no longer .processing, cleared eventToProcessForCompletion.")
@@ -130,7 +129,6 @@ struct OPATScheduleView: View {
     @ViewBuilder
     private func actionButton(for event: Event) -> some View {
         let isDisabledByCompletion = event.isCompleted
-        // Disable button if this specific event is being processed (for non-questionnaire tasks)
         let isDisabledByProcessing = (self.eventToProcessForCompletion?.id == event.id && appScheduler.viewState == .processing)
         let finalDisabledState = isDisabledByCompletion || isDisabledByProcessing
 
@@ -138,8 +136,7 @@ struct OPATScheduleView: View {
             Button(action: {
                 if !isDisabledByCompletion {
                     print("OPATScheduleView: 'Start Check-In' tapped for \(String(describing: event.id)). Presenting Vitals Preamble.")
-                    // self.eventForVitalsPreamble = event // Trigger VitalsPreambleView (Temporarily disabled for v3)
-                    self.eventForQuestionnaireSheet = event // Directly show questionnaire without vitals
+                    self.eventForVitalsPreamble = event
                 }
             }, label: {
                  Text("Start Check-In")
@@ -153,8 +150,6 @@ struct OPATScheduleView: View {
                 instructionsButton(disabled: isDisabledByCompletion)
             }.padding(.top, 8) // Assuming Layout.Spacing.small
         } else {
-            // Fallback for other task types
-            // Assuming event.task.title is LocalizedStringResource or similar that can be directly used in Text
             Text("Task: \(event.task.title)")
                 .font(.caption)
                 .foregroundColor(.gray)
@@ -178,19 +173,16 @@ struct OPATScheduleView: View {
     }
     
     private func instructionsButton(disabled: Bool) -> some View {
-        NavigationLink(destination: InstructionsListView()) {
+        Button(action: {
+            if !disabled {
+                self.showInstructionsView = true // Set state to trigger navigation
+            }
+        }) {
             Label("To Instructions", systemImage: "book")
-                .font(FontTheme.button)
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, Layout.Spacing.medium)
-                .background(ColorTheme.buttonLarge)
-                .cornerRadius(Layout.Radius.medium)
         }
-        .buttonStyle(.plain)
-        .listRowInsets(EdgeInsets())
+        .buttonStyle(PrimaryActionButtonStyle()) // Apply the same style as Mark Complete
         .disabled(disabled)
-        .opacity(disabled ? 0.5 : 1.0)
+        .opacity(disabled ? 0.6 : 1.0) // Adjusted opacity slightly for disabled state
     }
     
     

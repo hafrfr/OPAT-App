@@ -45,7 +45,7 @@ struct OPATHealthKitPermission: View {
                             if ProcessInfo.processInfo.isPreviewSimulator {
                                 try await _Concurrency.Task.sleep(for: .seconds(5))
                             } else {
-                                //try await healthKit.askForAuthorization()
+                                try await healthKit.askForAuthorization()
                                 
                             }
                         } catch {
