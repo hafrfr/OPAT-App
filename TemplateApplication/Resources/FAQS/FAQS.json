@@ -9,10 +9,227 @@
   },
   {
     "question": "How do I use the infusion pump?",
-    "answer": "Detailed instructions and videos on using your specific infusion pump can be found in the 'Instructions' section of this app. Always refer to the guidance provided by your nurse or care team."
+    "answer": "Detailed instructions can be found in the 'Instructions' section of this app. If unsure, always refer to the guidance provided by your nurse or care team."
   },
   {
     "question": "What if I miss a dose?",
     "answer": "Contact your OPAT care team as soon as possible if you miss a dose or have issues administering your medication. Do not double up on doses unless specifically instructed to do so."
+  },
+  
+  {
+    "question": "How can I prevent infection when using a PICC-line?",
+    "answer": "Maintain good hygiene:\n- Wash hands thoroughly before handling.\n- Disinfect work surfaces.\n- Use clean clothes and avoid jewelry.\n- Regularly inspect the skin around the PICC-line for redness, swelling, or warmth.",
+    "tags": [
+      "hygiene",
+      "PICC-line",
+      "infection"
+    ]
+  },
+  {
+    "question": "What if my infusion pump leaks or stops working?",
+    "answer": "If you see a leak, clamp your line right away and disconnect the pump. Put the blue cap back on the tubing and call your OPAT team.\nIf the pump stops working, check:\n- That your IV line is not clamped or twisted.\n- That the tube from the pump is not clamped.\nIf it still does not work, call your OPAT team.",
+    "tags": [
+      "infusion",
+      "troubleshooting",
+      "pump"
+    ]
+  },
+  {
+    "question": "What should I do if the pump does not start?",
+    "answer": "If the pump doesn't start:\n1. Make sure the clamp is open.\n2. Check that the pump is at room temperature.\n3. Gently massage the tubing where the clamp was.\n4. Wait a few minutes and check again. \nIf it still doesn’t work, replace the pump and inform your OPAT team.",
+    "tags": [
+      "troubleshooting",
+      "pump",
+      "infusion"
+    ]
+  },
+  {
+    "question": "What should I do if there are air bubbles in the pump or tubing?",
+    "answer": "If the bubbles are in the tubing below the filter, open the clamp and flush them out.\nIf the bubbles are inside the pump or above the filter, no action is needed—the filter will block air from reaching you.",
+    "tags": [
+      "homepump",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "What are symptoms of a possible infection from the PICC-line?",
+    "answer": "Symptoms include:\n- Fever and chills\n- Redness, swelling, or pain at the insertion site\n- Discharge from the site\nContact the infection clinic immediately if any of these occur.",
+    "tags": [
+      "infection",
+      "PICC-line",
+      "symptoms"
+    ]
+  },
+  {
+    "question": "What do I do if I suspect a blockage in the PICC line?",
+    "answer": "If you cannot flush the line or get no blood return:\n- Check for mechanical issues like a kinked or clamped line.\n- Try flushing with start-stop technique using 40-60 ml NaCl.\n- Lie down, lift the arm, or adjust position.\n- If still blocked, contact your OPAT clinic. Do not force flush.",
+    "tags": [
+      "PICC-line",
+      "blockage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "How should I dispose of a used infusion pump?",
+    "answer": "Used pumps can usually be thrown in household burnable waste. If you're unsure, ask your nurse or check your region’s disposal instructions.",
+    "tags": [
+      "homepump",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "Can I shower while using the pump?",
+    "answer": "Yes, but don’t get the pump or the line wet. Cover the dressing and pump with waterproof protection.\n Use a shower hook or bag to hang the pump outside the water stream.",
+    "tags": [
+      "shower",
+      "daily life",
+      "pump"
+    ]
+  },
+  {
+    "question": "Where should I keep the pump while I sleep?",
+    "answer": "Keep it level with your IV line—not on the floor or above your head.\nMany people find it comfortable to place it under their pillow.",
+    "tags": [
+      "sleep",
+      "infusion",
+      "comfort"
+    ]
+  },
+  {
+    "question": "How can I carry the pump during the day?",
+    "answer": "Ask your OPAT team for a carrying case that straps around your waist or chest.\nKeep the pump out of direct sunlight and heat.",
+    "tags": [
+      "daily life",
+      "pump",
+      "comfort"
+    ]
+  },
+  {
+    "question": "Can I fly with the infusion pump?",
+    "answer": "Yes, you can fly with it—but check with your OPAT team first in case of other health concerns.\nThe pump must go with you inside the airplane cabin (not in checked luggage).\nAlways review your travel plans with your OPAT specialist before you go.",
+    "tags": [
+      "travel",
+      "pump",
+      "infusion"
+    ]
+  },
+  {
+    "question": "How should I prepare the pump before use?",
+    "answer": "Take it out of the fridge and let it cool to room temperature. Some pumps need 2 hours, others only 15–30 minutes depending on tubing and model. Follow the instructions from your nurse or the label on your pump packaging.",
+    "tags": [
+      "preparation",
+      "pump",
+      "infusion"
+    ]
+  },
+  {
+    "question": "What happens if I forget to take my infusion pump out of the fridge?",
+    "answer": "It’s safe to use, but the infusion may run more slowly and feel cold or uncomfortable. Letting the medication warm to room temperature helps improve comfort and flow. Ask your nurse how long your specific pump should sit out before use.",
+    "tags": [
+      "pump",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "What types of infusion pumps are used in OPAT?",
+    "answer": "The most common types of infusion pumps used are Homepump® and Intermate®. The choice depends on the antibiotic's stability information. Both function the same way and are equally effective.",
+    "tags": [
+      "homepump",
+      "troubleshooting"
+    ]
+  },
+  {
+    "question": "What are common side effects of IV antibiotics?",
+    "answer": "Common side effects include:\n- Nausea, vomiting, diarrhea\n- Rash, itching, or skin irritation\n- White patches in mouth, vaginal discharge\nMost are mild and pass after treatment. Contact your nurse if symptoms occur.",
+    "tags": [
+      "side effects",
+      "antibiotics",
+      "treatment"
+    ]
+  },
+  {
+    "question": "When should I not do my infusion?",
+    "answer": "Do not start your infusion if:\n- The expiry date has passed on your medication or flushes.\n- The medication name on the pump is different from what your doctor prescribed.\n- The balloon inside the pump is damaged (burst or split), or there is a leak or a break in the tubing.\n- The blue cap or clear cap on top of the pump is missing.",
+    "tags": [
+      "infusion",
+      "safety",
+      "pump"
+    ]
+  },
+  {
+    "question": "How do I know when my infusion pump is finished?",
+    "answer": "**For Homepump:** The infusion is complete when the pump has fully collapsed and you can no longer see liquid inside. It may feel firm or form a solid shape.\n\n**For Intermate:** The infusion is complete when the center tube is clearly visible and the balloon has flattened.",
+    "tags": [
+      "infusion",
+      "pump",
+      "completion"
+    ]
+  },
+  {
+    "question": "What if something else goes wrong with the pump?",
+    "answer": "Tell your OPAT team about any issues.\nWrite down the batch number (found on the bottom of the pump) in case they need it.",
+    "tags": [
+      "infusion",
+      "troubleshooting",
+      "pump"
+    ]
+  },
+  {
+    "question": "What if there’s some medicine left in the pump after it finishes?",
+    "answer": "It’s normal for a little bit of medicine to remain in the pump or tubing. If there’s visible liquid left, don’t throw it away. Bring the pump to your pharmacy or your next hospital visit so it can be safely disposed of. If you're unsure, ask your OPAT team what applies in your region.",
+    "tags": [
+      "infusion",
+      "pump",
+      "medicine"
+    ]
+  },
+  {
+    "question": "Am I doing this on my own?",
+    "answer": "No — you’re not expected to handle everything alone. You are part of the care team, and you’re supported in that role. If something feels unclear or wrong, stop and ask. Your nurse or clinic is still there to help, even at home.",
+    "tags": ["support", "safety", "team"]
+  },
+  {
+    "question": "What if I don’t feel confident doing this at home?",
+    "answer": "That’s completely normal — a lot of patients feel that way at first. You’ll become more comfortable over time. This app is here to guide you step-by-step, and your care team is just a phone call away if you need them.",
+    "tags": [
+        "confidence",
+        "support",
+        "empowerment"]
+  },
+  {
+    "question": "Where can I find the instructions and guides?",
+    "answer": "You’ll find all instructions under the 'Instructions' tab at the bottom of your screen. There are step-by-step guides with images for connecting your infusion, washing your hands, checking your PICC line, and more.",
+    "tags": [
+        "app",
+        "navigation",
+        "instructions"
+    ]
+  },
+  {
+    "question": "Are my photos saved when I do the daily check-in?",
+    "answer": "No — during prototype testing, photos are not stored or shared. They are used only to help you track how your IV site looks from day to day. In the future, we will offer a secure way to store or share these with your care team, in order to improve your treatment.",
+    "tags": [
+        "privacy",
+        "photos",
+        "check-in"
+    ]
+  },
+  {
+    "question": "What is the push-pause method?",
+    "answer": "The push-pause method is a way to flush your PICC line that helps prevent blockages. Instead of pushing all the saline in at once, you gently push about 2 ml at a time, then pause briefly before pushing again — like a small pump motion. This creates turbulence in the line that helps clear the inside walls.\n\nYou’ll use this method whenever you flush your line — for example, before connecting your infusion and after disconnecting it.",
+    "tags": [
+        "flushing",
+        "technique",
+        "PICC-line"
+    ]
+  },
+  {
+    "question": "Who is responsible for helping me during my OPAT treatment?",
+    "answer": "Your OPAT care usually involves a mix of people, like your infection clinic, home healthcare nurses, and sometimes your pharmacy. Not all regions have a dedicated OPAT team, so your setup may be more flexible. No matter the structure, you are an important part of the care team — your role, routines, and awareness are key to making treatment at home work well. If you’re ever unsure, contact your nurse via the Contact tab.",
+    "tags": [
+        "team",
+        "support",
+        "treatment"
+    ]
   }
 ]

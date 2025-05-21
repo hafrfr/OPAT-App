@@ -4,6 +4,22 @@
     "" : {
 
     },
+    "(%@)" : {
+
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@:" : {
+
+    },
     "%lld days remaining" : {
 
     },
@@ -21,7 +37,14 @@
       }
     },
     "ACCOUNT_SIGNED_IN_DESCRIPTION" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are logged in and ready to go."
+          }
+        }
+      }
     },
     "ACCOUNT_SUBTITLE" : {
       "localizations" : {
@@ -61,6 +84,12 @@
     "Back" : {
 
     },
+    "Back to instructions" : {
+
+    },
+    "Cancel" : {
+
+    },
     "Care Plan" : {
 
     },
@@ -75,12 +104,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check-ins are completely optional, and your answers stay private on your device."
+            "value" : "Use check-ins to track symptoms and IV site health — privately and at your own pace."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Check-ins are completely optional, and your answers stay private on your device."
           }
         }
@@ -91,12 +120,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Private & Optional"
+            "value" : "You’re in control"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Private & Optional"
           }
         }
@@ -139,12 +168,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your check-ins help you stay engaged and work together with your care team to support your treatment."
+            "value" : "Track symptoms, log photos of your IV site, and reflect on how confident you feel — one step at a time."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Your check-ins help you stay engaged and work together with your care team to support your treatment."
           }
         }
@@ -171,12 +200,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We offer a private check-in feature to help you reflect on your own treatment."
+            "value" : "Use check-ins to track symptoms and IV site health — privately and at your own pace."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "We offer a private check-in feature to help you reflect on your own treatment."
           }
         }
@@ -199,6 +228,15 @@
       }
     },
     "Contacts" : {
+
+    },
+    "Continue to Questions" : {
+
+    },
+    "Continue Without Vitals" : {
+
+    },
+    "Could Not Fetch Vitals" : {
 
     },
     "Daily OPAT Check-in" : {
@@ -226,6 +264,9 @@
     "Error Loading Step" : {
 
     },
+    "Error: %@. You can still proceed." : {
+
+    },
     "Events" : {
 
     },
@@ -237,12 +278,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Short videos and simple guides to help you feel confident managing your IV treatment at home."
+            "value" : "Learn how to safely prepare, connect, and complete your infusion treatment."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Short videos and simple guides to help you feel confident managing your IV treatment at home."
           }
         }
@@ -253,12 +294,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Educational Resources"
+            "value" : "Step-by-Step Guidance"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Educational Resources"
           }
         }
@@ -269,12 +310,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Know who to call — your nurse, 1177, or emergency — and when."
+            "value" : "Quickly access the OPAT nurse hotline, emergency services, and clinic contact info when needed."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Know who to call — your nurse, 1177, or emergency — and when."
           }
         }
@@ -301,12 +342,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We’ll help you know what to keep an eye on and when to take action — calmly and clearly."
+            "value" : "Learn what’s normal – and when something needs attention."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "We’ll help you know what to keep an eye on and when to take action — calmly and clearly."
           }
         }
@@ -333,12 +374,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quick answers to common questions and guidance on what to do if something feels unclear."
+            "value" : "Answers to common questions and helpful tips to support you along the way."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Quick answers to common questions and guidance on what to do if something feels unclear."
           }
         }
@@ -365,12 +406,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A simple daily check-in helps you stay on track and reflect on how things are going."
+            "value" : "Use the simple check-in tool to reflect on symptoms and log photos of your IV site."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "A simple daily check-in helps you stay on track and reflect on how things are going."
           }
         }
@@ -397,12 +438,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Helpful tools to guide you through OPAT treatment at home."
+            "value" : "Tools to guide and support you through home treatment."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Helpful tools to guide you through OPAT treatment at home."
           }
         }
@@ -424,6 +465,12 @@
         }
       }
     },
+    "Fetch Vitals" : {
+
+    },
+    "Fetching your latest vitals..." : {
+
+    },
     "GET_STARTED" : {
       "localizations" : {
         "en" : {
@@ -442,6 +489,32 @@
     },
     "Got it!" : {
 
+    },
+    "Grant Access" : {
+
+    },
+    "HealthKit Access" : {
+
+    },
+    "HEALTHKIT_PERMISSIONS_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We will not request access (Do not worry, your data will stay on your device).  We will implement this in a later version"
+          }
+        }
+      }
+    },
+    "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NOT ACTIVATED IN CURRENT PROTOTYPE"
+          }
+        }
+      }
     },
     "Hospital" : {
 
@@ -593,6 +666,9 @@
         }
       }
     },
+    "Let's Check Your Vitals" : {
+
+    },
     "License Information" : {
 
     },
@@ -603,6 +679,9 @@
 
     },
     "More Info" : {
+
+    },
+    "Next" : {
 
     },
     "NEXT" : {
@@ -625,6 +704,9 @@
 
     },
     "No events scheduled for today." : {
+
+    },
+    "Not available" : {
 
     },
     "NOTIFICATIONS_BODY" : {
@@ -682,6 +764,9 @@
 
     },
     "Pre-treatment task: %@" : {
+
+    },
+    "Retry" : {
 
     },
     "Return to Instructions" : {
@@ -761,6 +846,9 @@
     "Task: %@" : {
 
     },
+    "This data can be saved with your questionnaire response." : {
+
+    },
     "This type of event is currently unsupported. Please contact the developer of this app." : {
 
     },
@@ -788,17 +876,26 @@
     "Unsupported Event" : {
 
     },
+    "Vitals Check" : {
+
+    },
+    "Vitals Fetched!" : {
+
+    },
+    "We'll quickly fetch your latest health data before the questionnaire." : {
+
+    },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Learn what OPAT means and how IV treatment works — in clear, simple steps."
+            "value" : "Learn what OPAT means, what to expect, and how to manage your infusion step-by-step."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Learn what OPAT means and how IV treatment works — in clear, simple steps."
           }
         }
@@ -825,12 +922,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whether you're receiving treatment or helping someone, we're here to support you."
+            "value" : "Whether you're receiving treatment or helping someone, this app gives you helpful tools and support."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Whether you're receiving treatment or helping someone, we're here to support you."
           }
         }
@@ -857,12 +954,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tips and answers to help you feel ready and stay safe throughout treatment."
+            "value" : "Tips and check-in tools to help you feel ready and stay safe throughout treatment."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tips and answers to help you feel ready and stay safe throughout treatment."
           }
         }
@@ -889,12 +986,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your guide to safe and confident IV treatment — at home."
+            "value" : "Your companion for safe and confident IV treatment at home."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Your guide to safe and confident IV treatment — at home."
           }
         }

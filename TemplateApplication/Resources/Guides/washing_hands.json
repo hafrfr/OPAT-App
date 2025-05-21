@@ -1,0 +1,92 @@
+{
+  "GuideTitle": "Wash Your Hands for IV Treatment",
+  "steps": [
+    {
+      "title": "Step 1: Get Started with Soap and Water",
+      "substeps": [
+        {
+          "title": "Wet your hands",
+          "description": "Wet your hands thoroughly under running water.",
+          "moreInfo": null,
+          "imageName": "wash_hand_step1"
+        },
+        {
+          "title": "Apply soap",
+          "description": "Dispense enough soap to cover all hand surfaces.",
+          "moreInfo": "Use liquid soap if possible. Bar soap can carry bacteria.",
+          "imageName": "wash_hand_step2"
+        },
+        {
+          "title": "Palm to palm",
+          "description": "Rub your hands together, palm to palm, in a circular motion.",
+          "moreInfo": null,
+          "imageName": "wash_hand_step3"
+        }
+      ]
+    },
+    {
+      "title": "Step 2: Clean Every Part of Your Hands",
+      "substeps": [
+        {
+          "title": "Backs of hands",
+          "description": "Rub the back of each hand with the opposite palm, fingers interlaced.",
+          "moreInfo": null,
+          "imageName": "wash_hand_step4"
+        },
+        {
+          "title": "Between fingers",
+          "description": "Rub your hands with fingers interlaced, palm to palm.",
+          "moreInfo": null,
+          "imageName": "wash_hand_step5"
+        },
+        {
+          "title": "Knuckles",
+          "description": "Rub your knuckles with fingers locked together.",
+          "moreInfo": "",
+          "imageName": "wash_hand_step6"
+        },
+        {
+            "title": "Thumbs",
+            "moreInfo": "Thumbs are often missed — give them extra attention.",
+            "description": "Rotate each thumb inside the opposite palm.",
+            "imageName": "wash_hand_step7"
+        },
+        {
+          "title": "Fingertips",
+          "description": "Rub your fingertips in the opposite palm using a circular motion.",
+          "moreInfo": "Fingertips carry the most germs — clean them thoroughly before handling your IV line.",
+          "imageName": "wash_hand_step8"
+        }
+      ]
+    },
+    {
+      "title": "Step 3: Rinse and Dry",
+      "substeps": [
+        {
+          "title": "Rinse",
+          "description": "Rinse your hands thoroughly under clean, running water.",
+          "moreInfo": null,
+          "imageName": "wash_hand_step9"
+        },
+        {
+          "title": "Dry your hands",
+          "description": "Dry your hands completely with a clean paper towel.",
+          "moreInfo": "Bacteria spread more easily from wet hands than dry ones.",
+          "imageName": "wash_hand_step10"
+        },
+        {
+          "title": "Turn off the tap",
+          "description": "Use the paper towel to turn off the faucet. Then throw the towel away.",
+          "moreInfo": "This prevents re-contaminating your hands after cleaning.",
+          "imageName": "wash_hand_step11"
+        },
+        {
+          "title": "Use hand sanitizer if needed",
+          "description": "If you touch something unclean after washing, apply alcohol gel and rub it in until dry.",
+          "moreInfo": "Sanitizer is helpful between tasks or when soap and water are not available. Only use it on visibly clean hands.",
+          "imageName": "handsanitizer"
+        }
+      ]
+    }
+  ]
+}

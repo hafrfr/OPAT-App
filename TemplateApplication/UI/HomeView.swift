@@ -24,15 +24,16 @@ struct HomeView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab("Schedule", systemImage: "list.clipboard", value: .schedule) {
+            Tab("Schedule", systemImage: "calendar.badge.clock", value: .schedule) {
                 OPATScheduleView(presentingAccount: $presentingAccount)
+                .tint(ColorTheme.tabBarItemActive)
             }
             .customizationID("home.schedule")
             Tab("Contacts", systemImage: "phone.fill", value: .contact) {
                 Contacts(presentingAccount: $presentingAccount)
             }
             .customizationID("home.contacts")
-            Tab("Instructions", systemImage: "list.bullet.clipboard.fill", value: .instructions) {
+            Tab("Instructions", systemImage: "book.fill", value: .instructions) {
                 InstructionsListView()
             }
             .customizationID("home.instructions")
@@ -41,6 +42,7 @@ struct HomeView: View {
             }
             .customizationID("home.faq")
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($tabViewCustomization)
         .sheet(isPresented: $presentingAccount) {
@@ -48,8 +50,32 @@ struct HomeView: View {
         }
         .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding) {
             AccountSheet()
+        } .onAppear { 
+            setupTransparentTabBar()
         }
     }
+    
+        private func setupTransparentTabBar() {
+            let appearance = UITabBarAppearance()
+            
+            // Option 1: Fully Transparent Background
+            // This will make the tab bar background completely clear.
+            appearance.configureWithTransparentBackground()
+            
+            // Option 2: Translucent "Frosted Glass" Effect (Often preferred for "see-through")
+            // Uncomment the lines below and comment out `configureWithTransparentBackground()` above if you prefer this.
+            // appearance.configureWithDefaultBackground() // Good starting point
+            // appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial) // Adjust style as needed
+            // If using backgroundEffect, ensure no opaque backgroundColor is set:
+            // appearance.backgroundColor = UIColor.clear
+
+
+            // Apply the appearance to the standard and scroll edge states
+            UITabBar.appearance().standardAppearance = appearance
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+            }
+        }
 }
 
 #if DEBUG

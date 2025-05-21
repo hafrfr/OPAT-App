@@ -1,0 +1,62 @@
+{
+  "GuideTitle": "Check Your IV Site",
+  "steps": [
+    {
+      "title": "Check Your IV Site Daily",
+      "substeps": [
+        {
+          "title": "Look for early signs",
+          "description": "Check the skin around your IV site every day. Look for:\n• Redness\n• Swelling\n• Warmth\n• Pain or tenderness\n• Discharge or fluid",
+          "moreInfo": "These can be early signs of irritation, infection, or phlebitis. Contact your nurse if you see any of them.",
+          "imageName": "check_picc_line"
+        },
+        {
+          "title": "Feel the area",
+          "description": "Gently press around the IV site to check for warmth or discomfort.",
+          "moreInfo": "Warm, tender areas could signal inflammation or infection — even if they look normal at first.",
+          "imageName": null
+        },
+        {
+          "title": "Check line position",
+          "description": "Make sure your IV line hasn’t moved. If the tubing outside your arm looks longer than usual, stop using it and contact your nurse.",
+          "moreInfo": "Movement of the line can cause irritation or make it unsafe to use.",
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "Know the Warning Signs",
+      "substeps": [
+        {
+          "title": "Call your clinic immediately if:",
+          "description": "• You notice spreading redness or swelling\n• There is pus or fluid around the site\n• You feel increasing pain or heat\n• The dressing is wet or loose",
+          "moreInfo": "These could be signs of infection. Do not use the line until it’s been checked.",
+          "imageName": null
+        },
+        {
+          "title": "Call 112 or seek urgent care if:",
+          "description": "• You have a high fever or chills\n• You feel faint, confused, or short of breath\n• There is rapid swelling or severe pain\n• You suspect sepsis or a severe allergic reaction",
+          "moreInfo": "These are emergency symptoms. Tell them you are receiving IV treatment at home.",
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "Keep Monitoring During Use",
+      "substeps": [
+        {
+          "title": "Check before every infusion",
+          "description": "Always check the site before connecting anything. If there is redness, swelling, or tenderness, do not proceed.",
+          "moreInfo": "Using the line when inflamed can make problems worse or introduce infection.",
+          "imageName": null
+        },
+        {
+          "title": "Stop immediately if:",
+          "description": "• You feel burning or stinging\n• You see swelling or leakage during the infusion\n• The infusion is not flowing as expected",
+          "moreInfo": "These could signal infiltration (fluid leaking into tissue) or a blocked or dislodged line.",
+          "imageName": null
+        }
+      ]
+    }
+  ]
+}

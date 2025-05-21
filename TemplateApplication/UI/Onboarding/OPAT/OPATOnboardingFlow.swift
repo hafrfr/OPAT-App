@@ -27,14 +27,13 @@ struct OPATOnboardingFlow: View {
             OPATWelcome()
             OPATIntro()
             OPATFeatures()
+            AccountOnboarding()
             OPATConsent()
+            // OPATHealthKitPermission()
 
             if !localNotificationAuthorization {
                 OPATNotifications()
             }
-
-            // TODO: If more onboarding steps (e.g. LanguageSelector, accessibility settings) are added, insert here
-            // TODO: Consider letting users revisit onboarding later from settings
         }
         .interactiveDismissDisabled(!completedOnboardingFlow)
         .onAppear {

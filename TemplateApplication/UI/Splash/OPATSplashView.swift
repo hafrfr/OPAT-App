@@ -43,7 +43,7 @@ struct OPATSplashView: View {
 
                 // Supportive subheading (localized)
                 Text(String(localized: "SPLASH_SUBTITLE"))
-                    .font(FontTheme.body)
+                    .font(FontTheme.bodyBold)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color("SandYellow"))
                     .padding(.top, Layout.Spacing.small)

@@ -4,7 +4,7 @@
   "id": "opatfollowup",
   "name": "OPATFollowUp",
   "title": "Daily OPAT Check-in",
-  "description": "This daily check-in helps you and your healthcare team monitor how you're doing during your antibiotic treatment at home.",
+  "description": "This daily check-in helps you and your healthcare team monitor how you're doing during your treatment at home.",
   "version": "1",
   "status": "draft",
   "publisher": "Chalmers x Stanford (Student Prototype)",
@@ -54,12 +54,20 @@
     {
       "linkId": "section-welcome",
       "type": "display",
-      "text": "👋 Welcome to your daily check-in!"
+      "text": "👋 Welcome to your daily check-in! \n\nLet’s go through a few quick steps to help you stay safe and on track with your IV treatment.",
+      "_text": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/rendering-markdown",
+            "valueMarkdown": "### 👋 Welcome to your daily check-in!\n\nLet’s go through a few quick steps to help you stay safe and on track with your IV treatment."
+          }
+        ]
+      }
     },
     {
       "linkId": "checkin-feeling",
       "type": "choice",
-      "text": "How are you feeling today?",
+      "text": "How are you feeling right now?",
       "required": true,
       "answerOption": [
         {
@@ -94,41 +102,65 @@
             "display": "I feel unwell"
           }
         }
-      ]
-    },
-    {
-      "linkId": "checkin-followup",
-      "type": "string",
-      "text": "Want to share more about how you're feeling? (Optional)",
-      "required": false,
-      "enableWhen": [
+      ],
+      "item": [
         {
-          "question": "checkin-feeling",
-          "operator": "=",
-          "answerCoding": {
-            "code": "off",
-            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
-          }
-        },
-        {
-          "question": "checkin-feeling",
-          "operator": "=",
-          "answerCoding": {
-            "code": "unwell",
-            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
-          }
+          "linkId": "checkin-followup",
+          "type": "text",
+          "text": "Want to share more about how you're feeling?",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "checkin-feeling",
+              "operator": "=",
+              "answerCoding": {
+                "code": "off",
+                "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+              }
+            },
+            {
+              "question": "checkin-feeling",
+              "operator": "=",
+              "answerCoding": {
+                "code": "unwell",
+                "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+              }
+            }
+          ],
+          "maxLength": 250
         }
       ]
     },
     {
       "linkId": "symptom-intro",
       "type": "display",
-      "text": "Next, we’ll check for any general symptoms or changes around your IV site — that’s where your antibiotic line enters your body, usually in your arm. This helps us make sure your treatment is on track."
+      "text": "Next, we’ll check for any general symptoms or changes around your IV site – where your IV line enters your body — usually in your arm. \n\nThese checks help us make sure your IV site looks healthy and there are no signs of irritation.",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                "code": "highlight"
+              }
+            ]
+          }
+        }
+      ],
+      "_text": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/rendering-markdown",
+            "valueMarkdown": "#### **Next**, we’ll check for **any general symptoms** or **changes around your IV site** – where your IV line enters your body — usually in your arm.\n\nThese checks help us make sure your IV site looks healthy and there are no signs of irritation."
+          }
+        ]
+      }
     },
     {
       "linkId": "general-symptoms",
       "type": "choice",
-      "text": "Have you felt any of the following symptoms since your last check-in?",
+      "text": "Have you experienced any of the following symptoms since your last check-in?",
       "required": false,
       "repeats": true,
       "extension": [
@@ -188,28 +220,31 @@
             "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
           }
         }
-      ]
-    },
-    {
-      "linkId": "general-symptoms-other-description",
-      "type": "string",
-      "text": "Please describe your symptoms",
-      "enableWhen": [
-        {
-          "question": "general-symptoms",
-          "operator": "!=",
-          "answerCoding": {
-            "code": "none",
-            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
-          }
-        }
       ],
-      "required": false
+      "item": [
+        {
+          "linkId": "general-symptoms-other-description",
+          "type": "text",
+          "text": "Want to share more about your symptoms?",
+          "enableWhen": [
+            {
+              "question": "general-symptoms",
+              "operator": "!=",
+              "answerCoding": {
+                "code": "none",
+                "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+              }
+            }
+          ],
+          "required": false,
+          "maxLength": 250
+        }
+      ]
     },
     {
       "linkId": "iv-site-symptoms",
       "type": "choice",
-      "text": "Have you noticed any of the following symptoms at your IV site?",
+      "text": "Have you noticed any changes or symptoms around your IV site?",
       "required": false,
       "repeats": true,
       "extension": [
@@ -269,33 +304,121 @@
             "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
           }
         }
-      ]
-    },
-    {
-      "linkId": "iv-symptoms-other-description",
-      "type": "string",
-      "text": "Please describe what you noticed",
-      "enableWhen": [
-        {
-          "question": "iv-site-symptoms",
-          "operator": "!=",
-          "answerCoding": {
-            "code": "none",
-            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
-          }
-        }
       ],
-      "required": false
+      "item": [
+        {
+          "linkId": "e683a953-3184-4303-8561-4caffc41155d",
+          "type": "display",
+          "text": "In the next step, you can take a photo of your IV site (optional). During prototype testing this data is not saved.\nPhotos can help track changes or follow up if something looks unusual.\n\nAfter this step you can also choose to describe anything you’ve noticed in your own words.",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "highlight"
+                  }
+                ]
+              }
+            }
+          ],
+          "required": false
+        },
+        {
+          "linkId": "6cd7eefe-14bf-4706-8697-c4061af07ce8",
+          "type": "attachment",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/maxSize",
+              "valueDecimal": 5
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
+              "valueInteger": 0
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 3
+            },
+            {
+              "url": "http://ehelse.no/fhir/StructureDefinition/repeatstext",
+              "valueString": "Add another photo (optional)"
+            }
+          ],
+          "code": [
+            {
+              "code": "225113003",
+              "display": "Clinical photograph of wound",
+              "system": "http://snomed.info/sct",
+              "id": "f4a587ec-0321-480b-bb9e-816cd25f2201"
+            }
+          ],
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "160d61ac-a4a6-4fd4-8703-8661b95a1a02",
+              "type": "text",
+              "required": false,
+              "repeats": false,
+              "readOnly": true,
+              "maxLength": 250,
+              "_text": {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/rendering-markdown",
+                    "valueMarkdown": "_Tip: Take a clear photo of your IV site close-up, in good lighting. If unsure, consult your care team._"
+                  }
+                ]
+              },
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "linkId": "section3-intro",
       "type": "display",
-      "text": "Finally, let’s check how things went with your treatment today — this helps us understand if anything needs adjusting or support."
+      "text": "Finally, let’s check how your treatment went today — this helps us make sure everything is going smoothly and that no support or adjustments are needed.",
+      "_text": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/rendering-markdown",
+            "valueMarkdown": "#### **Finally, let’s check how your treatment went today** — this helps us make sure everything is going smoothly and that no support or adjustments are needed."
+          }
+        ]
+      },
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                "code": "highlight"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "linkId": "antibiotic-dose",
       "type": "choice",
-      "text": "Did you receive your antibiotic dose as planned today?",
+      "text": "Have you received your IV treatment as planned today?",
       "required": true,
       "answerOption": [
         {
@@ -312,28 +435,37 @@
             "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
           }
         }
-      ]
-    },
-    {
-      "linkId": "missed-dose-reason",
-      "type": "string",
-      "text": "Can you tell us why?",
-      "enableWhen": [
+      ],
+      "extension": [
         {
-          "question": "antibiotic-dose",
-          "operator": "=",
-          "answerCoding": {
-            "code": "no",
-            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
-          }
+          "url": "http://helsenorge.no/fhir/StructureDefinition/sdf-sublabel",
+          "valueMarkdown": "If you have a dose scheduled later today, it’s perfectly fine to select **No** — this just helps us keep track."
         }
       ],
-      "required": false
+      "item": [
+        {
+          "linkId": "missed-dose-reason",
+          "type": "text",
+          "text": "Would you like to tell us what happened?",
+          "enableWhen": [
+            {
+              "question": "antibiotic-dose",
+              "operator": "=",
+              "answerCoding": {
+                "code": "no",
+                "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+              }
+            }
+          ],
+          "required": false,
+          "maxLength": 250
+        }
+      ]
     },
     {
       "linkId": "infusion-difficulties",
       "type": "choice",
-      "text": "Did you have any difficulty with the infusion or equipment?",
+      "text": "Did you run into any issues with the infusion or equipment today?",
       "required": false,
       "answerOption": [
         {
@@ -364,28 +496,88 @@
             "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
           }
         }
+      ],
+      "item": [
+        {
+          "linkId": "infusion-difficulties-description",
+          "type": "text",
+          "text": "Would you like to describe what happened?",
+          "enableWhen": [
+            {
+              "question": "infusion-difficulties",
+              "operator": "!=",
+              "answerCoding": {
+                "code": "no_issues",
+                "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+              }
+            }
+          ],
+          "required": false,
+          "maxLength": 500
+        }
       ]
     },
     {
-      "linkId": "infusion-difficulties-description",
-      "type": "string",
-      "text": "Please describe what happened",
-      "enableWhen": [
+      "linkId": "2f90837d-2afc-4c68-8d82-df901c03f7f5",
+      "type": "integer",
+      "text": "How confident do you feel about managing your IV treatment today? \n0 = Not confident at all \n10 = Fully confident",
+      "extension": [
         {
-          "question": "infusion-difficulties",
-          "operator": "!=",
-          "answerCoding": {
-            "code": "no_issues",
-            "system": "urn:uuid:e9ecdd47-2e8b-49b3-8780-9d0769a246aa"
+          "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+          "valueInteger": 0
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "slider",
+                "display": "Slider"
+              }
+            ]
           }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+          "valueInteger": 1
+        },
+        {
+          "url": "http://helsenorge.no/fhir/StructureDefinition/sdf-sublabel",
+          "valueMarkdown": "0 = _Not confident at all_  5 = _Somewhat confident_  10 = _Fully confident_"
         }
       ],
-      "required": false
+      "required": true
     },
     {
       "linkId": "end-display",
       "type": "display",
-      "text": "Thank you for checking in with us! Please check out our other resources if you need help with OPAT. If you feel the need to talk to a nurse, please contact 1177."
+      "text": "Thank you for checking in today! For help with any part of your treatment – explore the Instructions tab for step-by-step guidance, visit the FAQ for common questions, or reach out to your care team via the Contacts tab.",
+      "_text": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/rendering-markdown",
+            "valueMarkdown": "#### **Thank you for checking in today!**  \nFor help with any part of your treatment – explore the **Instructions tab** for step-by-step guidance, visit the **FAQ** for common questions, or reach out to your care team via the **Contacts tab**."
+          }
+        ]
+      },
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                "code": "highlight"
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

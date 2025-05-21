@@ -4,12 +4,13 @@
 // A celebration screen after completing an instruction guide.
 // Created by OPAT @ Home team, Chalmers University of Technology, 2025.
 
-import SwiftUI
 import Confetti3D
+import SwiftUI
 
 struct CelebrationView: View {
     private let confettiView = C3DView()
     @Environment(\.dismiss) private var dismiss
+    @State private var animateGlow = false
 
     var body: some View {
         PrimaryBackgroundView(title: "") {
@@ -33,11 +34,19 @@ struct CelebrationView: View {
         VStack(spacing: Layout.Spacing.large) {
             Spacer()
             Image(systemName: "party.popper.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 100)
-                .foregroundColor(ColorTheme.progressActive)
-            
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120, height: 120)
+                            .foregroundColor(ColorTheme.progressActive)
+                            .shadow(
+                                color: Color("SandYellow")
+                                    .opacity(animateGlow ? 0.8 : 0.3),
+                                radius: animateGlow ? 18 : 8
+                            )
+                            .animation(.easeInOut(duration: 1.2).repeatForever(autoreverses: true), value: animateGlow)
+                            .onAppear {
+                                animateGlow = true
+                            }
             Text("All Done!")
                 .font(FontTheme.title)
                 .foregroundColor(ColorTheme.title)

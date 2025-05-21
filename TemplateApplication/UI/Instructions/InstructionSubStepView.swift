@@ -13,6 +13,7 @@ struct InstructionSubStepView: View {
     let onNext: () -> Void
     let onBack: () -> Void
     let onStepSelected: ((Int) -> Void)?
+    @Environment(\.dismiss) private var dismiss
 
     // State (remains the same)
     @State private var animateContent = false
@@ -25,7 +26,7 @@ struct InstructionSubStepView: View {
 
     var body: some View {
         // PrimaryBackgroundView now has the toolbar attached
-        PrimaryBackgroundView(title: mainStepTitle) {
+        PrimaryBackgroundView(title: mainStepTitle, useWhiteContainer: true) {
             // instructionContent handles the main view content
             instructionContent
         }
@@ -34,11 +35,11 @@ struct InstructionSubStepView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 // Use the existing onBack action for this button
                 Button {
-                    onBack()
+                    dismiss()
                 } label: {
                     Image(systemName: "chevron.left")
                         .fontWeight(.semibold)
-                    Text("Back")
+                    Text("Back to instructions")
                 }
                  .foregroundColor(ColorTheme.buttonLarge) // Example color
 

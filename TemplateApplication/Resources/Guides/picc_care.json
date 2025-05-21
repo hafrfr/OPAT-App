@@ -1,0 +1,73 @@
+{
+  "GuideTitle": "Take Care of Your PICC Line",
+  "steps": [
+    {
+      "title": "Before Each Use",
+      "substeps": [
+        {
+          "title": "Check your line",
+          "description": "• Confirm the green clamps on the extension tubing are open.\n• Gently flush with saline (NaCl) — it should go in easily.\n• If it's difficult or blocked, do not force it.",
+          "moreInfo": "Forcing a blocked line can damage it or cause complications. Contact your care team if flushing is not smooth.",
+          "imageName": "open_clamp"
+        },
+        {
+          "title": "Check for blood return",
+          "description": "• Try to gently pull back with a syringe to check for blood return.\n• If there's no return, flush with 20ml saline before and after your antibiotics unless told otherwise.",
+          "moreInfo": "Not getting blood return can be normal — your nurse will assess the line regularly.",
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "Daily Self-Check",
+      "substeps": [
+        {
+          "title": "Inspect the skin",
+          "description": "• Look at and gently feel the skin around your PICC line.\n• Watch for redness, swelling, pain, heat, or discharge.\nContact your nurse or clinic immediately if you notice any of these signs.",
+          "moreInfo": "These could be early signs of infection or irritation.",
+          "imageName": "check_picc_line"
+        },
+        {
+          "title": "Keep it secure",
+          "description": "Ensure your line is secured and tucked — avoid pulling or kinking.",
+          "moreInfo": null,
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "Keeping Your Line Dry and Safe",
+      "substeps": [
+        {
+          "title": "Cover your line when you shower",
+          "description": "• Always cover your PICC line with plastic or a waterproof sleeve.\n• Avoid getting the dressing wet.",
+          "moreInfo": "If the dressing becomes even slightly wet or loose, it must be changed as soon as possible to reduce infection risk.",
+          "imageName": "shower"
+        },
+        {
+          "title": "Avoid soaking and heat",
+          "description": "• Do NOT take baths, swim, or use saunas while you have a PICC line.",
+          "moreInfo": "Bathing and saunas can expose the line to water, steam, and sweat — all of which increase the chance of infection.",
+          "imageName": null
+        }
+      ]
+    },
+    {
+      "title": "At Your Clinic Visits",
+      "substeps": [
+        {
+          "title": "Dressing changes",
+          "description": "Your PICC-line will be checked and re-dressed at least once per week, or sooner if the dressing becomes wet or loose.",
+          "moreInfo": "Never try to change the dressing on your own — it must be done by trained staff using sterile technique.",
+          "imageName": null
+        },
+        {
+          "title": "Bring used syringes",
+          "description": "Place any used syringes with visible blood in a plastic bag and bring them to your next appointment.",
+          "moreInfo": "Staff may need to inspect or dispose of them safely, depending on local guidelines.",
+          "imageName": null
+        }
+      ]
+    }
+  ]
+}

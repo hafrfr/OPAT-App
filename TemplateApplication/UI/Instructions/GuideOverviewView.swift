@@ -36,13 +36,12 @@ struct GuideOverviewView: View {
                     guideStepRowLabel(title: mainStep.title)
                 }
             }
-            .padding(.horizontal) // Apply horizontal padding to the ForEach content block
+            .padding(.horizontal) // Apply horizontal padding
 
-            Spacer() // Bottom spacer
+            Spacer()
         }
-        // --- ADD OFFSET --- to make in middle
+
         .offset(y: -40)
-        // --- END OFFSET ---
     }
 
     // guideStepRowLabel remains the same

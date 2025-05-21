@@ -21,10 +21,13 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
+
 actor TemplateApplicationStandard: Standard,
+                                   HealthKitConstraint,
                                    EnvironmentAccessible,
                                    ConsentConstraint,
                                    AccountNotifyConstraint {
+
     @Application(\.logger) private var logger
 
     @Dependency(FirebaseConfiguration.self) private var configuration
@@ -32,32 +35,64 @@ actor TemplateApplicationStandard: Standard,
     init() {}
 
 
-    func add(sample: HKSample) async {
-        if FeatureFlags.disableFirebase {
-            logger.debug("Received new HealthKit sample: \(sample)")
-            return
+    func handleNewSamples<Sample>(
+            _ addedSamples: some Collection<Sample>,
+            ofType sampleType: SampleType<Sample> // You get the specific SampleType here
+        ) async {
+            if FeatureFlags.disableFirebase {
+                logger.debug("Received new HealthKit samples of type \(sampleType.hkSampleType). Count: \(addedSamples.count)")
+                for sample in addedSamples {
+                    if let hkSample = sample as? HKSample { // Cast to HKSample to access common properties
+                        logger.debug("  - Sample ID: \(hkSample.uuid)")
+                    }
+                }
+                return
+            }
+
+            for individualSample in addedSamples {
+                // Important: The `individualSample` here is of the generic type `Sample`.
+                // To use it with your existing Firestore logic that expects HKSample,
+                // you'll need to cast or ensure it is an HKSample.
+                // The SpeziHealthKit framework ensures that `Sample` will be a subtype of `HKSample`.
+                guard let hkSample = individualSample as? HKSample else {
+                    logger.warning("Could not cast added sample to HKSample. Sample: \(individualSample)")
+                    continue
+                }
+
+                do {
+                    // Use your existing healthKitDocument logic
+                    try await healthKitDocument(id: hkSample.uuid)
+                        .setData(from: hkSample.resource) // Assuming .resource gives you the FHIR representation
+                    logger.debug("Successfully stored new sample \(hkSample.uuid) of type \(sampleType.hkSampleType)")
+                } catch {
+                    logger.error("Could not store HealthKit sample \(hkSample.uuid): \(error)")
+                }
+            }
         }
-        
-        do {
-            try await healthKitDocument(id: sample.id)
-                .setData(from: sample.resource)
-        } catch {
-            logger.error("Could not store HealthKit sample: \(error)")
+
+        func handleDeletedObjects<Sample>(
+            _ deletedObjects: some Collection<HKDeletedObject>,
+            ofType sampleType: SampleType<Sample> // You get the specific SampleType here
+        ) async {
+            if FeatureFlags.disableFirebase {
+                logger.debug("Received deleted HealthKit objects of type \(sampleType.hkSampleType). Count: \(deletedObjects.count)")
+                for deletedObject in deletedObjects {
+                    logger.debug("  - Deleted Object ID: \(deletedObject.uuid)")
+                }
+                return
+            }
+
+            for deletedObject in deletedObjects {
+                do {
+
+                    try await healthKitDocument(id: deletedObject.uuid).delete()
+                    logger.debug("Successfully deleted object \(deletedObject.uuid) of type \(sampleType.hkSampleType)")
+                } catch {
+                    logger.error("Could not remove HealthKit object \(deletedObject.uuid): \(error)")
+                }
+            }
         }
-    }
-    
-    func remove(sample: HKDeletedObject) async {
-        if FeatureFlags.disableFirebase {
-            logger.debug("Received new removed healthkit sample with id \(sample.uuid)")
-            return
-        }
-        
-        do {
-            try await healthKitDocument(id: sample.uuid).delete()
-        } catch {
-            logger.error("Could not remove HealthKit sample: \(error)")
-        }
-    }
+
     
     func logCompletedEvent(_ eventLog: EventLog) async {
             // 1. Handle Firebase Disabled Case
@@ -132,6 +167,15 @@ actor TemplateApplicationStandard: Standard,
         }
     }
     
+        func triggerManualExport() async throws {
+            // Implement your manual data export logic if needed.
+            // If you don't have specific requirements for manual export via this route,
+            // you can leave it empty or log that it was called.
+            logger.info("triggerManualExport() called on TemplateApplicationStandard.")
+            // If the function is expected to perform an action that can fail,
+            // you might need to actually throw an error or handle it appropriately.
+            // For now, a simple implementation will satisfy the protocol conformance.
+        }
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await configuration.userDocumentReference
@@ -148,6 +192,29 @@ actor TemplateApplicationStandard: Standard,
             }
         }
     }
+    
+    
+    func storeHealthKitSnapshot(_ snapshot: HealthKitSnapshot, forResponseId responseIdString: String) async {
+            if FeatureFlags.disableFirebase {
+                logger.debug("Firebase is disabled. Skipping HealthKit snapshot storage.")
+                return
+            }
+        guard let userReference = try? await configuration.userDocumentReference else {
+                logger.error("Could not store HealthKit snapshot as the user is not signed in.")
+                return
+            }
+
+            do {
+                // Store the snapshot in a new collection, using the questionnaireResponseId as the document ID.
+                try await userReference
+                    .collection("healthKitSnapshots") // New collection for snapshots
+                    .document(responseIdString)       // Document ID is the QuestionnaireResponse ID
+                    .setData(from: snapshot)
+                logger.info("HealthKitSnapshot for response \(responseIdString) stored successfully.")
+            } catch {
+                logger.error("Could not store HealthKitSnapshot for response \(responseIdString): \(error)")
+            }
+        }
     
     //Treament
     /// - Parameter treatment: The `Treatment` object to be saved.
@@ -204,8 +271,7 @@ actor TemplateApplicationStandard: Standard,
                     .collection("treatments")
                     .getDocuments()
                 
-                // Attempt to decode each document into a Treatment object
-                // compactMap will ignore documents that fail to decode
+
                 let treatments = snapshot.documents.compactMap { document -> Treatment? in
                     do {
                         return try document.data(as: Treatment.self)

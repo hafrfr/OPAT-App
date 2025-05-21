@@ -59,8 +59,6 @@ struct EventLog: Codable, Identifiable, Sendable {
         self.scheduledTimestamp = event.occurrence.start// Use the start time
         self.eventEndTime = event.occurrence.end      // Use the optional end time
         
-        // Assign description - check if event.description is optional or not
-        // Assuming it might be String or String? Casting/assigning directly should work.
         self.eventDescription = event.description
 
         // Set the completion timestamp

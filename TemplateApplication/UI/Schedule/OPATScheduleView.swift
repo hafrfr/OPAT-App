@@ -1,211 +1,224 @@
-
 @_spi(TestingSupport) import SpeziAccount
-import SpeziScheduler    // Ensure Scheduler is available for event completion
+import SpeziScheduler
 import SpeziSchedulerUI
-import SwiftUI
 import SpeziViews
+import SwiftUI
 
 struct PrimaryActionButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(FontTheme.button)
-            .foregroundColor(.white) // Ensures white text
+            .foregroundColor(.white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, Layout.Spacing.medium)
-            .background(ColorTheme.buttonLarge) // Your custom background
+            .background(ColorTheme.buttonLarge)
             .cornerRadius(Layout.Radius.medium)
             .opacity(configuration.isPressed ? 0.85 : 1.0)
             .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
             .animation(.spring(response: 0.2, dampingFraction: 0.6), value: configuration.isPressed)
     }
 }
-// --- END Placeholder Themes/Layout & Custom Button Style ---
-
 
 struct OPATScheduleView: View {
-    // MARK: - Static Date Range Helper
     private static var todayRange: Range<Date> {
         let start = Calendar.current.startOfDay(for: .now)
         let end = Calendar.current.date(byAdding: .day, value: 1, to: start)!
         return start..<end
     }
-    
-    // MARK: - Environment Modules
+
     @Environment(Account.self) private var account: Account?
     @Environment(TemplateApplicationScheduler.self) private var appScheduler: TemplateApplicationScheduler
     @Environment(TemplateApplicationStandard.self) private var standard
     
+    @Environment(GuideModule.self) private var guideModule
+    
+    let specificGuideTitle: String = "Get Ready for Your Infusion"
+
     @EventQuery(in: Self.todayRange) private var todaysEvents: [Event]
     
     // MARK: - View State
-    @State private var presentedEvent: Event?
-    @Binding private var presentingAccount: Bool
+    @Binding private var presentingAccount: Bool // For account sheet
 
-    @State private var eventToProcess: Event? = nil // Holds the event targeted for completion
+    // State for managing the presentation of VitalsPreambleView and then EventView (Questionnaire)
+    @State private var eventForVitalsPreamble: Event? = nil
+    @State private var eventForQuestionnaireSheet: Event? = nil // Renamed from presentedEvent for clarity
+    @State private var healthKitSnapshotForQuestionnaire: HealthKitSnapshot? = nil
+
+    // State for managing completion of non-questionnaire tasks
+    @State private var eventToProcessForCompletion: Event? = nil
     
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
     }
 
     var body: some View {
-        // Use @Bindable if you are modifying appScheduler.viewState directly
-        // and appScheduler is an ObservableObject.
-        // If appScheduler is a class and you are modifying its properties that
-        // are @Published, the @Environment object itself will trigger view updates.
-        // For ViewState in Spezi, it's often part of an ObservableObject.
         @Bindable var appScheduler = appScheduler
 
         NavigationStack {
             PrimaryBackgroundView(title: "Schedule") {
-                VStack(spacing: Layout.Spacing.medium) {
-                    TreatmentProgressBar()
-                        .padding(.horizontal)
-                        .onTapGesture(count: 3) {
-                            UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
-                            print("🔄 Developer triggered: Onboarding reset via progress bar")
-                        }
-
+                VStack(spacing: 16) { TreatmentProgressBar().padding(.horizontal).onTapGesture(count: 3)
+                    { UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
+                  }
                     if todaysEvents.isEmpty {
                         Spacer()
                         Text("No events scheduled for today.").foregroundColor(.secondary).padding()
                         Spacer()
-                    } else {
-                        EventScheduleList(date: .now) { event in
-                            eventRow(event)
-                        }
-                        .listStyle(.plain)
-                        .scrollContentBackground(.hidden)
-                        // ID to help SwiftUI redraw when event completion or viewState changes
+                    } else {EventScheduleList(date: .now) { event in eventRow(event) }
+                        .listStyle(.plain).scrollContentBackground(.hidden)
                         .id(todaysEvents.map { "\($0.id)-\($0.isCompleted)" }.joined() + "\(appScheduler.viewState)")
                     }
                 }
             }
             .toolbar { toolbarContent }
-            .sheet(item: $presentedEvent) { EventView($0) }
-            .viewStateAlert(state: $appScheduler.viewState)
-            // --- Task Modifier to Handle Async Work, triggered by viewState ---
-            .task(id: appScheduler.viewState) { // Re-evaluates when viewState changes
-                // Only act if viewState is .processing AND we have an event targeted
-                if case .processing = appScheduler.viewState, let event = self.eventToProcess {
-                    print("OPATScheduleView: .task triggered by .processing state for event \(event.id)")
-                    await completeAndLogEvent(event)
-                   
-                } else if appScheduler.viewState != .processing && self.eventToProcess != nil {
-                    self.eventToProcess = nil
-                    print("OPATScheduleView: .task detected viewState no longer .processing, cleared eventToProcess.")
+            .sheet(item: $eventForVitalsPreamble) { eventToPreamble in
+                VitalsPreambleView(event: eventToPreamble) { snapshot in
+                    self.healthKitSnapshotForQuestionnaire = snapshot
+                    self.eventForQuestionnaireSheet = eventToPreamble // Trigger questionnaire sheet
+                    self.eventForVitalsPreamble = nil // Dismiss VitalsPreambleView sheet
                 }
             }
-            // --- End Task Modifier ---
+            .sheet(item: $eventForQuestionnaireSheet) { eventForSheet in
+                EventView(eventForSheet, healthKitSnapshotFromPreamble: healthKitSnapshotForQuestionnaire)
+            }
+            .viewStateAlert(state: $appScheduler.viewState)
+            .task(id: appScheduler.viewState) {
+                if case .processing = appScheduler.viewState, let event = self.eventToProcessForCompletion {
+                    // Use String(describing:) for logging Event.ID if it's not directly a String or UUID
+                    print("OPATScheduleView: .task triggered by .processing state for event \(String(describing: event.id))")
+                    await completeAndLogRegularEvent(event) // Use a specific function for regular events
+                } else if appScheduler.viewState != .processing && self.eventToProcessForCompletion != nil {
+                    self.eventToProcessForCompletion = nil
+                    print("OPATScheduleView: .task detected viewState no longer .processing, cleared eventToProcessForCompletion.")
+                }
+            }
         }
     }
 
+    // MARK: - Components
+
     @ViewBuilder
     private func eventRow(_ event: Event) -> some View {
+        // Assuming InstructionsTile is defined and handles event display
         InstructionsTile(event) {
             actionButton(for: event)
         }
-        .padding().background(ColorTheme.listItemBackground).cornerRadius(Layout.Radius.medium)
-        .shadowStyle(ShadowTheme.card)
-        .listRowInsets(EdgeInsets(top: Layout.Spacing.small, leading: 0, bottom: Layout.Spacing.small, trailing: 0))
-        .listRowSeparator(.hidden).listRowBackground(Color.clear)
+        .padding()
+        .background(Color.white) // Example, use your ColorTheme.listItemBackground
+        .cornerRadius(12) // Example, use your Layout.Radius.medium
+        // .shadowStyle(ShadowTheme.card) // Assuming ShadowTheme is defined
+        .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)) // Example spacing
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
     }
 
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            if account != nil { AccountButton(isPresented: $presentingAccount) }
-            else {
-                NavigationLink(destination: ManageTreatmentsView()) {
-                    Label("Manage Treatments", systemImage: "list.bullet.clipboard").font(FontTheme.body).foregroundColor(ColorTheme.title)
+            if account != nil {
+                AccountButton(isPresented: $presentingAccount) // Assuming AccountButton is defined
+            } else {
+                // Link to ManageTreatmentsView if no account button shown
+                NavigationLink(destination: ManageTreatmentsView()) { // Assuming ManageTreatmentsView is defined
+                    Label("Manage Treatments", systemImage: "list.bullet.clipboard")
+                        // .font(FontTheme.body) // Assuming FontTheme is defined
+                        // .foregroundColor(ColorTheme.title) // Assuming ColorTheme is defined
                 }
             }
         }
     }
-    
+
     @ViewBuilder
     private func actionButton(for event: Event) -> some View {
         let isDisabledByCompletion = event.isCompleted
-        // Disable the button if this specific event is being processed
-        let isDisabledByProcessing = (self.eventToProcess?.id == event.id && appScheduler.viewState == .processing)
+        // Disable button if this specific event is being processed (for non-questionnaire tasks)
+        let isDisabledByProcessing = (self.eventToProcessForCompletion?.id == event.id && appScheduler.viewState == .processing)
         let finalDisabledState = isDisabledByCompletion || isDisabledByProcessing
 
-        if event.task.id.starts(with: "treatment-") {
-            VStack(spacing: Layout.Spacing.small) {
+        if event.task.id == "opatfollowup" || event.task.id == "opat-checkin" { // Specific handling for daily check-in
+            Button(action: {
+                if !isDisabledByCompletion {
+                    print("OPATScheduleView: 'Start Check-In' tapped for \(String(describing: event.id)). Presenting Vitals Preamble.")
+                    // self.eventForVitalsPreamble = event // Trigger VitalsPreambleView (Temporarily disabled for v3)
+                    self.eventForQuestionnaireSheet = event // Directly show questionnaire without vitals
+                }
+            }, label: {
+                 Text("Start Check-In")
+            })
+            .buttonStyle(PrimaryActionButtonStyle())
+            .disabled(isDisabledByCompletion)
+        
+        } else if event.task.id.starts(with: "treatment-") { // For other treatment tasks
+            VStack(spacing: 8) { // Assuming Layout.Spacing.small
                 markCompleteButton(for: event, disabled: finalDisabledState)
                 instructionsButton(disabled: isDisabledByCompletion)
-            }.padding(.top, Layout.Spacing.small)
-        } else if event.task.id == "opatfollowup" || event.task.id == "opat-checkin" {
-            SwiftUI.Button {
-                if !finalDisabledState { 
-                    presentedEvent = event
-                }
-            } label: { Text("Start Check-In") }
-            .buttonStyle(PrimaryActionButtonStyle())
-            .disabled(finalDisabledState)
+            }.padding(.top, 8) // Assuming Layout.Spacing.small
         } else {
-            Text("Task: \(event.task.title.key)").font(.caption).foregroundColor(.gray).padding(.horizontal)
+            // Fallback for other task types
+            // Assuming event.task.title is LocalizedStringResource or similar that can be directly used in Text
+            Text("Task: \(event.task.title)")
+                .font(.caption)
+                .foregroundColor(.gray)
+                .padding(.horizontal)
         }
     }
-    
+
     private func markCompleteButton(for event: Event, disabled: Bool) -> some View {
-        SwiftUI.Button {
-            // SYNCHRONOUS action: Set eventToProcess and change appScheduler.viewState
+        Button(action: {
             if !disabled {
-                print("OPATScheduleView: Mark Complete button tapped for \(event.id). Setting state to .processing.")
-                self.eventToProcess = event       // Target this event
-                self.appScheduler.viewState = .processing // Trigger the .task and indicate processing
+                // Use String(describing:) for logging Event.ID
+                print("OPATScheduleView: Mark Complete button tapped for \(String(describing: event.id)). Setting state to .processing.")
+                self.eventToProcessForCompletion = event // Target this event for completion
+                self.appScheduler.viewState = .processing // Trigger the .task for regular event completion
             }
-        } label: {
+        }, label: {
             Label("Mark Complete", systemImage: "checkmark.circle")
-        }
+        })
         .buttonStyle(PrimaryActionButtonStyle())
         .disabled(disabled)
     }
     
     private func instructionsButton(disabled: Bool) -> some View {
-        SwiftUI.Button {
-            print("Instructions button tapped.")
-            // TODO: Navigate to instruction view
-        } label: { Label("To Instructions", systemImage: "book") }
-        .buttonStyle(PrimaryActionButtonStyle())
+        NavigationLink(destination: InstructionsListView()) {
+            Label("To Instructions", systemImage: "book")
+                .font(FontTheme.button)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, Layout.Spacing.medium)
+                .background(ColorTheme.buttonLarge)
+                .cornerRadius(Layout.Radius.medium)
+        }
+        .buttonStyle(.plain)
+        .listRowInsets(EdgeInsets())
         .disabled(disabled)
+        .opacity(disabled ? 0.5 : 1.0)
     }
     
+    
     @MainActor
-    private func completeAndLogEvent(_ event: Event) async {
-        // viewState should already be .processing, set by the button action.
-        
+    private func completeAndLogRegularEvent(_ event: Event) async {
+        // This function is for non-questionnaire events that are simply marked complete.
         do {
             _ = try event.complete()
-            print("OPATScheduleView: Successfully completed SpeziScheduler event \(event.task.id) / \(event.id)")
-            do {
-                let eventLogEntry = try EventLog(from: event, completionTime: Date()) // Ensure EventLog init uses event.start
-                await standard.logCompletedEvent(eventLogEntry)
-                print("OPATScheduleView: Logged completion for SpeziScheduler event \(event.id)")
-                self.appScheduler.viewState = .idle // Set to .idle on full success
-            } catch {
-                print("OPATScheduleView: fail; event \(event.id): \(error.localizedDescription)")
-                // Ensure the error passed to ViewState.error conforms to LocalizedError
-                self.appScheduler.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: "Could not."))
-            }
+            // Use String(describing:) for logging Event.ID
+            print("OPATScheduleView: Successfully completed SpeziScheduler event \(event.task.id) / \(String(describing: event.id))")
+            
+            // Create EventLog without questionnaireResponseId or HealthKitSnapshot for regular tasks
+            let eventLogEntry = EventLog(from: event, completionTime: Date())
+            await standard.logCompletedEvent(eventLogEntry)
+            print("OPATScheduleView: Logged completion for regular event \(String(describing: event.id))")
+            
+            self.appScheduler.viewState = .idle // Set to .idle on full success
         } catch {
-            print("OPATScheduleView: Error completingt \(event.task.id) / \(event.id): \(error.localizedDescription)")
-            self.appScheduler.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: "Failed ."))
+            // Use String(describing:) for logging Event.ID
+            print("OPATScheduleView: Error completing regular event \(event.task.id) / \(String(describing: event.id)): \(error.localizedDescription)")
+            self.appScheduler.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: "Failed to complete event."))
         }
     }
 }
 
-
-#if DEBUG
-#Preview {
-    @Previewable @State var presentingAccount = false
-    OPATScheduleView(presentingAccount: $presentingAccount)
-        .previewWith(standard: TemplateApplicationStandard()) {
-            Scheduler()
-            TemplateApplicationScheduler()
-            TreatmentModel()
-            TreatmentScheduler()
-            AccountConfiguration(service: InMemoryAccountService())
-        }
-}
-#endif
+// NOTE: The #if DEBUG preview block is removed as per user request.
+// To add it back, ensure all mock data (mockTask, mockEvent) and
+// Spezi environment setup (.previewWith) are correctly implemented.
+// Also, ensure helper structs like PrimaryActionButtonStyle, FontTheme, ColorTheme,
+// Layout, InstructionsTile, AccountButton, ManageTreatmentsView, TreatmentProgressBar
+// are available or mocked for the preview.
