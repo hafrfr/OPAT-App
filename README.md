@@ -1,5 +1,5 @@
 <!--
-This source file is part of the OPAT @ Home project.
+This source file is part of the OPAT@Home project.
 
 Based on the Stanford Spezi Template Application:
 https://github.com/StanfordSpezi/SpeziTemplateApplication
@@ -8,9 +8,9 @@ SPDX-FileCopyrightText: 2023 Stanford University
 SPDX-License-Identifier: MIT
 -->
 
-# OPAT @ Home
+# OPAT@Home
 
-**OPAT @ Home** is a digital health prototype designed to support patients receiving intravenous antibiotics at home through **Outpatient Parenteral Antimicrobial Therapy (OPAT)**.
+**OPAT@Home** is a digital health prototype designed to support patients receiving intravenous antibiotics at home through **Outpatient Parenteral Antimicrobial Therapy (OPAT)**.
 
 The project’s goal is to increase patient confidence, independence, and safety when receiving intravenous treatment at home, while supporting the healthcare system’s shift toward more scalable, home-based care.
 
@@ -53,7 +53,7 @@ Here’s a quick preview of the latest prototype:
 
 ## Screenshots (Prototype v2)
 
-The following screenshots highlight core features of the **OPAT @ Home prototype v2**.
+The following screenshots highlight core features of the **OPAT@Home prototype v2**.
 
 | ![Splash](./screenshots/v2/01_splash.png) | ![Welcome](./screenshots/v2/02_onboarding_intro.png) | ![Schedule](./screenshots/v2/03_schedule.png) |
 |:--:|:--:|:--:|
