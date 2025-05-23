@@ -31,14 +31,17 @@ struct HomeView: View {
             .customizationID("home.schedule")
             Tab("Contacts", systemImage: "phone.fill", value: .contact) {
                 Contacts(presentingAccount: $presentingAccount)
+                .tint(ColorTheme.tabBarItemActive)
             }
             .customizationID("home.contacts")
             Tab("Instructions", systemImage: "book.fill", value: .instructions) {
                 InstructionsListView(presentingAccount: $presentingAccount)
+                .tint(ColorTheme.tabBarItemActive)
             }
             .customizationID("home.instructions")
             Tab("FAQ", systemImage: "questionmark.circle", value: .faq) {
                 FAQView(presentingAccount: $presentingAccount)
+                .tint(ColorTheme.tabBarItemActive)
             }
             .customizationID("home.faq")
         }

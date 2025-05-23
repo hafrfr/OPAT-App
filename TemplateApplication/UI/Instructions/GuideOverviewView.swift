@@ -83,18 +83,18 @@ struct GuideOverviewView: View {
           .background(.thinMaterial)
     }
 }
+
 // MARK: - Preview
 #if DEBUG
 #Preview {
     let sampleGuide = Guide(
-        title: "OPAT Self-Administration", // Corrected: guideTitle
+        title: "OPAT Self-Administration",
         steps: [
-            // Use 3-4 steps for preview to test centering without scrolling
             MainStep(title: "Step 1: Preparation", substeps: []),
             MainStep(title: "Step 2: Disinfecting", substeps: []),
             MainStep(title: "Step 3: Connecting", substeps: [])
-           // MainStep(title: "Step 4: Flushing", substeps: []) // Keep short for preview
-        ]
+        ],
+        category: "Before Infusion" // 🔧 Add this line
     )
 
     NavigationStack {

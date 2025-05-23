@@ -41,7 +41,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You are logged in and ready to go."
+            "value" : "You’re signed in and set to start using OPAT@Home."
           }
         }
       }
@@ -104,7 +104,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use check-ins to track symptoms and IV site health — privately and at your own pace."
+            "value" : "We collect your check-in answers, IV site photos, and selected health data to better support your care."
           }
         },
         "sv" : {
@@ -120,7 +120,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You’re in control"
+            "value" : "What We Collect"
           }
         },
         "sv" : {
@@ -136,12 +136,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check-ins are for your personal insight only, and are not a replacement for professional care."
+            "value" : "This data helps you and your care team monitor your IV treatment, identify early signs of issues, and stay informed."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Check-ins are for your personal insight only, and are not a replacement for professional care."
           }
         }
@@ -152,12 +152,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Personal Reflection Only"
+            "value" : "Why It Matters"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Personal Reflection Only"
           }
         }
@@ -168,7 +168,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Track symptoms, log photos of your IV site, and reflect on how confident you feel — one step at a time."
+            "value" : "We store your general check-in answers to improve the app. Health data and IV photos are never stored or shared in this version – they stay on your device only.\n"
           }
         },
         "sv" : {
@@ -184,12 +184,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You're Part of the Team"
+            "value" : "Your Privacy"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "You're Part of the Team"
           }
         }
@@ -200,7 +200,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use check-ins to track symptoms and IV site health — privately and at your own pace."
+            "value" : "Here's how OPAT@Home uses your information."
           }
         },
         "sv" : {
@@ -278,7 +278,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Learn how to safely prepare, connect, and complete your infusion treatment."
+            "value" : "Stay on top of your treatment with a daily task schedule, long-term care plan, and helpful reminders along the way."
           }
         },
         "sv" : {
@@ -294,7 +294,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Step-by-Step Guidance"
+            "value" : "Schedule & Reminders"
           }
         },
         "sv" : {
@@ -310,7 +310,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quickly access the OPAT nurse hotline, emergency services, and clinic contact info when needed."
+            "value" : "Log symptoms, upload IV site photos, and reflect on how you're feeling – helping you stay engaged and in control of your treatment."
           }
         },
         "sv" : {
@@ -326,12 +326,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contact & Support"
+            "value" : "Daily Check-In"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Contact & Support"
           }
         }
@@ -342,7 +342,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Learn what’s normal – and when something needs attention."
+            "value" : "Learn how to prepare, connect, and care for your IV treatment – with step-by-step guides and answers to common questions."
           }
         },
         "sv" : {
@@ -358,12 +358,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Symptoms to Watch For"
+            "value" : "Guidance & Education"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Symptoms to Watch For"
           }
         }
@@ -374,7 +374,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Answers to common questions and helpful tips to support you along the way."
+            "value" : "Share your health data – like temperature or heart rate – to help your care team monitor your progress and respond when needed."
           }
         },
         "sv" : {
@@ -390,12 +390,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "FAQs and Tips"
+            "value" : "Vitals & Monitoring"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "FAQs and Tips"
           }
         }
@@ -406,7 +406,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use the simple check-in tool to reflect on symptoms and log photos of your IV site."
+            "value" : "Quickly access your OPAT nurse hotline, emergency services, and key contact info — all in one place."
           }
         },
         "sv" : {
@@ -422,12 +422,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Daily Check-In"
+            "value" : "Contact & Support"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Daily Check-In"
           }
         }
@@ -501,20 +501,24 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We will not request access (Do not worry, your data will stay on your device).  We will implement this in a later version"
+            "value" : "We use Apple HealthKit to access data like temperature or heart rate to support your OPAT treatment. This data stays on your device and is never stored or shared in this version of the app.\n"
           }
         }
       }
     },
     "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NOT ACTIVATED IN CURRENT PROTOTYPE"
+            "value" : "Supporting you and your care team in tracking your health at home."
           }
         }
       }
+    },
+    "Helping you and your care team track your health — safely and privately at home." : {
+
     },
     "Hospital" : {
 
@@ -575,12 +579,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You’ll follow a treatment plan with regular check-ins and support from your care team — at home or through scheduled visits."
+            "value" : "You’ll follow a treatment plan with support from your care team – and use this app for reminders, check-ins, and guidance tools at home."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "You’ll follow a treatment plan with regular check-ins and support from your care team — at home or through scheduled visits."
           }
         }
@@ -607,12 +611,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This app, along with your care team, is here to help you stay informed and confident."
+            "value" : "Your care team – and this app – are here to help you feel supported, informed, and confident."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "This app, along with your care team, is here to help you stay informed and confident."
           }
         }
@@ -714,12 +718,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can choose to allow notifications or skip for now."
+            "value" : "You’re in control – allow notifications now or skip for later. You can always change this in settings."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "You can choose to allow notifications or skip for now."
           }
         }
@@ -730,12 +734,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We can send reminders to help you stay on track — like when it’s time to prepare your IV treatment."
+            "value" : "We’ll send helpful reminders to support your routine — like when it’s time to prepare your IV treatment."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "We can send reminders to help you stay on track — like when it’s time to prepare your IV treatment."
           }
         }
@@ -770,6 +774,9 @@
 
     },
     "Return to Instructions" : {
+
+    },
+    "Richard 👋" : {
 
     },
     "Save" : {
@@ -885,12 +892,15 @@
     "We'll quickly fetch your latest health data before the questionnaire." : {
 
     },
+    "Welcome back" : {
+
+    },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Learn what OPAT means, what to expect, and how to manage your infusion step-by-step."
+            "value" : "Learn what OPAT means, what to expect, and how to manage your treatment step-by-step."
           }
         },
         "sv" : {
@@ -922,7 +932,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whether you're receiving treatment or helping someone, this app gives you helpful tools and support."
+            "value" : "Whether you're receiving IV treatment or helping someone, OPAT@Home gives you clear tools and guidance."
           }
         },
         "sv" : {
@@ -954,7 +964,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tips and check-in tools to help you feel ready and stay safe throughout treatment."
+            "value" : "Tips, guidance, and tools to help you stay on track – and stay safe – throughout your care."
           }
         },
         "sv" : {
@@ -1002,12 +1012,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome to\n OPAT @ Home"
+            "value" : "Welcome to\n OPAT@Home"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Welcome to\n OPAT @ Home"
           }
         }

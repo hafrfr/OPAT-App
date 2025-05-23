@@ -24,45 +24,52 @@ struct OPATHealthKitPermission: View {
                 VStack {
                     OnboardingTitleView(
                         title: "HealthKit Access",
-                        subtitle: "HEALTHKIT_PERMISSIONS_SUBTITLE"
+                        subtitle: "Helping you and your care team track your health — safely and privately at home."
                     )
+                    
                     Spacer()
+                    
                     Image(systemName: "heart.text.square.fill")
                         .font(.system(size: 150))
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(ColorTheme.buttonLarge)
                         .accessibilityHidden(true)
+                    
                     Text("HEALTHKIT_PERMISSIONS_DESCRIPTION")
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 16)
+                    
                     Spacer()
                 }
-            }, actionView: {
+            },
+            actionView: {
                 OnboardingActionsView(
                     "Grant Access",
                     action: {
                         do {
                             healthKitProcessing = true
                             if ProcessInfo.processInfo.isPreviewSimulator {
-                                try await _Concurrency.Task.sleep(for: .seconds(5))
+                                try await Task.sleep(for: .seconds(5))
                             } else {
                                 try await healthKit.askForAuthorization()
-                                
                             }
                         } catch {
                             print("Could not request HealthKit permissions.")
                         }
-                        healthKitProcessing = false
                         
+                        healthKitProcessing = false
+                        SoundManager.shared.playSound(.nextTap)
                         onboardingNavigationPath.nextStep()
                     }
                 )
+                .tint(ColorTheme.buttonLarge)
+                .font(FontTheme.button)
+                .padding(.top, Layout.Spacing.large)
             }
         )
-            .navigationBarBackButtonHidden(healthKitProcessing)
-            .navigationTitle(Text(verbatim: ""))
+        .navigationBarBackButtonHidden(healthKitProcessing)
+        .navigationTitle(Text(verbatim: ""))
     }
 }
-
 
 #if DEBUG
 #Preview {

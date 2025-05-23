@@ -24,7 +24,7 @@ struct OPATWelcome: View {
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "cross.case.fill")
+                        Image(systemName: "book.closed.fill")
                             .accessibilityHidden(true)
                             .foregroundColor(ColorTheme.tabBarItemActive)
                     },

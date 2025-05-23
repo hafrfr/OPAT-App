@@ -24,7 +24,7 @@ struct OPATIntro: View {
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "syringe.fill")
+                        Image(systemName: "house.and.flag.fill")
                             .accessibilityHidden(true)
                             .foregroundColor(ColorTheme.tabBarItemActive)
                     },
@@ -33,7 +33,7 @@ struct OPATIntro: View {
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "calendar")
+                        Image(systemName: "calendar.badge.clock")
                             .accessibilityHidden(true)
                             .foregroundColor(ColorTheme.tabBarItemActive)
                     },
@@ -42,7 +42,7 @@ struct OPATIntro: View {
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "heart.text.square.fill")
+                        Image(systemName: "person.3.fill")
                             .accessibilityHidden(true)
                             .foregroundColor(ColorTheme.tabBarItemActive)
                     },

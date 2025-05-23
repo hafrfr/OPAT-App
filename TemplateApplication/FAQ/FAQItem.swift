@@ -10,4 +10,5 @@ struct FAQItem: Identifiable, Hashable,Codable{
     let id: UUID = UUID()
     let question: String
     let answer: String
+    var tags: [String] = []
 }

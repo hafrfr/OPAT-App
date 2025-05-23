@@ -31,8 +31,6 @@ struct OPATScheduleView: View {
     @Environment(TemplateApplicationStandard.self) private var standard
     
     @Environment(GuideModule.self) private var guideModule
-    
-    let specificGuideTitle: String = "Get Ready for Your Infusion"
 
     @EventQuery(in: Self.todayRange) private var todaysEvents: [Event]
     
@@ -46,52 +44,100 @@ struct OPATScheduleView: View {
     @State private var showInstructionsView = false
     // State for managing completion of non-questionnaire tasks
     @State private var eventToProcessForCompletion: Event? = nil
+    @State private var showWelcomeGreeting = true // welcome flag for presentation, but maybe applying later!
     
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
     }
 
     var body: some View {
+        NavigationStack {
+            mainContent
+        }
+    }
+
+    private var mainContent: some View {
         @Bindable var appScheduler = appScheduler
 
-        NavigationStack {
-            PrimaryBackgroundView(title: "Schedule") {
-                VStack(spacing: 16) { TreatmentProgressBar().padding(.horizontal).onTapGesture(count: 3)
-                    { UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
-                  }
-                    if todaysEvents.isEmpty {
-                        Spacer()
-                        Text("No events scheduled for today.").foregroundColor(.secondary).padding()
-                        Spacer()
-                    } else {EventScheduleList(date: .now) { event in eventRow(event) }
-                        .listStyle(.plain).scrollContentBackground(.hidden)
-                        .id(todaysEvents.map { "\($0.id)-\($0.isCompleted)" }.joined() + "\(appScheduler.viewState)")
+        return PrimaryBackgroundView(title: "Schedule") {
+            VStack(spacing: 16) {
+                welcomeBannerIfNeeded
+                TreatmentProgressBar()
+                    .padding(.horizontal)
+                    .onTapGesture(count: 3) {
+                        UserDefaults.standard.set(false, forKey: StorageKeys.onboardingFlowComplete)
                     }
+
+                if todaysEvents.isEmpty {
+                    Spacer()
+                    Text("No events scheduled for today.")
+                        .foregroundColor(.secondary)
+                        .padding()
+                    Spacer()
+                } else {
+                    EventScheduleList(date: .now) { event in
+                        eventRow(event)
+                    }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
+                    .id(todaysEvents.map { "\($0.id)-\($0.isCompleted)" }.joined() + "\(appScheduler.viewState)")
                 }
             }
-            .toolbar { toolbarContent }
-            .sheet(item: $eventForVitalsPreamble) { eventToPreamble in
-                VitalsPreambleView(event: eventToPreamble) { snapshot in
-                    self.healthKitSnapshotForQuestionnaire = snapshot
-                    self.eventForQuestionnaireSheet = eventToPreamble
-                    self.eventForVitalsPreamble = nil}}
-            .sheet(item: $eventForQuestionnaireSheet) { eventForSheet in
-                EventView(eventForSheet, healthKitSnapshotFromPreamble: healthKitSnapshotForQuestionnaire)}
-            .navigationDestination(isPresented: $showInstructionsView) {
-                        InstructionsListView(presentingAccount: $presentingAccount)
+        }
+        .toolbar { toolbarContent }
+        .sheet(item: $eventForVitalsPreamble) { eventToPreamble in
+            VitalsPreambleView(event: eventToPreamble) { snapshot in
+                self.healthKitSnapshotForQuestionnaire = snapshot
+                self.eventForQuestionnaireSheet = eventToPreamble
+                self.eventForVitalsPreamble = nil
+            }
+        }
+        .sheet(item: $eventForQuestionnaireSheet) { eventForSheet in
+            EventView(eventForSheet, healthKitSnapshotFromPreamble: healthKitSnapshotForQuestionnaire)
+        }
+        .navigationDestination(isPresented: $showInstructionsView) {
+            InstructionsListView(presentingAccount: $presentingAccount)
+        }
+        .viewStateAlert(state: $appScheduler.viewState)
+        .task(id: appScheduler.viewState) {
+            if case .processing = appScheduler.viewState, let event = self.eventToProcessForCompletion {
+                print("OPATScheduleView: .task triggered by .processing state for event \(String(describing: event.id))")
+                await completeAndLogRegularEvent(event)
+            } else if appScheduler.viewState != .processing && self.eventToProcessForCompletion != nil {
+                self.eventToProcessForCompletion = nil
+                print("OPATScheduleView: .task detected viewState no longer .processing, cleared eventToProcessForCompletion.")
+            }
+        }
+    }
+
+    private var welcomeBannerIfNeeded: some View {
+        Group {
+            if showWelcomeGreeting {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Welcome back")
+                        .font(FontTheme.bodyBold) // intentionally light/subdued
+                        .foregroundColor(ColorTheme.title.opacity(0.8)) // subtle, not dominant
+                    Text("Richard 👋")
+                        .font(FontTheme.title)
+                        .foregroundColor(ColorTheme.title) // strong, bold primary
+                }
+                .padding(.horizontal)
+                .padding(.top, Layout.Spacing.medium)
+                .transition(.move(edge: .top).combined(with: .opacity))
+                .onAppear {
+                    withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                        showWelcomeGreeting = true
                     }
-            .viewStateAlert(state: $appScheduler.viewState)
-            .task(id: appScheduler.viewState) {
-                if case .processing = appScheduler.viewState, let event = self.eventToProcessForCompletion {
-                    print("OPATScheduleView: .task triggered by .processing state for event \(String(describing: event.id))")
-                    await completeAndLogRegularEvent(event)
-                } else if appScheduler.viewState != .processing && self.eventToProcessForCompletion != nil {
-                    self.eventToProcessForCompletion = nil
-                    print("OPATScheduleView: .task detected viewState no longer .processing, cleared eventToProcessForCompletion.")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.5) {
+                        withAnimation {
+                            showWelcomeGreeting = false
+                        }
+                    }
                 }
             }
         }
     }
+
 
     // MARK: - Components
 
@@ -143,7 +189,6 @@ struct OPATScheduleView: View {
             })
             .buttonStyle(PrimaryActionButtonStyle())
             .disabled(isDisabledByCompletion)
-        
         } else if event.task.id.starts(with: "treatment-") { // For other treatment tasks
             VStack(spacing: 8) { // Assuming Layout.Spacing.small
                 markCompleteButton(for: event, disabled: finalDisabledState)
