@@ -9,7 +9,10 @@ private struct CategoryPill: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        Button(action: {
+            SoundManager.shared.playSound(.progressTap) // sound on tap
+            onTap()
+        }) {
             Text(title)
                 .font(FontTheme.button)
                 .padding(.horizontal, 16)

@@ -39,7 +39,7 @@ struct InstructionsListView: View {
                 if !guidesForCategory.isEmpty {
                     VStack(alignment: .leading, spacing: Layout.Spacing.small) {
                         Text(category)
-                            .font(FontTheme.bodyBold)
+                            .font(FontTheme.categoryBold)
                             .foregroundColor(ColorTheme.title)
                             .padding(.horizontal)
                             .padding(.top, Layout.Spacing.small)

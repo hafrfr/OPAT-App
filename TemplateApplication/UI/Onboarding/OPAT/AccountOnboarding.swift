@@ -27,6 +27,9 @@ struct AccountOnboarding: View {
             .tint(ColorTheme.buttonLarge)
             .font(FontTheme.button)
             .padding(.top, Layout.Spacing.large)
+            .safeAreaInset(edge: .bottom) {
+                Color.clear.frame(height: Layout.Spacing.large)
+            }
         }
     }
 }

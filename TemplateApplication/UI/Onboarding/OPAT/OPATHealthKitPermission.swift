@@ -68,6 +68,9 @@ struct OPATHealthKitPermission: View {
         )
         .navigationBarBackButtonHidden(healthKitProcessing)
         .navigationTitle(Text(verbatim: ""))
+        .safeAreaInset(edge: .bottom) { // Adds consistent bottom breathing room to views
+            Color.clear.frame(height: Layout.Spacing.large)
+        }
     }
 }
 
