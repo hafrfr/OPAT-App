@@ -924,12 +924,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Understand Your IV Treatment"
+            "value" : "Understand Your Treatment"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Understand Your IV Treatment"
           }
         }
