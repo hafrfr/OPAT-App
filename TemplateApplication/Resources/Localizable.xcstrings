@@ -20,6 +20,16 @@
     "%@:" : {
 
     },
+    "%@/%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@/%2$@ %3$@"
+          }
+        }
+      }
+    },
     "%lld days remaining" : {
 
     },
@@ -85,6 +95,9 @@
 
     },
     "Back to instructions" : {
+
+    },
+    "Blood Pressure:" : {
 
     },
     "Cancel" : {
@@ -251,6 +264,9 @@
           }
         }
       }
+    },
+    "Diastolic BP:" : {
+
     },
     "Done" : {
 
@@ -831,6 +847,9 @@
 
     },
     "Start from the beginning" : {
+
+    },
+    "Systolic BP:" : {
 
     },
     "Take a moment to check in and let us know how you're doing today." : {

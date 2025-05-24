@@ -148,33 +148,37 @@ actor TemplateApplicationStandard: Standard,
         }
 
     // periphery:ignore:parameters isolation
-    func add(response: ModelsR4.QuestionnaireResponse, isolation: isolated (any Actor)? = #isolation) async {
-        let id = response.identifier?.value?.value?.string ?? UUID().uuidString
-        
-        if FeatureFlags.disableFirebase {
-            let jsonRepresentation = (try? String(data: JSONEncoder().encode(response), encoding: .utf8)) ?? ""
-            await logger.debug("Received questionnaire response: \(jsonRepresentation)")
-            return
+    func add(response: ModelsR4.QuestionnaireResponse, isolation: isolated (any Actor)? = #isolation) async -> String {
+            let fhirIdentifierString = response.identifier?.value?.value?.string
+            // Trim whitespace before checking if empty
+            let trimmedFhirIdentifierString = fhirIdentifierString?.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            let id = (trimmedFhirIdentifierString != nil && !trimmedFhirIdentifierString!.isEmpty) ? trimmedFhirIdentifierString! : UUID().uuidString
+            
+            if FeatureFlags.disableFirebase {
+                let jsonRepresentation = (try? String(data: JSONEncoder().encode(response), encoding: .utf8)) ?? ""
+                await logger.debug("Received questionnaire response with ID '\(id)': \(jsonRepresentation)")
+                return id // Return the ID even if Firebase is disabled
+            }
+            
+            do {
+                try await configuration.userDocumentReference
+                    .collection("QuestionnaireResponse")
+                    .document(id)
+                    .setData(from: response)
+                await logger.info("Successfully stored questionnaire response with ID: \(id)")
+            } catch {
+                await logger.error("Could not store questionnaire response with ID '\(id)': \(error)")
+                // Consider if you should return a different value or rethrow on error,
+                // but for now, we still return the ID that was attempted.
+            }
+            return id // Return the ID used
         }
-        
-        do {
-            try await configuration.userDocumentReference
-                .collection("QuestionnaireResponse") // Add all HealthKit sources in a /QuestionnaireResponse collection.
-                .document(id) // Set the document identifier to the id of the response.
-                .setData(from: response)
-        } catch {
-            await logger.error("Could not store questionnaire response: \(error)")
-        }
-    }
     
         func triggerManualExport() async throws {
-            // Implement your manual data export logic if needed.
-            // If you don't have specific requirements for manual export via this route,
-            // you can leave it empty or log that it was called.
+
             logger.info("triggerManualExport() called on TemplateApplicationStandard.")
-            // If the function is expected to perform an action that can fail,
-            // you might need to actually throw an error or handle it appropriately.
-            // For now, a simple implementation will satisfy the protocol conformance.
+
         }
     
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {

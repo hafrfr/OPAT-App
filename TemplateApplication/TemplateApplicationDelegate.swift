@@ -74,11 +74,13 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
         )
     }
     private var healthKit: HealthKit {
-            HealthKit {
+            HealthKit {                                                                                                                    
                 CollectSample(.stepCount)
                 CollectSample(.heartRate, continueInBackground: true)
                 CollectSample(.bodyTemperature)
                 RequestReadAccess(quantity: [.bloodOxygen])
+                CollectSample(.bloodPressureSystolic)
+                CollectSample(.bloodPressureDiastolic)
             }
         }
 }

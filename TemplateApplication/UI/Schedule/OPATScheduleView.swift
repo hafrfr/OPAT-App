@@ -61,7 +61,7 @@ struct OPATScheduleView: View {
 
         return PrimaryBackgroundView(title: "Schedule") {
             VStack(spacing: 16) {
-                welcomeBannerIfNeeded
+                welcomeBannerIfNeeded 
                 TreatmentProgressBar()
                     .padding(.horizontal)
                     .onTapGesture(count: 3) {
@@ -80,26 +80,27 @@ struct OPATScheduleView: View {
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
+                    // Taking the .id from a9f7aa1 as it explicitly includes appScheduler.viewState
                     .id(todaysEvents.map { "\($0.id)-\($0.isCompleted)" }.joined() + "\(appScheduler.viewState)")
                 }
             }
         }
         .toolbar { toolbarContent }
-        .sheet(item: $eventForVitalsPreamble) { eventToPreamble in
+        .sheet(item: $eventForVitalsPreamble) { eventToPreamble in // Using HEAD's explicit parameter names
             VitalsPreambleView(event: eventToPreamble) { snapshot in
                 self.healthKitSnapshotForQuestionnaire = snapshot
                 self.eventForQuestionnaireSheet = eventToPreamble
                 self.eventForVitalsPreamble = nil
             }
         }
-        .sheet(item: $eventForQuestionnaireSheet) { eventForSheet in
+        .sheet(item: $eventForQuestionnaireSheet) { eventForSheet in // Using HEAD's explicit parameter names
             EventView(eventForSheet, healthKitSnapshotFromPreamble: healthKitSnapshotForQuestionnaire)
         }
         .navigationDestination(isPresented: $showInstructionsView) {
             InstructionsListView(presentingAccount: $presentingAccount)
         }
-        .viewStateAlert(state: $appScheduler.viewState)
-        .task(id: appScheduler.viewState) {
+        .viewStateAlert(state: $appScheduler.viewState) // From HEAD
+        .task(id: appScheduler.viewState) { // From HEAD
             if case .processing = appScheduler.viewState, let event = self.eventToProcessForCompletion {
                 print("OPATScheduleView: .task triggered by .processing state for event \(String(describing: event.id))")
                 await completeAndLogRegularEvent(event)
@@ -110,14 +111,14 @@ struct OPATScheduleView: View {
         }
     }
 
-    private var welcomeBannerIfNeeded: some View {
+    private var welcomeBannerIfNeeded: some View { // Keep this from HEAD
         Group {
             if showWelcomeGreeting {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Welcome back")
                         .font(FontTheme.bodyBold) // intentionally light/subdued
                         .foregroundColor(ColorTheme.title.opacity(0.8)) // subtle, not dominant
-                    Text("Richard 👋")
+                    Text("Richard 👋") // Assuming "Richard 👋" is a placeholder or for a specific user
                         .font(FontTheme.title)
                         .foregroundColor(ColorTheme.title) // strong, bold primary
                 }
