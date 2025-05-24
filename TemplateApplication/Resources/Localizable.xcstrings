@@ -506,17 +506,6 @@
         }
       }
     },
-    "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Supporting you and your care team in tracking your health at home."
-          }
-        }
-      }
-    },
     "Helping you and your care team track your health — safely and privately at home." : {
 
     },
