@@ -8,7 +8,6 @@
 import Foundation
 import HealthKit
 struct HealthKitSnapshot: Codable, Sendable {
-
     let collectionDate: Date
 
     struct ValueWithUnit: Codable, Sendable {
@@ -23,7 +22,6 @@ struct HealthKitSnapshot: Codable, Sendable {
     var latestBloodPressureSystolic: ValueWithUnit?
     var latestBloodPressureDiastolic: ValueWithUnit?
     
-
 
     // Initializer for creating a HealthKitSnapshot instance.
     // All parameters have default nil values, allowing for flexible creation.
@@ -41,6 +39,5 @@ struct HealthKitSnapshot: Codable, Sendable {
         self.latestBodyTemperature = latestBodyTemperature
         self.latestBloodPressureSystolic = latestBloodPressureSystolic
         self.latestBloodPressureDiastolic = lastestBloodPressureDiastolic
-
     }
 }

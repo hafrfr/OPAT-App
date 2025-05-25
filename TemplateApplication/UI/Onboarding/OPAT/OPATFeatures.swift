@@ -54,7 +54,7 @@ struct OPATFeatures: View {
         .padding(.top, Layout.Spacing.large)
         .accentColor(ColorTheme.buttonLarge) // Override the numbered circles color to app color
         .safeAreaInset(edge: .bottom) {
-            Color.clear.frame(height: Layout.Spacing.large) // Adds consistent bottom padding
+            Color.clear.frame(height: Layout.Spacing.medium) // Adds consistent bottom padding
         }
     }
 }

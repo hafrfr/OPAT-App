@@ -61,7 +61,7 @@ struct OPATConsent: View {
         .padding(.top, Layout.Spacing.large)
         .accentColor(ColorTheme.buttonLarge)
         .safeAreaInset(edge: .bottom) {
-            Color.clear.frame(height: Layout.Spacing.large)
+            Color.clear.frame(height: Layout.Spacing.medium)
         }
     }
 }

@@ -60,7 +60,7 @@ struct OPATWelcome: View {
         .tint(ColorTheme.buttonLarge)
         .padding(.top, Layout.Spacing.large)
         .safeAreaInset(edge: .bottom) { // Adds breathing room at bottom, similiar to other views
-            Color.clear.frame(height: Layout.Spacing.large)
+            Color.clear.frame(height: Layout.Spacing.medium)
         }
     }
 }

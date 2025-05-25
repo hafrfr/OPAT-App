@@ -74,19 +74,29 @@ struct FAQView: View {
     }
 
     private var categoryFilterPills: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(categories, id: \.self) { category in
-                    CategoryPill(
-                        title: category,
-                        isSelected: selectedCategory == category,
-                        onTap: { selectedCategory = category }
-                    )
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(categories, id: \.self) { category in
+                        CategoryPill(
+                            title: category,
+                            isSelected: selectedCategory == category,
+                            onTap: {
+                                withAnimation(.easeInOut) {
+                                    selectedCategory = category
+                                    proxy.scrollTo(category, anchor: .center) // smooth snap on tap :D
+                                }
+                            }
+                        )
+                        .id(category) // Enables targeting by ScrollViewReader, thanks to a guy on Youtube!!
+                    }
                 }
+                .padding(.horizontal)
+                .scrollTargetLayout() // iOS 18 snapping
             }
-            .padding(.horizontal)
+            .scrollTargetBehavior(.viewAligned) // Native view snapping
+            .padding(.bottom, Layout.Spacing.large)
         }
-        .padding(.bottom, Layout.Spacing.large)
     }
 
     private var faqList: some View {

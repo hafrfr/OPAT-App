@@ -28,7 +28,7 @@ struct AccountOnboarding: View {
             .font(FontTheme.button)
             .padding(.top, Layout.Spacing.large)
             .safeAreaInset(edge: .bottom) {
-                Color.clear.frame(height: Layout.Spacing.large)
+                Color.clear.frame(height: Layout.Spacing.medium)
             }
         }
     }

@@ -60,7 +60,7 @@ struct OPATIntro: View {
         .tint(ColorTheme.buttonLarge)
         .padding(.top, Layout.Spacing.large)
         .safeAreaInset(edge: .bottom) { // ✅ Consistent spacing below
-            Color.clear.frame(height: Layout.Spacing.large)
+            Color.clear.frame(height: Layout.Spacing.medium)
         }
     }
 }

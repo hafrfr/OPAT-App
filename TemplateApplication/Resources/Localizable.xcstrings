@@ -106,9 +106,6 @@
     "Care Plan" : {
 
     },
-    "Care-Plan" : {
-
-    },
     "Close" : {
 
     },
@@ -149,7 +146,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This data helps you and your care team monitor your IV treatment, identify early signs of issues, and stay informed."
+            "value" : "This data helps you and your care team monitor your IV treatment, identify early signs of infection, and stay informed."
           }
         },
         "sv" : {
@@ -181,7 +178,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We store your general check-in answers to improve the app. Health data and IV photos are never stored or shared in this version – they stay on your device only.\n"
+            "value" : "We store your data exclusively to improve the app. As a tester, your IV photos stay on your device. \n"
           }
         },
         "sv" : {
@@ -422,7 +419,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quickly access your OPAT nurse hotline, emergency services, and key contact info — all in one place."
+            "value" : "Quickly access your OPAT nurse hotline, emergency services, and key contact info – all in one place."
           }
         },
         "sv" : {
@@ -517,7 +514,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We use Apple HealthKit to access data like temperature or heart rate to support your OPAT treatment. This data stays on your device and is never stored or shared in this version of the app.\n"
+            "value" : "We use Apple HealthKit to access data like body temperature or heart rate to support your OPAT treatment. The data is only used for app development.\n"
           }
         }
       }
@@ -552,12 +549,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "With OPAT, you receive IV antibiotics outside the hospital — often from the comfort of your own home."
+            "value" : "With OPAT, you receive IV antibiotics outside the hospital – often from the comfort of your own home."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "With OPAT, you receive IV antibiotics outside the hospital — often from the comfort of your own home."
           }
         }
@@ -739,7 +736,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We’ll send helpful reminders to support your routine — like when it’s time to prepare your IV treatment."
+            "value" : "We’ll send helpful reminders to support your routine – like when it’s time to prepare your IV treatment."
           }
         },
         "sv" : {
@@ -1020,7 +1017,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome to\n OPAT@Home"
+            "value" : "Welcome to OPAT@Home"
           }
         },
         "sv" : {

@@ -38,8 +38,8 @@ struct TreatmentProgressCalendarView: View {
                 // --- MODIFIED: Use EventSummaryView ---
                 if let day = selectedDay {
                     // Pass the selected day to the new summary view
-                    EventSummaryView(date: day, title: "Events for Selected Day")
-                         .padding(.horizontal) // Apply padding here if desired
+                    EventSummaryView(date: day, title: "")
+                         // .padding(.horizontal) // Apply padding here if desired
                 } else {
                     // Optional: View when no date is selected
                     Section("Events") {

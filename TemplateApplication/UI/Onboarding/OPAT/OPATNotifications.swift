@@ -69,7 +69,7 @@ struct OPATNotifications: View {
         .navigationBarBackButtonHidden(notificationProcessing)
         .navigationTitle(Text(verbatim: ""))
         .safeAreaInset(edge: .bottom) { // ✅ Breathing room below
-            Color.clear.frame(height: Layout.Spacing.large)
+            Color.clear.frame(height: Layout.Spacing.medium)
         }
     }
 }
