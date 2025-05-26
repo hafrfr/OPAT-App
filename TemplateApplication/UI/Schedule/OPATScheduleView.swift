@@ -111,16 +111,16 @@ struct OPATScheduleView: View {
         }
     }
 
-    private var welcomeBannerIfNeeded: some View { // Keep this from HEAD
+    private var welcomeBannerIfNeeded: some View {
         Group {
             if showWelcomeGreeting {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Welcome back")
-                        .font(FontTheme.bodyBold) // intentionally light/subdued
+                    Text("Welcome back 👋")
+                        .font(FontTheme.title) // use bodyBold for when we have names intentionally light/subdued
                         .foregroundColor(ColorTheme.title.opacity(0.8)) // subtle, not dominant
-                    Text("Richard 👋") // Assuming "Richard 👋" is a placeholder or for a specific user
-                        .font(FontTheme.title)
-                        .foregroundColor(ColorTheme.title) // strong, bold primary
+                    // Text("Richard 👋") // Assuming "Richard 👋" example patient for presentation
+                        // .font(FontTheme.title)
+                        // .foregroundColor(ColorTheme.title) // strong, bold primary
                 }
                 .padding(.horizontal)
                 .padding(.top, Layout.Spacing.medium)
@@ -144,7 +144,6 @@ struct OPATScheduleView: View {
 
     @ViewBuilder
     private func eventRow(_ event: Event) -> some View {
-        // Assuming InstructionsTile is defined and handles event display
         InstructionsTile(event) {
             actionButton(for: event)
         }

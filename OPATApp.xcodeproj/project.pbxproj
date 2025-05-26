@@ -531,7 +531,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
@@ -748,7 +748,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
@@ -801,7 +801,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7S48UML66Q;
 				ENABLE_PREVIEWS = YES;
