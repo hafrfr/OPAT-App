@@ -45,8 +45,8 @@ This prototype was developed as part of the [Digital Health Implementation](http
 
 Here’s a quick preview of the latest prototype:
 
-👉 [Watch demo on YouTube (v2)](https://youtube.com/shorts/YVcvpVbuJEw)  
-*A walkthrough of the updated v2 prototype and its Key Features*
+👉 [Watch v4 demo on YouTube](https://youtu.be/oUz5PCKAk6c)  
+*A walkthrough of the v4 prototype – the build used in Final course presentation of the prototype*
 
 ---
 
@@ -66,12 +66,13 @@ The following screenshots highlight core features of the **OPAT@Home prototype v
 ---
 
 <details>
-<summary>📜 Prototype Demo (v1) (Historical Reference)</summary>
+<summary>📜 Prototype Demos (v1 & v2) (Historical Reference)</summary>
 
 ### Prototype Demo (v1)
 
-👉 [Watch demo on YouTube (v1)](https://youtube.com/shorts/mlTw7f_ffxE)  
-*A quick walkthrough of Prototype v1*
+👉 [Watch v1 demo on YouTube](https://youtube.com/shorts/mlTw7f_ffxE)  
+
+👉 [Watch v2 demo on YouTube](https://youtube.com/shorts/YVcvpVbuJEw)  
 
 </details>
 
