@@ -28,6 +28,13 @@ enum ShadowTheme {
         offsetX: 0,
         offsetY: 2
     )
+    
+    static let none = ShadowStyle(
+        color: .clear,
+        radius: 0,
+        offsetX: 0,
+        offsetY: 0
+    )
 }
 // MARK: - Reusable Shadow Style Struct
 
@@ -38,6 +45,8 @@ struct ShadowStyle {
     let offsetY: CGFloat
 }
 // MARK: - View Modifier for Applying Shadows
+
+
 
 struct ApplyShadow: ViewModifier {
     let style: ShadowStyle

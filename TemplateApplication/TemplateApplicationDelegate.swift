@@ -18,8 +18,6 @@ import SpeziNotifications
 import SpeziOnboarding
 import SpeziScheduler
 import SwiftUI
-import SpeziHealthKit
-
 
 
 class TemplateApplicationDelegate: SpeziAppDelegate {
@@ -30,7 +28,6 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
                     service: FirebaseAccountService(providers: [.emailAndPassword, .signInWithApple], emulatorSettings: accountEmulator),
                     storageProvider: FirestoreAccountStorage(storeIn: FirebaseConfiguration.userCollection),
                     configuration: [
-                    
                     ]
                 )
                 firestore
@@ -77,11 +74,13 @@ class TemplateApplicationDelegate: SpeziAppDelegate {
         )
     }
     private var healthKit: HealthKit {
-            HealthKit {
+            HealthKit {                                                                                                                    
                 CollectSample(.stepCount)
                 CollectSample(.heartRate, continueInBackground: true)
                 CollectSample(.bodyTemperature)
                 RequestReadAccess(quantity: [.bloodOxygen])
+                CollectSample(.bloodPressureSystolic)
+                CollectSample(.bloodPressureDiastolic)
             }
         }
 }

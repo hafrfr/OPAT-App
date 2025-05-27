@@ -28,7 +28,7 @@ struct OPATSplashView: View {
                     .accessibilityHidden(true)
                     .onAppear {
                         withAnimation(
-                            .easeInOut(duration: 2.0)
+                            .easeInOut(duration: 2.5)
                             .repeatForever(autoreverses: true)
                         ) {
                             scale = 1.15 // Gently grow to 115%

@@ -16,7 +16,7 @@ import SwiftUI
 
 struct OPATWelcome: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-
+    
     var body: some View {
         OnboardingView(
             title: String(localized: "WELCOME_TITLE"),
@@ -24,7 +24,7 @@ struct OPATWelcome: View {
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "cross.case.fill")
+                        Image(systemName: "book.closed.fill")
                             .accessibilityHidden(true)
                             .foregroundColor(ColorTheme.tabBarItemActive)
                     },
@@ -52,13 +52,16 @@ struct OPATWelcome: View {
             ],
             actionText: String(localized: "GET_STARTED"),
             action: {
-                SoundManager.shared.playSound(.nextTap) // Soft tap sound when getting started :D (same as next tap for instructions)
+                SoundManager.shared.playSound(.nextTap)
                 onboardingNavigationPath.nextStep()
             }
         )
         .font(FontTheme.body)
         .tint(ColorTheme.buttonLarge)
         .padding(.top, Layout.Spacing.large)
+        .safeAreaInset(edge: .bottom) { // Adds breathing room at bottom, similiar to other views
+            Color.clear.frame(height: Layout.Spacing.medium)
+        }
     }
 }
 

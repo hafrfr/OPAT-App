@@ -17,6 +17,7 @@ enum FontTheme {
     // MARK: - Body
     static let body = Font.system(size: 16, weight: .regular) // Regular body text
     static let bodyBold = Font.system(size: 16, weight: .semibold)
+    static let categoryBold = Font.system(size: 18, weight: .semibold)
 
     // MARK: - Buttons
     static let button = Font.system(size: 16, weight: .semibold) // Button text style

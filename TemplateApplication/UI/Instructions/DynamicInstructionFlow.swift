@@ -121,25 +121,3 @@ struct DynamicInstructionFlow: View {
      }
     // --- End Navigation Logic ---
 }
-
-// Preview (Use guideTitle)
-#if DEBUG
-#Preview {
-    let sampleGuide = Guide(
-        title: "Preview Guide", // Use guideTitle
-        steps: [
-            MainStep(title: "Preview Main 1", substeps: [
-                SubStep(title: "Sub 1.1", moreInfo: "Info for 1.1", description: "Desc 1.1", imageName: nil),
-                SubStep(title: nil, moreInfo: nil, description: "Desc 1.2", imageName: "step1-example")
-            ]),
-            MainStep(title: "Preview Main 2", substeps: [
-                SubStep(title: "Sub 2.1", moreInfo: "", description: "Desc 2.1", imageName: nil)
-            ])
-        ]
-    )
-
-
-        DynamicInstructionFlow(guide: sampleGuide)
-    
-}
-#endif

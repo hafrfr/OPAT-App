@@ -73,7 +73,7 @@ struct AccountSheet: View {
                 TreatmentProgressCalendarView()
             } label: {
                 Label {
-                    Text("Care-Plan")
+                    Text("Care Plan")
                 } icon: {
                     Image(systemName: "calendar.and.person")
                         .foregroundColor(ColorTheme.buttonLarge)

@@ -24,7 +24,7 @@ struct OPATConsent: View {
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "lock.shield.fill")
+                        Image(systemName: "doc.text.fill")
                             .accessibilityHidden(true)
                             .foregroundColor(ColorTheme.tabBarItemActive)
                     },
@@ -33,7 +33,7 @@ struct OPATConsent: View {
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "person.text.rectangle.fill")
+                        Image(systemName: "cross.case.fill")
                             .accessibilityHidden(true)
                             .foregroundColor(ColorTheme.tabBarItemActive)
                     },
@@ -42,7 +42,7 @@ struct OPATConsent: View {
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "person.3.fill")
+                        Image(systemName: "lock.shield.fill")
                             .accessibilityHidden(true)
                             .foregroundColor(ColorTheme.tabBarItemActive)
                     },
@@ -60,6 +60,9 @@ struct OPATConsent: View {
         .tint(ColorTheme.buttonLarge)
         .padding(.top, Layout.Spacing.large)
         .accentColor(ColorTheme.buttonLarge)
+        .safeAreaInset(edge: .bottom) {
+            Color.clear.frame(height: Layout.Spacing.medium)
+        }
     }
 }
 

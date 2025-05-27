@@ -27,9 +27,9 @@ struct OPATOnboardingFlow: View {
             OPATWelcome()
             OPATIntro()
             OPATFeatures()
-            AccountOnboarding()
             OPATConsent()
-            // OPATHealthKitPermission()
+            AccountOnboarding()
+            OPATHealthKitPermission()
 
             if !localNotificationAuthorization {
                 OPATNotifications()

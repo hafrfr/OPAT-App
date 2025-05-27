@@ -1,4 +1,3 @@
-
 @_spi(TestingSupport) import SpeziAccount
 import SpeziOnboarding
 import SwiftUI
@@ -21,9 +20,16 @@ struct AccountOnboarding: View {
             OnboardingActionsView(
                 "Next",
                 action: {
+                    SoundManager.shared.playSound(.nextTap)
                     onboardingNavigationPath.nextStep()
                 }
             )
+            .tint(ColorTheme.buttonLarge)
+            .font(FontTheme.button)
+            .padding(.top, Layout.Spacing.large)
+            .safeAreaInset(edge: .bottom) {
+                Color.clear.frame(height: Layout.Spacing.medium)
+            }
         }
     }
 }
